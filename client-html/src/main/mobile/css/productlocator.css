@@ -1,0 +1,146 @@
+/* an inline button in a view that does an action, and it's container */
+device-action-button-container {
+	
+}
+
+device-action-button {
+	
+}
+
+
+/* Tweet Page */
+.tweet-message {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 1em;
+	padding-bottom: 5px;
+	font-style: bold;
+	white-space:normal
+}
+
+.tweet-posted {
+	text-align: right;
+	font-size: 0.8em;
+}
+
+/* A title that goes above a content block */
+.content h3 {
+	padding-left: 15px;
+	margin-top: 10px;
+	margin-bottom: 5px;	
+	font-size: 1em;
+	clear: both;
+}
+
+
+/* Holds the a section of main content block on a page */
+.content-container {
+	clear: both;
+	background: #FFF;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	padding: 10px 15px 10px 15px;
+	margin-bottom: 20px;
+}
+
+.content-container img {
+	float: left;
+	display: block;	
+	padding-right: 15px;
+	padding-bottom: 5px;
+	margin-top: 13px;
+	padding-top: 10px;
+}
+
+.content-container p {
+	
+}
+
+
+/* Product Details, for outputting the SKU list */
+dl.sku-list {
+    padding: 10px;
+    width: 100%;
+}
+
+
+dl.sku-list dt {
+    float: left;
+    clear: left;
+    width: 60px;
+    text-align: left;
+    font-weight: bold;
+    color: black;
+}
+
+
+dl.sku-list dd {
+    margin: 0 0 0 70px;
+    padding: 0 0 0.5em 0;
+}
+
+
+dl.sku-list span.price {
+    font-color: red;
+	font-style: bold;
+}
+
+
+
+/* 
+List of contact details, email address, phone, web etc 
+:: inspired by:http://www.markflint.net/archives/101 ::
+*/
+address {
+	font-style: normal;	
+}
+
+dl.contact-details
+, dl.address-details {
+    padding: 10px;
+    width: 100%;
+}
+
+
+dl.contact-details dt
+, dl.address-details dt {
+    float: left;
+    clear: left;
+    width: 75px;
+    text-align: left;
+    font-weight: bold;
+    color: black;
+}
+
+
+dl.contact-details dd
+, dl.address-details dd {
+    margin: 0 0 0 85px;
+    padding: 0 0 0.5em 0;
+}
+
+
+
+/* Holds the buttons on a page that link off */
+.link-container {
+	text-align: center;	
+	clear: both;
+}
+
+.link-container button
+, .link-container a {
+
+}
+
+
+
+/* Footer NavBar styles */
+.nav-glyphish-icons .ui-btn .ui-btn-inner { padding-top: 40px !important; }
+.nav-glyphish-icons .ui-btn .ui-icon { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
+
+
+.nav-glyphish-icons .nav-button-home .ui-icon { background:  url(glyphish-icons/53-house.png) 50% 50% no-repeat;  background-size: 20px 24px; }
+.nav-glyphish-icons .nav-button-products .ui-icon { background:  url(glyphish-icons/96-book.png) 50% 50% no-repeat;  background-size: 20px 24px; }
+.nav-glyphish-icons .nav-button-locations .ui-icon { background:  url(glyphish-icons/103-map.png) 50% 50% no-repeat;  background-size: 20px 24px; }
+.nav-glyphish-icons .nav-button-socialconnect .ui-icon { background:  url(glyphish-icons/23-bird.png) 50% 50% no-repeat;  background-size: 20px 24px; }
+.nav-glyphish-icons .nav-button-nearest .ui-icon { background:  url(glyphish-icons/74-location.png) 50% 50% no-repeat;  background-size: 20px 24px; }

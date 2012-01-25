@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"productId": 1,
+		"pageId": 0,
+		"name": "70cl Bottle",
+		"description": "A full bottle of Pincer Vodka in presentation box",
+		"image": "",
+		"price": 30.99,
+		"active": true
+	},
+	
+	{
+		"id": 2,
+		"productId": 1,
+		"pageId": 0,
+		"name": "35cl Bottle",
+		"description": "A half bottle of Pincer Vodka in presentation box",
+		"image": "",
+		"price": 16.99,
+		"active": true
+	}
+]

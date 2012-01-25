@@ -1,0 +1,9 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div data-role="navbar" data-iconpos="top" class="nav-glyphish-icons footerNavbarGeneral">
+    <ul>
+        <li><a href="#" class="nav-button-home navGoHome" data-icon="custom" data-direction="reverse" data-transition="slide">Home</a></li>
+        <li class="general"><a href="#" class="nav-button-products navViewProducts" data-icon="custom">Products</a></li>
+        <li class="general"><a href="#" class="nav-button-locations navViewLocations" data-icon="custom">Locations</a></li>
+        <li class="general"><a href="#" class="nav-button-socialconnect navSocialConnect" data-icon="custom">Connect</a></li>
+    </ul>
+</div>  

@@ -1,0 +1,12 @@
+[
+	{
+		"id": 1,
+		"username": "",
+		"fullName": "",
+		"accessLocation": true,
+		"shareLocation": false,
+		"accessNetwork": true,
+		"syncOnStartUp": false,
+		"twitterUsername": "",
+	},
+]

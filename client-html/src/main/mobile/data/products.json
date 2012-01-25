@@ -1,0 +1,13 @@
+[
+	{
+		"id": 1,
+		"pageId": 0,
+		"name": "Pincer Vodka",
+		"teaser": "A cool new vodka to soothe and relax.",
+		"description": "Pincer combines centuries of distilling heritage, 100% selected grain and the finest Scottish mountain water with the natural botanical extracts of  Milk Thistle and Wild Elderflower.",
+		"icon": "images/products/1/icon.png",
+		"image": "images/products/1/image.png",
+		"availableEverywhere": true,
+		"active": true
+	}
+]

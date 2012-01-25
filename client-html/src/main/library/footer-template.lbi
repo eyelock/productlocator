@@ -1,0 +1,24 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div><!-- #BeginLibraryItem "/Library/footer-general.lbi" -->
+<div data-role="navbar" data-iconpos="top" class="nav-glyphish-icons footerNavbarGeneral">
+    <ul>
+        <li><a href="#" class="nav-button-home navGoHome" data-icon="custom" data-direction="reverse" data-transition="slide">Home</a></li>
+        <li class="general"><a href="#" class="nav-button-products navViewProducts" data-icon="custom">Products</a></li>
+        <li class="general"><a href="#" class="nav-button-locations navViewLocations" data-icon="custom">Locations</a></li>
+        <li class="general"><a href="#" class="nav-button-socialconnect navSocialConnect" data-icon="custom">Connect</a></li>
+    </ul>
+</div>  <!-- #EndLibraryItem --><!-- #BeginLibraryItem "/Library/footer-location.lbi" -->
+<div data-role="navbar" data-iconpos="top" class="nav-glyphish-icons footerNavbarLocation">
+    <ul>
+        <li><a href="#" class="nav-button-home navGoHome" data-icon="custom" data-direction="reverse" data-transition="slide">Home</a></li>
+        <li class="location"><a href="#" class="nav-button-products navLocationProducts" data-icon="custom">Stock</a></li>
+        <li class="location"><a href="#" class="nav-button-socialconnect navLocationSocialConnect" data-icon="custom">Social</a></li>
+    </ul>
+</div> <!-- #EndLibraryItem --><!-- #BeginLibraryItem "/Library/footer-product.lbi" -->
+<div data-role="navbar" data-iconpos="top" class="nav-glyphish-icons footerNavbarProduct">
+    <ul>
+        <li><a href="#" class="nav-button-home navGoHome" data-icon="custom" data-direction="reverse" data-transition="slide">Home</a></li>
+        <li class="product"><a href="#" class="nav-button-locations navProductViewLocations" data-icon="custom">Stockists</a></li>
+        <li class="product"><a href="#" class="nav-button-nearest navProductNearest" data-icon="custom">Nearest</a></li>
+    </ul>
+</div>  <!-- #EndLibraryItem --></div>

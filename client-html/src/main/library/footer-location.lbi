@@ -1,0 +1,8 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div data-role="navbar" data-iconpos="top" class="nav-glyphish-icons footerNavbarLocation">
+    <ul>
+        <li><a href="#" class="nav-button-home navGoHome" data-icon="custom" data-direction="reverse" data-transition="slide">Home</a></li>
+        <li class="location"><a href="#" class="nav-button-products navLocationProducts" data-icon="custom">Stock</a></li>
+        <li class="location"><a href="#" class="nav-button-socialconnect navLocationSocialConnect" data-icon="custom">Social</a></li>
+    </ul>
+</div> 

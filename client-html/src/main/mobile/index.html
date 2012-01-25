@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"><!-- InstanceBegin template="/templates/productlocator-mobile.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+	<meta charset="utf-8">
+    
+	<!-- InstanceBeginEditable name="doctitle" -->
+	<title>Product Locator</title>
+	<!-- InstanceEndEditable -->  
+    
+    <link rel="stylesheet" href="scripts/libs/jquery/jquery.mobile-1.0.min.css">
+    <link rel="stylesheet" href="css/ios_inspired/styles.css" />     
+    <link rel="stylesheet" href="css/productlocator.css">    
+    
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">    
+    <link rel="apple-touch-startup-image" href="images/apple-touch-splash.png" /> 
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />  
+	<meta name="viewport" content="width = device-width, initial-scale = 1, user-scalable = no" />  
+    
+    <script src="scripts/libs/phonegap/phonegap-1.3.0.js"></script>
+    <script data-main="scripts/main" src="scripts/libs/requirejs/require-1.0.4.min.js"></script> 
+    
+	<!-- InstanceBeginEditable name="head" -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- InstanceEndEditable -->
+</head>
+<body>
+	<!-- InstanceBeginEditable name="PageBody" -->
+<!-- /////////////// Page /////////////// -->
+<div id="home" data-role="page" data-iscroll="enable">
+	<div data-role="header" class="header" data-theme="b" data-position="fixed" data-id="header">
+        <h1 id="pageTitle">Welcome to the Product Locator</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+    	<div data-iscroll="scroller" class="content">
+
+        </div>
+	</div><!-- /content -->
+	
+	<div data-role="footer" class="footer" data-position="fixed" data-id="footer">
+      <!-- #BeginLibraryItem "/Library/footer-general.lbi" -->
+      <div data-role="navbar" data-iconpos="top" class="nav-glyphish-icons footerNavbarGeneral">
+        <ul>
+          <li><a href="#" class="nav-button-home navGoHome" data-icon="custom" data-direction="reverse" data-transition="slide">Home</a></li>
+          <li class="general"><a href="#" class="nav-button-products navViewProducts" data-icon="custom">Products</a></li>
+          <li class="general"><a href="#" class="nav-button-locations navViewLocations" data-icon="custom">Locations</a></li>
+          <li class="general"><a href="#" class="nav-button-socialconnect navSocialConnect" data-icon="custom">Connect</a></li>
+        </ul>
+      </div>
+    <!-- #EndLibraryItem --></div><!-- /footer -->
+
+
+<!-- /////////////// Page Templates /////////////// -->
+<script type="text/template" id="home-body">
+	<h3><%= = name %></h3>
+	<div class="content-container">
+		<img src="<%= = image %>" class="contents-image"/>
+		<p class="contents-block"></p>
+	</div> 
+</script>
+</div><!-- /page -->
+
+<!-- InstanceEndEditable -->
+</body>
+<!-- InstanceEnd --></html> 

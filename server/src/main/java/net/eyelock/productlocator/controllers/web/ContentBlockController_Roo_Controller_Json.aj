@@ -7,6 +7,7 @@ import java.util.List;
 import net.eyelock.productlocator.controllers.web.ContentBlockController;
 import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ContentBlock;
+import net.eyelock.productlocator.model.ContentBlockType;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -104,7 +105,7 @@ privileged aspect ContentBlockController_Roo_Controller_Json {
     
     @RequestMapping(params = "find=ByTypeEquals", headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> ContentBlockController.jsonFindContentBlocksByTypeEquals(@RequestParam("type") String type) {
+    public ResponseEntity<String> ContentBlockController.jsonFindContentBlocksByTypeEquals(@RequestParam("type") ContentBlockType type) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         return new ResponseEntity<String>(ContentBlock.toJsonArray(ContentBlock.findContentBlocksByTypeEquals(type).getResultList()), headers, HttpStatus.OK);

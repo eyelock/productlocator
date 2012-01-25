@@ -4,11 +4,13 @@
 package net.eyelock.productlocator.controllers.web;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import net.eyelock.productlocator.controllers.web.ContentBlockController;
 import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ContentBlock;
+import net.eyelock.productlocator.model.ContentBlockType;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,6 +90,7 @@ privileged aspect ContentBlockController_Roo_Controller {
     void ContentBlockController.populateEditForm(Model uiModel, ContentBlock contentBlock) {
         uiModel.addAttribute("contentBlock", contentBlock);
         uiModel.addAttribute("articles", Article.findAllArticles());
+        uiModel.addAttribute("contentblocktypes", Arrays.asList(ContentBlockType.values()));
     }
     
     String ContentBlockController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

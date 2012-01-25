@@ -46,7 +46,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<ContentBlock, String> ApplicationConversionServiceFactoryBean.getContentBlockToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.ContentBlock, java.lang.String>() {
             public String convert(ContentBlock contentBlock) {
-                return new StringBuilder().append(contentBlock.getType()).append(" ").append(contentBlock.getOrderedBy()).append(" ").append(contentBlock.getContents()).toString();
+                return new StringBuilder().append(contentBlock.getOrderedBy()).append(" ").append(contentBlock.getContents()).toString();
             }
         };
     }

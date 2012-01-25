@@ -5,9 +5,9 @@
     <page:list id="pl_net_eyelock_productlocator_model_ContentBlock" items="${contentblocks}" z="QTY/1VQqw9Mn/I5mFSguI2LfoBU=">
         <table:table data="${contentblocks}" id="l_net_eyelock_productlocator_model_ContentBlock" path="/contentblocks" z="33HhBvnON51zdbfVZSpLT6XTdW8=">
             <table:column id="c_net_eyelock_productlocator_model_ContentBlock_article" property="article" z="tJog1rgoTfq6LCH2p+sQ/uU++6E="/>
-            <table:column id="c_net_eyelock_productlocator_model_ContentBlock_type" property="type" z="Y6rYV+n4+hAhk8u/3ApTUKB/1mQ="/>
             <table:column id="c_net_eyelock_productlocator_model_ContentBlock_orderedBy" property="orderedBy" z="oBfSo1JcUbTvjaNxOF5gAnJly0Y="/>
             <table:column id="c_net_eyelock_productlocator_model_ContentBlock_contents" property="contents" z="YW9kBxSlvcxtPbr2d6ZQz9H+QSw="/>
+            <table:column id="c_net_eyelock_productlocator_model_ContentBlock_type" property="type" z="Y6rYV+n4+hAhk8u/3ApTUKB/1mQ="/>
         </table:table>
     </page:list>
 </div>

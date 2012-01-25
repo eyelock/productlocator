@@ -63,6 +63,15 @@ body {
 	color:#FFFFFF;
 }
 
+#menu h3 {
+	display: block;
+	margin: 0;
+	padding: 2px 6px;
+	background: #eee;
+	text-style: italic;
+	font-size: 1em;
+}
+
 #menu h2 {
 	color: #fff;
 	background: #648C1D;

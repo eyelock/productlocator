@@ -14,6 +14,7 @@ import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ArticleDataOnDemand;
 import net.eyelock.productlocator.model.ContentBlock;
 import net.eyelock.productlocator.model.ContentBlockDataOnDemand;
+import net.eyelock.productlocator.model.ContentBlockType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -53,10 +54,7 @@ privileged aspect ContentBlockDataOnDemand_Roo_DataOnDemand {
     }
     
     public void ContentBlockDataOnDemand.setType(ContentBlock obj, int index) {
-        String type = "type_" + index;
-        if (type.length() > 10) {
-            type = type.substring(0, 10);
-        }
+        ContentBlockType type = ContentBlockType.class.getEnumConstants()[0];
         obj.setType(type);
     }
     

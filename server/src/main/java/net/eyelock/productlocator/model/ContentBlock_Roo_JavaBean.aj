@@ -5,6 +5,7 @@ package net.eyelock.productlocator.model;
 
 import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ContentBlock;
+import net.eyelock.productlocator.model.ContentBlockType;
 
 privileged aspect ContentBlock_Roo_JavaBean {
     
@@ -16,11 +17,11 @@ privileged aspect ContentBlock_Roo_JavaBean {
         this.article = article;
     }
     
-    public String ContentBlock.getType() {
+    public ContentBlockType ContentBlock.getType() {
         return this.type;
     }
     
-    public void ContentBlock.setType(String type) {
+    public void ContentBlock.setType(ContentBlockType type) {
         this.type = type;
     }
     

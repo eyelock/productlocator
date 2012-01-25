@@ -4,9 +4,9 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_net_eyelock_productlocator_model_ContentBlock" modelAttribute="contentBlock" path="/contentblocks" render="${empty dependencies}" z="WGch0ouuvQcoP9BJiqNoXAx+iv4=">
         <field:select field="article" id="c_net_eyelock_productlocator_model_ContentBlock_article" itemValue="id" items="${articles}" path="/articles" z="Z1X16yKC6VvZTpXJ1MbfXXWctTg="/>
-        <field:input field="type" id="c_net_eyelock_productlocator_model_ContentBlock_type" max="10" min="2" required="true" z="N2vx0aVt3b03Ij+zN8V2/AsI3iY="/>
         <field:input field="orderedBy" id="c_net_eyelock_productlocator_model_ContentBlock_orderedBy" z="7CFYtHnceyYoSC0IZ5e8DpTG2Ks="/>
         <field:input field="contents" id="c_net_eyelock_productlocator_model_ContentBlock_contents" z="RAjrmAffuqiQVju8nno9woDJ2F4="/>
+        <field:select field="type" id="c_net_eyelock_productlocator_model_ContentBlock_type" items="${contentblocktypes}" path="contentblocktypes" required="true" z="jx1gHJXYif0Pq1n6ZV5CH6S+vss="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_net_eyelock_productlocator_model_ContentBlock" render="${not empty dependencies}" z="CuWt/bXN38w0IM5jA5Yat0h+6M8="/>
 </div>

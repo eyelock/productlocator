@@ -4,8 +4,8 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_net_eyelock_productlocator_model_ContentBlock" modelAttribute="contentBlock" path="/contentblocks" versionField="Version" z="UPaly1lZhoJMXle//om2yyXM40g=">
         <field:select field="article" id="c_net_eyelock_productlocator_model_ContentBlock_article" itemValue="id" items="${articles}" path="/articles" z="Z1X16yKC6VvZTpXJ1MbfXXWctTg="/>
-        <field:input field="type" id="c_net_eyelock_productlocator_model_ContentBlock_type" max="10" min="2" required="true" z="N2vx0aVt3b03Ij+zN8V2/AsI3iY="/>
         <field:input field="orderedBy" id="c_net_eyelock_productlocator_model_ContentBlock_orderedBy" z="7CFYtHnceyYoSC0IZ5e8DpTG2Ks="/>
         <field:input field="contents" id="c_net_eyelock_productlocator_model_ContentBlock_contents" z="RAjrmAffuqiQVju8nno9woDJ2F4="/>
+        <field:select field="type" id="c_net_eyelock_productlocator_model_ContentBlock_type" items="${contentblocktypes}" path="contentblocktypes" required="true" z="jx1gHJXYif0Pq1n6ZV5CH6S+vss="/>
     </form:update>
 </div>

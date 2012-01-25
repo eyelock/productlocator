@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ContentBlock;
+import net.eyelock.productlocator.model.ContentBlockType;
 
 privileged aspect ContentBlock_Roo_Finder {
     
@@ -18,8 +19,8 @@ privileged aspect ContentBlock_Roo_Finder {
         return q;
     }
     
-    public static TypedQuery<ContentBlock> ContentBlock.findContentBlocksByTypeEquals(String type) {
-        if (type == null || type.length() == 0) throw new IllegalArgumentException("The type argument is required");
+    public static TypedQuery<ContentBlock> ContentBlock.findContentBlocksByTypeEquals(ContentBlockType type) {
+        if (type == null) throw new IllegalArgumentException("The type argument is required");
         EntityManager em = ContentBlock.entityManager();
         TypedQuery<ContentBlock> q = em.createQuery("SELECT o FROM ContentBlock AS o WHERE o.type = :type", ContentBlock.class);
         q.setParameter("type", type);

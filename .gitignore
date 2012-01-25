@@ -47,9 +47,11 @@ bin/
 # Eclipse  #
 ############
 .project
-.settings
+.settings/
+.metadata/
 .classpath
-.archive
+.archive/
+Servers/
 
 
 # Roo      #

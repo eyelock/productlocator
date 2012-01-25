@@ -3,6 +3,6 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:find finderName="ByTypeEquals" id="ff_net_eyelock_productlocator_model_ContentBlock" path="/contentblocks" z="PAlGn7PFXIR3a6i4S2qCGfU6bTo=">
-        <field:input disableFormBinding="true" field="type" id="f_net_eyelock_productlocator_model_ContentBlock_type" max="10" min="2" required="true" z="UGjfroggqQdXG3raBvwMoLaIdq8="/>
+        <field:select disableFormBinding="true" field="type" id="f_net_eyelock_productlocator_model_ContentBlock_type" items="${contentblocktypes}" path="/contentblocktypes" required="true" z="yMmWMbrkAaQr+v7uiaaDEZTySnA="/>
     </form:find>
 </div>

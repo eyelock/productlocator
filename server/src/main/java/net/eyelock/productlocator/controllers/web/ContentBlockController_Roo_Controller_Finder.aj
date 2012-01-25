@@ -6,6 +6,7 @@ package net.eyelock.productlocator.controllers.web;
 import net.eyelock.productlocator.controllers.web.ContentBlockController;
 import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ContentBlock;
+import net.eyelock.productlocator.model.ContentBlockType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,11 +28,12 @@ privileged aspect ContentBlockController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=ByTypeEquals", "form" }, method = RequestMethod.GET)
     public String ContentBlockController.findContentBlocksByTypeEqualsForm(Model uiModel) {
+        uiModel.addAttribute("contentblocktypes", java.util.Arrays.asList(ContentBlockType.class.getEnumConstants()));
         return "contentblocks/findContentBlocksByTypeEquals";
     }
     
     @RequestMapping(params = "find=ByTypeEquals", method = RequestMethod.GET)
-    public String ContentBlockController.findContentBlocksByTypeEquals(@RequestParam("type") String type, Model uiModel) {
+    public String ContentBlockController.findContentBlocksByTypeEquals(@RequestParam("type") ContentBlockType type, Model uiModel) {
         uiModel.addAttribute("contentblocks", ContentBlock.findContentBlocksByTypeEquals(type).getResultList());
         return "contentblocks/list";
     }

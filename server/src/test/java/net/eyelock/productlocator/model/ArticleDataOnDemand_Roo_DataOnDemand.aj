@@ -13,6 +13,8 @@ import javax.validation.ConstraintViolationException;
 import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ArticleDataOnDemand;
 import net.eyelock.productlocator.model.Media;
+import net.eyelock.productlocator.model.MediaDataOnDemand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect ArticleDataOnDemand_Roo_DataOnDemand {
@@ -22,6 +24,9 @@ privileged aspect ArticleDataOnDemand_Roo_DataOnDemand {
     private Random ArticleDataOnDemand.rnd = new SecureRandom();
     
     private List<Article> ArticleDataOnDemand.data;
+    
+    @Autowired
+    private MediaDataOnDemand ArticleDataOnDemand.mediaDataOnDemand;
     
     public Article ArticleDataOnDemand.getNewTransientArticle(int index) {
         Article obj = new Article();
@@ -43,12 +48,12 @@ privileged aspect ArticleDataOnDemand_Roo_DataOnDemand {
     }
     
     public void ArticleDataOnDemand.setIcon(Article obj, int index) {
-        Media icon = null;
+        Media icon = mediaDataOnDemand.getSpecificMedia(index);
         obj.setIcon(icon);
     }
     
     public void ArticleDataOnDemand.setImage(Article obj, int index) {
-        Media image = null;
+        Media image = mediaDataOnDemand.getSpecificMedia(index);
         obj.setImage(image);
     }
     

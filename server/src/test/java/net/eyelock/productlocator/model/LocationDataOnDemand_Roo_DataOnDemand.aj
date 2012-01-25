@@ -15,6 +15,7 @@ import net.eyelock.productlocator.model.CountryDataOnDemand;
 import net.eyelock.productlocator.model.Location;
 import net.eyelock.productlocator.model.LocationDataOnDemand;
 import net.eyelock.productlocator.model.Media;
+import net.eyelock.productlocator.model.MediaDataOnDemand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,9 @@ privileged aspect LocationDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     private CountryDataOnDemand LocationDataOnDemand.countryDataOnDemand;
+    
+    @Autowired
+    private MediaDataOnDemand LocationDataOnDemand.mediaDataOnDemand;
     
     public Location LocationDataOnDemand.getNewTransientLocation(int index) {
         Location obj = new Location();
@@ -101,12 +105,12 @@ privileged aspect LocationDataOnDemand_Roo_DataOnDemand {
     }
     
     public void LocationDataOnDemand.setIcon(Location obj, int index) {
-        Media icon = null;
+        Media icon = mediaDataOnDemand.getSpecificMedia(index);
         obj.setIcon(icon);
     }
     
     public void LocationDataOnDemand.setImage(Location obj, int index) {
-        Media image = null;
+        Media image = mediaDataOnDemand.getSpecificMedia(index);
         obj.setImage(image);
     }
     

@@ -1,6 +1,8 @@
 package net.eyelock.productlocator.model;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -32,7 +34,8 @@ public class ContentBlock {
 	@NotNull
 	@Size(min = 2, max = 10)
 	@Column(name = "type")
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private ContentBlockType type;
 
 	@Column(name = "ordered_by")
 	private int orderedBy = 0;

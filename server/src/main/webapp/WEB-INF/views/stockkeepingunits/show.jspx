@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_net_eyelock_productlocator_model_StockKeepingUnit" object="${stockkeepingunit}" path="/stockkeepingunits" z="uqAKPZlScxTMIaZXpKpcvNVSx/A=">
+        <field:display field="product" id="s_net_eyelock_productlocator_model_StockKeepingUnit_product" object="${stockkeepingunit}" z="JWL87E5t24EKQ4vfN6+xPBleYpw="/>
+        <field:display field="name" id="s_net_eyelock_productlocator_model_StockKeepingUnit_name" object="${stockkeepingunit}" z="P6UrzCntWeHs+UllsqoFkH+ot8g="/>
+        <field:display field="teaser" id="s_net_eyelock_productlocator_model_StockKeepingUnit_teaser" object="${stockkeepingunit}" z="3oUsSqOSY3wmfe7YqsL/MaiM/Zk="/>
+        <field:display field="description" id="s_net_eyelock_productlocator_model_StockKeepingUnit_description" object="${stockkeepingunit}" z="III6zXJnucQF8fyAdV4VraN2AWE="/>
+        <field:display field="icon" id="s_net_eyelock_productlocator_model_StockKeepingUnit_icon" object="${stockkeepingunit}" z="SG6wi+k7rEEbKlsRsvHW9yXb7CY="/>
+        <field:display field="image" id="s_net_eyelock_productlocator_model_StockKeepingUnit_image" object="${stockkeepingunit}" z="WvFA/uj4uM0Xjw/ZXYwG964G574="/>
+        <field:display field="active" id="s_net_eyelock_productlocator_model_StockKeepingUnit_active" object="${stockkeepingunit}" z="BHRCm95f9k98aYlR2t3nJYK7rqY="/>
+        <field:display field="price" id="s_net_eyelock_productlocator_model_StockKeepingUnit_price" object="${stockkeepingunit}" z="fxcSosES/zVl5yZe72dWIVnqJVk="/>
+    </page:show>
+</div>

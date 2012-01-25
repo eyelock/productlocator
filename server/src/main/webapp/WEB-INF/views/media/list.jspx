@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_net_eyelock_productlocator_model_Media" items="${mediaitems}" z="h28Y+qCX4kGoL9X904bkpHcA09Y=">
+        <table:table data="${mediaitems}" id="l_net_eyelock_productlocator_model_Media" path="/media" z="A567zfSU9xcfsphDLQcPFmBjLGw=">
+            <table:column id="c_net_eyelock_productlocator_model_Media_name" property="name" z="0CYUmcn+wyZgTCI0CJWqlYjCuGI="/>
+            <table:column id="c_net_eyelock_productlocator_model_Media_description" property="description" z="N6Zl+7XNqXylnahDeVaHIOqDmtM="/>
+            <table:column id="c_net_eyelock_productlocator_model_Media_fileName" property="fileName" z="65igjk+K5icJLAUt677SRizLAcQ="/>
+            <table:column id="c_net_eyelock_productlocator_model_Media_mimeType" property="mimeType" z="YBGMuCeS4PYuNqtsRIBzsNxJ9K0="/>
+            <table:column id="c_net_eyelock_productlocator_model_Media_size" property="size" z="au5ysAE0c1qa71lTBfG/wSDvmFA="/>
+            <table:column id="c_net_eyelock_productlocator_model_Media_url" property="url" z="0znyaIAECrNJqTmdaX1cw1wvmSM="/>
+        </table:table>
+    </page:list>
+</div>

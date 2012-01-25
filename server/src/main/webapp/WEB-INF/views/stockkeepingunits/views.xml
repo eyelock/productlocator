@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="stockkeepingunits/list">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/list.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/show">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/show.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/create">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/create.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/update">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/update.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/findStockKeepingUnitsByActiveNot">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/findStockKeepingUnitsByActiveNot.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/findStockKeepingUnitsByNameEquals">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/findStockKeepingUnitsByNameEquals.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/findStockKeepingUnitsByNameLike">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/findStockKeepingUnitsByNameLike.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/findStockKeepingUnitsByPriceBetween">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/findStockKeepingUnitsByPriceBetween.jspx"/>
+    </definition>
+<definition extends="default" name="stockkeepingunits/findStockKeepingUnitsByProduct">
+        <put-attribute name="body" value="/WEB-INF/views/stockkeepingunits/findStockKeepingUnitsByProduct.jspx"/>
+    </definition>
+</tiles-definitions>

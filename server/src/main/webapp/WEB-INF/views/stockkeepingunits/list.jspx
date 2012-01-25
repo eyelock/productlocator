@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_net_eyelock_productlocator_model_StockKeepingUnit" items="${stockkeepingunits}" z="chDBBS0f7imhyz6kb5rB/tRdbQs=">
+        <table:table data="${stockkeepingunits}" id="l_net_eyelock_productlocator_model_StockKeepingUnit" path="/stockkeepingunits" z="gLOTwh90rdS1d9OXCXLzP4/kRnA=">
+            <table:column id="c_net_eyelock_productlocator_model_StockKeepingUnit_product" property="product" z="8L48Gw6emQUb1/FxQk4SNOv2b0M="/>
+            <table:column id="c_net_eyelock_productlocator_model_StockKeepingUnit_name" property="name" z="jKBc2uOziwBEr7kFQRRuUJubHwQ="/>
+            <table:column id="c_net_eyelock_productlocator_model_StockKeepingUnit_teaser" property="teaser" z="wUDa8DAobUJbdOTkGtutdlWlLqg="/>
+            <table:column id="c_net_eyelock_productlocator_model_StockKeepingUnit_description" property="description" z="Te4efFdDQhOVLjexdxp3rXmkXx4="/>
+            <table:column id="c_net_eyelock_productlocator_model_StockKeepingUnit_icon" property="icon" z="hRjcrRTlNexKUkAEbPFennJR3hs="/>
+            <table:column id="c_net_eyelock_productlocator_model_StockKeepingUnit_image" property="image" z="kLjuIroWAycA+kl1FLorl8cBQFM="/>
+        </table:table>
+    </page:list>
+</div>

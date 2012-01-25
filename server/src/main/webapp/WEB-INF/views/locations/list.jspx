@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_net_eyelock_productlocator_model_Location" items="${locations}" z="8sL+jjENY/WtdcW/Fo8gfZMihhI=">
+        <table:table data="${locations}" id="l_net_eyelock_productlocator_model_Location" path="/locations" z="V+Jc5BY/65bXC+QG3EEYujBcsFc=">
+            <table:column id="c_net_eyelock_productlocator_model_Location_name" property="name" z="OA61rvv+bHgJ0bRZYdwm+xr7QQg="/>
+            <table:column id="c_net_eyelock_productlocator_model_Location_description" property="description" z="Wa7XScjTdOvbd6GO+kNOaNWVU4k="/>
+            <table:column id="c_net_eyelock_productlocator_model_Location_address01" property="address01" z="tY5QuWc3KHLzXuxoBBiZ9CzzYW4="/>
+            <table:column id="c_net_eyelock_productlocator_model_Location_address02" property="address02" z="ibmeo7QZAu/vzA8gSrKQCg5BOks="/>
+            <table:column id="c_net_eyelock_productlocator_model_Location_city" property="city" z="XDm9VgXydDV29+1za5V2E9/SuIc="/>
+            <table:column id="c_net_eyelock_productlocator_model_Location_postcode" property="postcode" z="d6hjbJWEq7x+S5yjXcfyS2xNXdA="/>
+        </table:table>
+    </page:list>
+</div>

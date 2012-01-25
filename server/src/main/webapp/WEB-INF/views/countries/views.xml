@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="countries/list">
+        <put-attribute name="body" value="/WEB-INF/views/countries/list.jspx"/>
+    </definition>
+<definition extends="default" name="countries/show">
+        <put-attribute name="body" value="/WEB-INF/views/countries/show.jspx"/>
+    </definition>
+<definition extends="default" name="countries/create">
+        <put-attribute name="body" value="/WEB-INF/views/countries/create.jspx"/>
+    </definition>
+<definition extends="default" name="countries/update">
+        <put-attribute name="body" value="/WEB-INF/views/countries/update.jspx"/>
+    </definition>
+<definition extends="default" name="countries/findCountriesByCodeEquals">
+        <put-attribute name="body" value="/WEB-INF/views/countries/findCountriesByCodeEquals.jspx"/>
+    </definition>
+<definition extends="default" name="countries/findCountriesByNameEquals">
+        <put-attribute name="body" value="/WEB-INF/views/countries/findCountriesByNameEquals.jspx"/>
+    </definition>
+<definition extends="default" name="countries/findCountriesByNameLike">
+        <put-attribute name="body" value="/WEB-INF/views/countries/findCountriesByNameLike.jspx"/>
+    </definition>
+</tiles-definitions>

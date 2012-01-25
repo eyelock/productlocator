@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="findMediaBySizeBetween" id="ff_net_eyelock_productlocator_model_Media" path="/media" z="enYZcg5mydGJmaAobvXhoSx3KCQ=">
+        <field:input disableFormBinding="true" field="minSize" id="f_net_eyelock_productlocator_model_Media_minSize" required="true" validationMessageCode="field_invalid_integer" z="WuEKlXQWx5G3GWHkX2DD27ZrZtY="/>
+        <field:input disableFormBinding="true" field="maxSize" id="f_net_eyelock_productlocator_model_Media_maxSize" required="true" validationMessageCode="field_invalid_integer" z="ex/0Czv6QWa3SiVaox8C66XgIFk="/>
+    </form:find>
+</div>

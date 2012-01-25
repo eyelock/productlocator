@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="contentblocks/list">
+        <put-attribute name="body" value="/WEB-INF/views/contentblocks/list.jspx"/>
+    </definition>
+<definition extends="default" name="contentblocks/show">
+        <put-attribute name="body" value="/WEB-INF/views/contentblocks/show.jspx"/>
+    </definition>
+<definition extends="default" name="contentblocks/create">
+        <put-attribute name="body" value="/WEB-INF/views/contentblocks/create.jspx"/>
+    </definition>
+<definition extends="default" name="contentblocks/update">
+        <put-attribute name="body" value="/WEB-INF/views/contentblocks/update.jspx"/>
+    </definition>
+<definition extends="default" name="contentblocks/findContentBlocksByArticle">
+        <put-attribute name="body" value="/WEB-INF/views/contentblocks/findContentBlocksByArticle.jspx"/>
+    </definition>
+<definition extends="default" name="contentblocks/findContentBlocksByTypeEquals">
+        <put-attribute name="body" value="/WEB-INF/views/contentblocks/findContentBlocksByTypeEquals.jspx"/>
+    </definition>
+</tiles-definitions>

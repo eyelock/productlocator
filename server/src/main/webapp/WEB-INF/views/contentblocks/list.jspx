@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_net_eyelock_productlocator_model_ContentBlock" items="${contentblocks}" z="QTY/1VQqw9Mn/I5mFSguI2LfoBU=">
+        <table:table data="${contentblocks}" id="l_net_eyelock_productlocator_model_ContentBlock" path="/contentblocks" z="33HhBvnON51zdbfVZSpLT6XTdW8=">
+            <table:column id="c_net_eyelock_productlocator_model_ContentBlock_article" property="article" z="tJog1rgoTfq6LCH2p+sQ/uU++6E="/>
+            <table:column id="c_net_eyelock_productlocator_model_ContentBlock_type" property="type" z="Y6rYV+n4+hAhk8u/3ApTUKB/1mQ="/>
+            <table:column id="c_net_eyelock_productlocator_model_ContentBlock_orderedBy" property="orderedBy" z="oBfSo1JcUbTvjaNxOF5gAnJly0Y="/>
+            <table:column id="c_net_eyelock_productlocator_model_ContentBlock_contents" property="contents" z="YW9kBxSlvcxtPbr2d6ZQz9H+QSw="/>
+        </table:table>
+    </page:list>
+</div>

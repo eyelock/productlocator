@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_net_eyelock_productlocator_model_Product" modelAttribute="product" path="/products" render="${empty dependencies}" z="vdKTbOUqz7UaJDNfzHft54Sra1w=">
+        <field:textarea field="name" id="c_net_eyelock_productlocator_model_Product_name" required="true" z="hKr6WietD1j2+xuefbx7qFLZYRg="/>
+        <field:textarea field="teaser" id="c_net_eyelock_productlocator_model_Product_teaser" z="ub+jK7FKp01wcqrGT/TpiAM9Nac="/>
+        <field:textarea field="description" id="c_net_eyelock_productlocator_model_Product_description" z="c0eYz9xlDh9iYGMb51lqLlDrmC0="/>
+        <field:input field="orderedBy" id="c_net_eyelock_productlocator_model_Product_orderedBy" z="tf/YdnCbPOYALKL/kf88aujrO1Q="/>
+        <field:select field="icon" id="c_net_eyelock_productlocator_model_Product_icon" itemValue="id" items="${mediaitems}" path="/media" z="D9Nc2klKSmNdmDHL3lbsQ3+Seeo="/>
+        <field:select field="image" id="c_net_eyelock_productlocator_model_Product_image" itemValue="id" items="${mediaitems}" path="/media" z="Ub2KIpF+uAlVZuOtoeONLw+6MNI="/>
+        <field:checkbox field="availableEverywhere" id="c_net_eyelock_productlocator_model_Product_availableEverywhere" z="Xlbbod15sxgi3K8LkTQUTzhQ6dI="/>
+        <field:checkbox field="active" id="c_net_eyelock_productlocator_model_Product_active" z="h/eENV6vpB4dkiXV9JPmrEWJ1Iw="/>
+        <field:simple field="skus" id="c_net_eyelock_productlocator_model_Product_skus" messageCode="entity_reference_not_managed" messageCodeAttribute="Stock Keeping Unit" z="i+qSUeNcHKGMr65EFXYv3LlK7I4="/>
+        <field:select field="locations" id="c_net_eyelock_productlocator_model_Product_locations" itemValue="id" items="${locations}" multiple="true" path="/locations" z="CiiCHNXUDSETpTNKr8BUqGbI8is="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_net_eyelock_productlocator_model_Product" render="${not empty dependencies}" z="p4XI8tPDa4FEYfzTvJ50VloiDNw="/>
+</div>

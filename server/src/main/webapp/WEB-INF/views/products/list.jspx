@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_net_eyelock_productlocator_model_Product" items="${products}" z="H5tKnTZjVuM57QXIAfFCq8CK9wE=">
+        <table:table data="${products}" id="l_net_eyelock_productlocator_model_Product" path="/products" z="2qRmeKkCizgWmUo9kf7eMrcYo74=">
+            <table:column id="c_net_eyelock_productlocator_model_Product_name" property="name" z="KOeOtBTl08DvHduTW0UwcA2tPyo="/>
+            <table:column id="c_net_eyelock_productlocator_model_Product_teaser" property="teaser" z="7PSo2HqGkje3d+NgbFDR+zPvt5M="/>
+            <table:column id="c_net_eyelock_productlocator_model_Product_description" property="description" z="aI7+QTvqD6KXXRem48dE3efjoWI="/>
+            <table:column id="c_net_eyelock_productlocator_model_Product_orderedBy" property="orderedBy" z="5UA/tPTWWtnxtXGwJJ1/aqjB6b8="/>
+            <table:column id="c_net_eyelock_productlocator_model_Product_icon" property="icon" z="w9b2lpR1OyEc0j9ZxmcW5yBXApI="/>
+            <table:column id="c_net_eyelock_productlocator_model_Product_image" property="image" z="3CAlgy55DEEiKYQgI03xIWPSMCU="/>
+        </table:table>
+    </page:list>
+</div>

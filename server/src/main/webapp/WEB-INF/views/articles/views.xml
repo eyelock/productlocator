@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="articles/list">
+        <put-attribute name="body" value="/WEB-INF/views/articles/list.jspx"/>
+    </definition>
+<definition extends="default" name="articles/show">
+        <put-attribute name="body" value="/WEB-INF/views/articles/show.jspx"/>
+    </definition>
+<definition extends="default" name="articles/create">
+        <put-attribute name="body" value="/WEB-INF/views/articles/create.jspx"/>
+    </definition>
+<definition extends="default" name="articles/update">
+        <put-attribute name="body" value="/WEB-INF/views/articles/update.jspx"/>
+    </definition>
+<definition extends="default" name="articles/findArticlesByCodeEquals">
+        <put-attribute name="body" value="/WEB-INF/views/articles/findArticlesByCodeEquals.jspx"/>
+    </definition>
+<definition extends="default" name="articles/findArticlesByCodeLike">
+        <put-attribute name="body" value="/WEB-INF/views/articles/findArticlesByCodeLike.jspx"/>
+    </definition>
+<definition extends="default" name="articles/findArticlesByListableNot">
+        <put-attribute name="body" value="/WEB-INF/views/articles/findArticlesByListableNot.jspx"/>
+    </definition>
+<definition extends="default" name="articles/findArticlesByNameEquals">
+        <put-attribute name="body" value="/WEB-INF/views/articles/findArticlesByNameEquals.jspx"/>
+    </definition>
+</tiles-definitions>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_net_eyelock_productlocator_model_Article" modelAttribute="article" path="/articles" render="${empty dependencies}" z="dNPa555786YfVKQPBoJw0yagWIc=">
+        <field:input field="code" id="c_net_eyelock_productlocator_model_Article_code" max="10" min="2" required="true" z="tUsEzN9upwJoUtkeh6m6gymV+Lk="/>
+        <field:textarea field="name" id="c_net_eyelock_productlocator_model_Article_name" required="true" z="ZgldfCOsD6/30O0vNoIiV4pdL48="/>
+        <field:checkbox field="listable" id="c_net_eyelock_productlocator_model_Article_listable" z="mTWKCnFCETm3ZMriqZE4L6Mperk="/>
+        <field:input field="orderedBy" id="c_net_eyelock_productlocator_model_Article_orderedBy" z="TItP37JVvdkRBPobsy9hpkCTqKI="/>
+        <field:select field="icon" id="c_net_eyelock_productlocator_model_Article_icon" itemValue="id" items="${mediaitems}" path="/media" z="BNLKxl8zqLMYUEaZyAu46hthSUU="/>
+        <field:select field="image" id="c_net_eyelock_productlocator_model_Article_image" itemValue="id" items="${mediaitems}" path="/media" z="iXVV4PagjPGy4Z0MHvz7Ml530ww="/>
+        <field:simple field="contentBlocks" id="c_net_eyelock_productlocator_model_Article_contentBlocks" messageCode="entity_reference_not_managed" messageCodeAttribute="Content Block" z="3BEmRCWw3j51LWBpPwlu7ByLxI8="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_net_eyelock_productlocator_model_Article" render="${not empty dependencies}" z="jEw4McMA9uwxIuwnwsfQ4eaiv4c="/>
+</div>

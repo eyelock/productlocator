@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByPostcodeLike" id="ff_net_eyelock_productlocator_model_Location" path="/locations" z="VFyumIZRB3oA7fbs9w8Dix9nmj0=">
+        <field:input disableFormBinding="true" field="postcode" id="f_net_eyelock_productlocator_model_Location_postcode" max="10" min="2" required="true" z="0Joox5iuGk2yVA73lXhBhH+ZDMw="/>
+    </form:find>
+</div>

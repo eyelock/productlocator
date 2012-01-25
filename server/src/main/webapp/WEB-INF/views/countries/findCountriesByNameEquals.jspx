@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByNameEquals" id="ff_net_eyelock_productlocator_model_Country" path="/countries" z="4beu8rVO3N1QpVD3rzDPG+arQY4=">
+        <field:input disableFormBinding="true" field="name" id="f_net_eyelock_productlocator_model_Country_name" min="2" required="true" z="31JLm7fq6nn01ZocZHVV0OF1smw="/>
+    </form:find>
+</div>

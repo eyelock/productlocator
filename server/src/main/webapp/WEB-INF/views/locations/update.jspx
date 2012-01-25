@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_net_eyelock_productlocator_model_Location" modelAttribute="location" path="/locations" versionField="Version" z="tHLD9KdhDzbuuDXo3YgqmqjsgE0=">
+        <field:input field="name" id="c_net_eyelock_productlocator_model_Location_name" min="2" required="true" z="BEzHcTA1VMeyrV9fnltd7PlwEEo="/>
+        <field:textarea field="description" id="c_net_eyelock_productlocator_model_Location_description" z="FmD3VfG81bIscMLmN1tm+eAG8jI="/>
+        <field:textarea field="address01" id="c_net_eyelock_productlocator_model_Location_address01" required="true" z="L0z/LO9wQ1KGi5RLmn2Kr3WJHdo="/>
+        <field:textarea field="address02" id="c_net_eyelock_productlocator_model_Location_address02" z="8221xMkNQMguz3GK9MK6Sq9VJ9w="/>
+        <field:textarea field="city" id="c_net_eyelock_productlocator_model_Location_city" required="true" z="CY0uIO14jQ9Sxbm/Wk6MhRrYeAQ="/>
+        <field:input field="postcode" id="c_net_eyelock_productlocator_model_Location_postcode" max="10" min="2" required="true" z="TWrAKf5ZyWSncr7LimUreHJh9zU="/>
+        <field:select field="country" id="c_net_eyelock_productlocator_model_Location_country" itemValue="id" items="${countries}" path="/countries" z="WgFsuHNbiezUffvjZbNqliEcyq4="/>
+        <field:select field="icon" id="c_net_eyelock_productlocator_model_Location_icon" itemValue="id" items="${mediaitems}" path="/media" z="notc8Q7OyKMyqVKRcfrvlu+edZw="/>
+        <field:select field="image" id="c_net_eyelock_productlocator_model_Location_image" itemValue="id" items="${mediaitems}" path="/media" z="qSFsKiav2jajmqvGQRWCQfwKvow="/>
+        <field:textarea field="url" id="c_net_eyelock_productlocator_model_Location_url" z="cWHa/+3CVxlktMUe1+V5yZp5RXg="/>
+        <field:textarea field="email" id="c_net_eyelock_productlocator_model_Location_email" validationMessageCode="field_invalid_email" z="wI5ex2jLAnIvhxZTnUA7aOlZ/o8="/>
+        <field:input field="phone" id="c_net_eyelock_productlocator_model_Location_phone" max="20" z="eiq5EQtL9P0Kwf3CdQnANmIex74="/>
+        <field:textarea field="twitter" id="c_net_eyelock_productlocator_model_Location_twitter" z="crkQlQttexI62SyLVSCRsYHQdIE="/>
+        <field:input field="latitude" id="c_net_eyelock_productlocator_model_Location_latitude" validationMessageCode="field_invalid_number" z="YMFnOHvQwRikW/HKcTjiTpwrCYA="/>
+        <field:input field="longitude" id="c_net_eyelock_productlocator_model_Location_longitude" validationMessageCode="field_invalid_number" z="++rKAg+372YdobMB/E4oe1yBNW4="/>
+        <field:checkbox field="active" id="c_net_eyelock_productlocator_model_Location_active" z="8SaLySLmAhsXd8unnBAlJip0M9I="/>
+        <field:select field="products" id="c_net_eyelock_productlocator_model_Location_products" itemValue="id" items="${products}" multiple="true" path="/products" z="ofvjMwvlOKE4qmHWdizo7LyVbD4="/>
+    </form:update>
+</div>

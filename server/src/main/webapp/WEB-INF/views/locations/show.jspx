@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_net_eyelock_productlocator_model_Location" object="${location}" path="/locations" z="rzECTdH9c3NsLNSONpnMzw68ZqQ=">
+        <field:display field="name" id="s_net_eyelock_productlocator_model_Location_name" object="${location}" z="3cavc2Ld4SLllo88k0FgO4yzJd4="/>
+        <field:display field="description" id="s_net_eyelock_productlocator_model_Location_description" object="${location}" z="ffecG+CsnNBru0W/9e/G13+AE80="/>
+        <field:display field="address01" id="s_net_eyelock_productlocator_model_Location_address01" object="${location}" z="Rt+SorWicNg+SvQZmfypkh6JvxQ="/>
+        <field:display field="address02" id="s_net_eyelock_productlocator_model_Location_address02" object="${location}" z="4FKB9x1yw7wtDBsN49zvipujwAo="/>
+        <field:display field="city" id="s_net_eyelock_productlocator_model_Location_city" object="${location}" z="exmS2IVerY7Hfmjozx71FKh4xmI="/>
+        <field:display field="postcode" id="s_net_eyelock_productlocator_model_Location_postcode" object="${location}" z="qwVUjYVP52MYGRygXawU/HzHkOo="/>
+        <field:display field="country" id="s_net_eyelock_productlocator_model_Location_country" object="${location}" z="3w9y4VvOszVWMBiKywuT1Ep3Ehc="/>
+        <field:display field="icon" id="s_net_eyelock_productlocator_model_Location_icon" object="${location}" z="TpTUcr7pIvnqcMm0bIruWH5IZ+A="/>
+        <field:display field="image" id="s_net_eyelock_productlocator_model_Location_image" object="${location}" z="UHQrtIv+Q1TWgyANiyvS7ow9dX8="/>
+        <field:display field="url" id="s_net_eyelock_productlocator_model_Location_url" object="${location}" z="daj1Z+cAy+0qCir3hcmsRxN0w0o="/>
+        <field:display field="email" id="s_net_eyelock_productlocator_model_Location_email" object="${location}" z="RyJMgqZigSI5fHK+Zxr2rz2r6JY="/>
+        <field:display field="phone" id="s_net_eyelock_productlocator_model_Location_phone" object="${location}" z="3GtYcjcZEDSfdNJFwniw8vUDfus="/>
+        <field:display field="twitter" id="s_net_eyelock_productlocator_model_Location_twitter" object="${location}" z="XWbJYFm3adSvgRNPXqbRjhMiR6g="/>
+        <field:display field="latitude" id="s_net_eyelock_productlocator_model_Location_latitude" object="${location}" z="Gg8tq9oVV67OTr5smwpPie18XBE="/>
+        <field:display field="longitude" id="s_net_eyelock_productlocator_model_Location_longitude" object="${location}" z="u6mAE8XBd7P25OUOJeqdDImdbtQ="/>
+        <field:display field="active" id="s_net_eyelock_productlocator_model_Location_active" object="${location}" z="0pA0z3HDVn4J49u6fTJoU0IWjzk="/>
+        <field:display field="products" id="s_net_eyelock_productlocator_model_Location_products" object="${location}" z="Rj5rpPDn9ar5M/nDsR8Kz6AH1PI="/>
+    </page:show>
+</div>

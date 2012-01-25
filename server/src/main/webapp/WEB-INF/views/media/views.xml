@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="media/list">
+        <put-attribute name="body" value="/WEB-INF/views/media/list.jspx"/>
+    </definition>
+<definition extends="default" name="media/show">
+        <put-attribute name="body" value="/WEB-INF/views/media/show.jspx"/>
+    </definition>
+<definition extends="default" name="media/create">
+        <put-attribute name="body" value="/WEB-INF/views/media/create.jspx"/>
+    </definition>
+<definition extends="default" name="media/update">
+        <put-attribute name="body" value="/WEB-INF/views/media/update.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaByFileNameEquals">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaByFileNameEquals.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaByFileNameLike">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaByFileNameLike.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaByMimeTypeEquals">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaByMimeTypeEquals.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaByNameEquals">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaByNameEquals.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaByNameLike">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaByNameLike.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaBySizeBetween">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaBySizeBetween.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaByUrlEquals">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaByUrlEquals.jspx"/>
+    </definition>
+<definition extends="default" name="media/findMediaByUrlLike">
+        <put-attribute name="body" value="/WEB-INF/views/media/findMediaByUrlLike.jspx"/>
+    </definition>
+</tiles-definitions>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_net_eyelock_productlocator_model_ContentBlock" object="${contentblock}" path="/contentblocks" z="hBzjgYItuFWMxxYvGpLD1BP2Xu4=">
+        <field:display field="article" id="s_net_eyelock_productlocator_model_ContentBlock_article" object="${contentblock}" z="+sZ9xii040Q/DpuJZzRkrfsifMs="/>
+        <field:display field="type" id="s_net_eyelock_productlocator_model_ContentBlock_type" object="${contentblock}" z="peWGb/6bGDvHxgk+jLeJUgPzGLA="/>
+        <field:display field="orderedBy" id="s_net_eyelock_productlocator_model_ContentBlock_orderedBy" object="${contentblock}" z="vTo+/mMu0oCIHLM+THdl22y8Kr4="/>
+        <field:display field="contents" id="s_net_eyelock_productlocator_model_ContentBlock_contents" object="${contentblock}" z="BCa8rtYjuFzst7mrSCF0ycxUD4M="/>
+    </page:show>
+</div>

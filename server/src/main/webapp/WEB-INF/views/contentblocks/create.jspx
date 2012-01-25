@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_net_eyelock_productlocator_model_ContentBlock" modelAttribute="contentBlock" path="/contentblocks" render="${empty dependencies}" z="WGch0ouuvQcoP9BJiqNoXAx+iv4=">
+        <field:select field="article" id="c_net_eyelock_productlocator_model_ContentBlock_article" itemValue="id" items="${articles}" path="/articles" z="Z1X16yKC6VvZTpXJ1MbfXXWctTg="/>
+        <field:input field="type" id="c_net_eyelock_productlocator_model_ContentBlock_type" max="10" min="2" required="true" z="N2vx0aVt3b03Ij+zN8V2/AsI3iY="/>
+        <field:input field="orderedBy" id="c_net_eyelock_productlocator_model_ContentBlock_orderedBy" z="7CFYtHnceyYoSC0IZ5e8DpTG2Ks="/>
+        <field:input field="contents" id="c_net_eyelock_productlocator_model_ContentBlock_contents" z="RAjrmAffuqiQVju8nno9woDJ2F4="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_net_eyelock_productlocator_model_ContentBlock" render="${not empty dependencies}" z="CuWt/bXN38w0IM5jA5Yat0h+6M8="/>
+</div>

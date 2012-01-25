@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_net_eyelock_productlocator_model_Media" object="${media}" path="/media" update="false" z="user-managed">
+        <field:display field="name" id="s_net_eyelock_productlocator_model_Media_name" object="${media}" z="user-managed"/>
+        <field:display field="description" id="s_net_eyelock_productlocator_model_Media_description" object="${media}" z="user-managed"/>
+        <field:display field="fileName" id="s_net_eyelock_productlocator_model_Media_fileName" object="${media}" z="user-managed"/>
+        <field:display field="mimeType" id="s_net_eyelock_productlocator_model_Media_mimeType" object="${media}" z="user-managed"/>
+        <field:display field="size" id="s_net_eyelock_productlocator_model_Media_size" object="${media}" z="user-managed"/>
+        <field:frame field="url" id="s_net_eyelock_productlocator_model_Media_url" object="${media}" render="true" z="user-managed"/>
+        <field:display field="content" id="s_net_eyelock_productlocator_model_Media_content" object="${media}" z="XOY421Vd3RuBC5GDzjYRAhDoXuc="/>
+    </page:show>
+</div>

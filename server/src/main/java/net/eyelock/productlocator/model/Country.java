@@ -2,6 +2,7 @@ package net.eyelock.productlocator.model;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -36,10 +37,14 @@ public class Country {
 
 	@Column(name="active")
 	private Boolean active;
-
-	public void copyInto(net.eyelock.productlocator.model.Country copy) {
-		this.setCode(copy.getCode());
-		this.setName(copy.getName());
-		this.setActive(copy.getActive());
+	
+	@Transient
+	private boolean lazy = false;
+	
+	public Country toLazyBean() {
+		Country lazyItem = new Country();
+		lazyItem.setLazy(true);
+		lazyItem.setId(this.getId());
+		return lazyItem;
 	}
 }

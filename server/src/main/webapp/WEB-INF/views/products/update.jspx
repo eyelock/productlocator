@@ -13,5 +13,6 @@
         <field:checkbox field="active" id="c_net_eyelock_productlocator_model_Product_active" z="h/eENV6vpB4dkiXV9JPmrEWJ1Iw="/>
         <field:simple field="skus" id="c_net_eyelock_productlocator_model_Product_skus" messageCode="entity_reference_not_managed" messageCodeAttribute="Stock Keeping Unit" z="i+qSUeNcHKGMr65EFXYv3LlK7I4="/>
         <field:select field="locations" id="c_net_eyelock_productlocator_model_Product_locations" itemValue="id" items="${locations}" multiple="true" path="/locations" z="CiiCHNXUDSETpTNKr8BUqGbI8is="/>
+        <field:checkbox field="lazy" id="c_net_eyelock_productlocator_model_Product_lazy" z="qDS+unoXp5MqpEWtv4XophGC+JI="/>
     </form:update>
 </div>

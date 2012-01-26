@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -101,23 +102,15 @@ public class Location {
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy="locations")
 	private Set<Product> products = new HashSet<Product>();
+	
+	@Transient
+	private boolean lazy = false;
 
-	public void copyInto(Location copy) {
-		this.setName(copy.getName());
-		this.setDescription(copy.getDescription());
-		this.setAddress01(copy.getAddress01());
-		this.setAddress02(copy.getAddress02());
-		this.setCity(copy.getCity());
-		this.setPostcode(copy.getPostcode());
-		this.setCountry(copy.getCountry());
-		this.setUrl(copy.getUrl());
-		this.setEmail(copy.getEmail());
-		this.setPhone(copy.getPhone());
-		this.setTwitter(copy.getTwitter());
-		this.setLatitude(copy.getLatitude());
-		this.setLongitude(copy.getLongitude());
-		this.setActive(copy.getActive());
-
-		this.setImage(copy.getImage());
+	
+	public Location toLazyBean() {
+		Location lazyItem = new Location();
+		lazyItem.setLazy(true);
+		lazyItem.setId(this.getId());
+		return lazyItem;
 	}
 }

@@ -6,6 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -42,10 +43,14 @@ public class ContentBlock {
 
 	@Column(name = "contents")
 	private String contents;
-
-	public void copyInto(ContentBlock copy) {
-		this.setArticle(copy.getArticle());
-		this.setType(copy.getType());
-		this.setContents(copy.getContents());
+	
+	@Transient
+	private boolean lazy = false;
+	
+	public ContentBlock toLazyBean() {
+		ContentBlock lazyItem = new ContentBlock();
+		lazyItem.setLazy(true);
+		lazyItem.setId(this.getId());		
+		return lazyItem;
 	}
 }

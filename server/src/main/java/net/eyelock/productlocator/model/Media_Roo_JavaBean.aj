@@ -63,4 +63,12 @@ privileged aspect Media_Roo_JavaBean {
         this.content = content;
     }
     
+    public boolean Media.isLazy() {
+        return this.lazy;
+    }
+    
+    public void Media.setLazy(boolean lazy) {
+        this.lazy = lazy;
+    }
+    
 }

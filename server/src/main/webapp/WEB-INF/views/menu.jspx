@@ -39,6 +39,8 @@
                 <menu:item id="fi_article_codelike" messageCode="global_menu_find" url="/articles?find=ByCodeLike&amp;form" z="g9bSz7EiGxEM4cmsFQY0P6H1skE="/>
                 <menu:item id="fi_article_listablenot" messageCode="global_menu_find" url="/articles?find=ByListableNot&amp;form" z="SZSwtCelPddnZ1r69rlZpIjuYyE="/>
                 <menu:item id="fi_article_nameequals" messageCode="global_menu_find" url="/articles?find=ByNameEquals&amp;form" z="j8cn1xfB1xsCZec+mQn7Xc+kZJ8="/>
+                <menu:item id="fi_contentblock_article" messageCode="global_menu_find" url="/contentblocks?find=ByArticle&amp;form" z="tekNmWbRPOqGtDEMLBxFZwh4j7Y="/>
+                <menu:item id="fi_contentblock_typeequals" messageCode="global_menu_find" url="/contentblocks?find=ByTypeEquals&amp;form" z="S9PiKlcsbJOpFC9YsCrOAcx7fAc="/>
             </menu:finders>
         </menu:category>
         <menu:category id="c_media" z="SqacaDVnSrXmQJB69xz5K1fP2Fs=">
@@ -63,17 +65,6 @@
                 <menu:item id="fi_country_nameequals" messageCode="global_menu_find" url="/countries?find=ByNameEquals&amp;form" z="74D60k8CS61eIN1gY9GEbi1uAmU="/>
                 <menu:item id="fi_country_namelike" messageCode="global_menu_find" url="/countries?find=ByNameLike&amp;form" z="F7vhS64Ut66c414xBHgpAA4k1nM="/>
             </menu:finders>
-        </menu:category>
-        <menu:category id="c_contentblock" z="Thm82ex3ttKrZnF/mOKCChOu6Ms=">
-            <menu:item id="fi_contentblock_article" messageCode="global_menu_find" url="/contentblocks?find=ByArticle&amp;form" z="tekNmWbRPOqGtDEMLBxFZwh4j7Y="/>
-            <menu:item id="fi_contentblock_typeequals" messageCode="global_menu_find" url="/contentblocks?find=ByTypeEquals&amp;form" z="S9PiKlcsbJOpFC9YsCrOAcx7fAc="/>
-        </menu:category>
-        <menu:category id="c_stockkeepingunit" z="mgLwz6GD47cbzZjy7JAInVtFRS0=">
-            <menu:item id="fi_stockkeepingunit_activenot" messageCode="global_menu_find" url="/stockkeepingunits?find=ByActiveNot&amp;form" z="KnFLgxb1oLL74wH0RJ4KicRJgcc="/>
-            <menu:item id="fi_stockkeepingunit_nameequals" messageCode="global_menu_find" url="/stockkeepingunits?find=ByNameEquals&amp;form" z="4XqZqXLSbeIaU6q2pxzOa9h1BEM="/>
-            <menu:item id="fi_stockkeepingunit_namelike" messageCode="global_menu_find" url="/stockkeepingunits?find=ByNameLike&amp;form" z="GnIZewsg6ttkHO/VxOmDhrd3jAc="/>
-            <menu:item id="fi_stockkeepingunit_pricebetween" messageCode="global_menu_find" url="/stockkeepingunits?find=ByPriceBetween&amp;form" z="aYbrmgmNQnAbxTr7EMZ2T9YPAyE="/>
-            <menu:item id="fi_stockkeepingunit_product" messageCode="global_menu_find" url="/stockkeepingunits?find=ByProduct&amp;form" z="5nxP4qzbM2QnaDZWD/2ptvpRe1g="/>
         </menu:category>
     </menu:menu>
 </div>

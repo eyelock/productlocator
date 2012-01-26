@@ -3,6 +3,7 @@ package net.eyelock.productlocator.model;
 import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -57,6 +58,9 @@ public class Media {
 	@Lob
 	@Column(name = "content")
 	private byte[] content;
+	
+	@Transient
+	private boolean lazy = false;
 
 	public String getMediaURL(HttpServletRequest request) {
 		return request.getContextPath() + ADMIN_URL_PART + "/" + getId();
@@ -64,5 +68,13 @@ public class Media {
 
 	public String getMediaAPIURL(HttpServletRequest request) {
 		return request.getContextPath() + API_URL_PART + "/" + getId();
+	}
+	
+	public Media toLazyBean(HttpServletRequest request) {
+		Media lazyItem = new Media();
+		lazyItem.setLazy(true);
+		lazyItem.setId(this.getId());
+		lazyItem.setUrl(this.getMediaAPIURL(request));
+		return lazyItem;
 	}
 }

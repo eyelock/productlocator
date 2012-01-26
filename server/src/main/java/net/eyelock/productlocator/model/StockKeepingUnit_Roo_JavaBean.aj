@@ -73,4 +73,12 @@ privileged aspect StockKeepingUnit_Roo_JavaBean {
         this.price = price;
     }
     
+    public boolean StockKeepingUnit.isLazy() {
+        return this.lazy;
+    }
+    
+    public void StockKeepingUnit.setLazy(boolean lazy) {
+        this.lazy = lazy;
+    }
+    
 }

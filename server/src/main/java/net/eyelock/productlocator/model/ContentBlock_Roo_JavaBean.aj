@@ -41,4 +41,12 @@ privileged aspect ContentBlock_Roo_JavaBean {
         this.contents = contents;
     }
     
+    public boolean ContentBlock.isLazy() {
+        return this.lazy;
+    }
+    
+    public void ContentBlock.setLazy(boolean lazy) {
+        this.lazy = lazy;
+    }
+    
 }

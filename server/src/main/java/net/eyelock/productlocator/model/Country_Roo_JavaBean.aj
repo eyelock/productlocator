@@ -31,4 +31,12 @@ privileged aspect Country_Roo_JavaBean {
         this.active = active;
     }
     
+    public boolean Country.isLazy() {
+        return this.lazy;
+    }
+    
+    public void Country.setLazy(boolean lazy) {
+        this.lazy = lazy;
+    }
+    
 }

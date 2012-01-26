@@ -5,6 +5,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -59,15 +60,14 @@ public class StockKeepingUnit {
 
 	@Column(name="price")
 	private Float price;
-
-	public void copyInto(StockKeepingUnit copy) {
-		this.setProduct(copy.getProduct());
-		this.setName(copy.getName());
-		this.setDescription(copy.getDescription());
-		this.setTeaser(copy.getTeaser());
-		this.setImage(copy.getImage());
-		this.setIcon(copy.getIcon());
-		this.setActive(copy.getActive());
-		this.setPrice(copy.getPrice());
+	
+	@Transient
+	private boolean lazy = false;
+	
+	public StockKeepingUnit toLazyBean() {
+		StockKeepingUnit lazyItem = new StockKeepingUnit();
+		lazyItem.setLazy(true);
+		lazyItem.setId(this.getId());
+		return lazyItem;
 	}
 }

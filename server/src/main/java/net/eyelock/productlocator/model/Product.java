@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -74,14 +75,15 @@ public class Product {
     	inverseJoinColumns=@JoinColumn(name="location_id", referencedColumnName="id")
     )
 	private Set<Location> locations = new HashSet<Location>();
-
-	public void copyInto(Product copy) {
-		this.setName(copy.getName());
-		this.setDescription(copy.getDescription());
-		this.setTeaser(copy.getTeaser());
-		this.setImage(copy.getImage());
-		this.setIcon(copy.getIcon());
-		this.setActive(copy.getActive());
-		this.setAvailableEverywhere(copy.getAvailableEverywhere());
+	
+	@Transient
+	private boolean lazy = false;
+	
+	
+	public Product toLazyBean() {
+		Product lazyItem = new Product();
+		lazyItem.setLazy(true);
+		lazyItem.setId(this.getId());
+		return lazyItem;
 	}
 }

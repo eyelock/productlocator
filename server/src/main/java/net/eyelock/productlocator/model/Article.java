@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -58,10 +59,14 @@ public class Article {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="article")
 	private Set<ContentBlock> contentBlocks = new HashSet<ContentBlock>();
-
-	public void copyInto(Article copy) {
-		this.setCode(copy.getCode());
-		this.setName(copy.getName());
-		this.setListable(copy.getListable());
+	
+	@Transient
+	private boolean lazy = false;
+	
+	public Article toLazyBean() {
+		Article lazyItem = new Article();
+		lazyItem.setLazy(true);
+		lazyItem.setId(this.getId());
+		return lazyItem;
 	}
 }

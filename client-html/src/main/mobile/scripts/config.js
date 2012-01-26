@@ -4,8 +4,8 @@ function() {
 	
 	var config = {};
 	
-	config.contextRoot = "/productlocator/mobile";
-	config.remoteBaseURL = "http://localhost/productlocator";
+	config.contextRoot = "/locator-html/mobile";
+	config.remoteBaseURL = "http://localhost/locator-api";
 	config.minListItemsForFilter = 12;
 	config.maxNoTweets = 20;
 	

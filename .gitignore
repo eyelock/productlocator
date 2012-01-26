@@ -44,12 +44,9 @@ target/
 bin/
 
 
-# Eclipse  #
-############
-.project
-.settings/
+# Eclipse Workspace  #
+######################
 .metadata/
-.classpath
 .archive/
 Servers/
 
@@ -57,6 +54,7 @@ Servers/
 # Roo      #
 ############
 log.roo
+
 
 # JAVA     #
 ############

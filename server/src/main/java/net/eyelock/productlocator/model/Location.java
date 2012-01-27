@@ -10,14 +10,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.plural.RooPlural;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.stereotype.Component;
@@ -28,7 +26,6 @@ import org.springframework.stereotype.Component;
 @RooPlural("Locations")
 @RooJavaBean
 @RooToString
-@RooJson
 @RooJpaActiveRecord(finders = { "findLocationsByCountry",
 		"findLocationsByActiveNot", "findLocationsByCityEquals",
 		"findLocationsByCityLike", "findLocationsByPostcodeLike",

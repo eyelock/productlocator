@@ -13,7 +13,6 @@ import net.eyelock.productlocator.model.Media;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
-import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +29,6 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @RequestMapping("/media")
 @Controller
 @RooWebScaffold(path = "media", formBackingObject = Media.class)
-@RooWebJson(jsonObject = Media.class)
 @RooWebFinder
 public class MediaController {
 	@InitBinder

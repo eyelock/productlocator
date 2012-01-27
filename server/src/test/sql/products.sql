@@ -43,12 +43,14 @@ INSERT INTO products (
 	, active
 	, available_everywhere
 	, ordered_by
+	, version
 ) VALUES (
 	  'Pincer Vodka'
 	, 'A cool new vodka to soothe and relax.'
 	, 'Pincer combines centuries of distilling heritage, 100% selected grain and the finest Scottish mountain water with the natural botanical extracts of  Milk Thistle and Wild Elderflower.'
 	, true
 	, true
+	, 1
 	, 1
 );
 
@@ -61,6 +63,7 @@ INSERT INTO skus (
 	, description
 	, price
 	, active
+	, version
 ) VALUES 
 (
 	  @current_product_id
@@ -69,6 +72,7 @@ INSERT INTO skus (
 	, 'A full bottle of Pincer Vodka in presentation box.'
 	, 30.99
 	, true
+	, 1
 )
 ,
 (
@@ -78,6 +82,7 @@ INSERT INTO skus (
 	, 'A half bottle of Pincer Vodka in presentation box'
 	, 16.99
 	, true
+	, 1
 );
 
 /****************** PRODUCT & SKUS ***********************/

@@ -35,11 +35,13 @@ INSERT INTO articles (
 	, name
 	, listable
 	, ordered_by
+	, version
 ) VALUES (
 	  'home'
 	, 'Pincer Vodka'
 	, false
 	, 0
+	, 1
 );
 
 
@@ -50,12 +52,14 @@ INSERT INTO content_blocks (
 	, ordered_by
 	, type
 	, contents
+	, version
 ) VALUES 
 (
 	  @current_article_id
 	, 1
 	, 'text'
 	, 'Welcome to the wonderful world of Pincer Vodka.'
+	, 1
 )
 ,
 (
@@ -63,6 +67,7 @@ INSERT INTO content_blocks (
 	, 2
 	, 'text'
 	, 'Pincer combines centuries of distilling heritage, 100% selected grain and the finest Scottish mountain water with the natural botanical extracts of  Milk Thistle and Wild Elderflower.'
+	, 1
 )
 ,
 (
@@ -70,6 +75,7 @@ INSERT INTO content_blocks (
 	, 3
 	, 'text'
 	, 'The spirit is distilled to 38% - the ''perfect'' volume for vodka, as discovered by Dmitri Mendeleev the creator of the periodic table.'
+	, 1
 )
 ,
 (
@@ -77,6 +83,7 @@ INSERT INTO content_blocks (
 	, 4
 	, 'text'
 	, 'Pincer Vodka is made to perfection - in quality, taste and style, using no artificial ingredients.'
+	, 1
 )
 ;
 

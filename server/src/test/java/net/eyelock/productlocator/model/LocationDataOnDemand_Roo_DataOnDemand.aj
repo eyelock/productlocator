@@ -105,12 +105,12 @@ privileged aspect LocationDataOnDemand_Roo_DataOnDemand {
     }
     
     public void LocationDataOnDemand.setIcon(Location obj, int index) {
-        Media icon = mediaDataOnDemand.getSpecificMedia(index);
+        Media icon = mediaDataOnDemand.getRandomMedia();
         obj.setIcon(icon);
     }
     
     public void LocationDataOnDemand.setImage(Location obj, int index) {
-        Media image = mediaDataOnDemand.getSpecificMedia(index);
+        Media image = mediaDataOnDemand.getRandomMedia();
         obj.setImage(image);
     }
     

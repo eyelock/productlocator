@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -64,12 +63,12 @@ public class Location {
 	@JoinColumn(name="country_id", nullable=false)
 	private Country country;
 
-	@OneToOne(optional=true)
-	@JoinColumn(name="icon_media_id", unique=true, nullable=true, updatable=false)
+	@ManyToOne(optional=true)
+	@JoinColumn(name="icon_media_id", unique=false, nullable=true, updatable=true)
 	private Media icon;
 
-	@OneToOne(optional=true)
-	@JoinColumn(name="image_media_id", unique=true, nullable=true, updatable=false)
+	@ManyToOne(optional=true)
+	@JoinColumn(name="image_media_id", unique=false, nullable=true, updatable=true)
 	private Media image;
 
 	@Size(max = 255)

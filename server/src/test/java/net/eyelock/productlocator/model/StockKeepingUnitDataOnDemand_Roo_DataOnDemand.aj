@@ -60,12 +60,12 @@ privileged aspect StockKeepingUnitDataOnDemand_Roo_DataOnDemand {
     }
     
     public void StockKeepingUnitDataOnDemand.setIcon(StockKeepingUnit obj, int index) {
-        Media icon = mediaDataOnDemand.getSpecificMedia(index);
+        Media icon = mediaDataOnDemand.getRandomMedia();
         obj.setIcon(icon);
     }
     
     public void StockKeepingUnitDataOnDemand.setImage(StockKeepingUnit obj, int index) {
-        Media image = mediaDataOnDemand.getSpecificMedia(index);
+        Media image = mediaDataOnDemand.getRandomMedia();
         obj.setImage(image);
     }
     

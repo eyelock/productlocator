@@ -60,12 +60,12 @@ privileged aspect ProductDataOnDemand_Roo_DataOnDemand {
     }
     
     public void ProductDataOnDemand.setIcon(Product obj, int index) {
-        Media icon = mediaDataOnDemand.getSpecificMedia(index);
+        Media icon = mediaDataOnDemand.getRandomMedia();
         obj.setIcon(icon);
     }
     
     public void ProductDataOnDemand.setImage(Product obj, int index) {
-        Media image = mediaDataOnDemand.getSpecificMedia(index);
+        Media image = mediaDataOnDemand.getRandomMedia();
         obj.setImage(image);
     }
     

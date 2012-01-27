@@ -3,7 +3,6 @@ package net.eyelock.productlocator.model;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -44,12 +43,12 @@ public class StockKeepingUnit {
 	@Column(name="description")
 	private String description;
 
-	@OneToOne
-	@JoinColumn(name="icon_media_id", unique=true, nullable=true, updatable=false)
+	@ManyToOne
+	@JoinColumn(name="icon_media_id", unique=false, nullable=true, updatable=true)
 	private Media icon;
 
-	@OneToOne
-	@JoinColumn(name="image_media_id", unique=true, nullable=true, updatable=false)
+	@ManyToOne
+	@JoinColumn(name="image_media_id", unique=false, nullable=true, updatable=true)
 	private Media image;
 
 	@Column(name="active")

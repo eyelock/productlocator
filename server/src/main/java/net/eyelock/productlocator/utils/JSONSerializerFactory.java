@@ -18,6 +18,7 @@ public class JSONSerializerFactory {
 	
 	public JSONSerializer createIconAndImageURLOnlyInstance() {
 		return createAPIInstance()
+					.include("*.icon").include("*.image")
 					.exclude("*.icon.name").exclude("*.image.name")
 					.exclude("*.icon.description").exclude("*.image.description")
 					.exclude("*.icon.fileName").exclude("*.image.fileName")

@@ -35,6 +35,8 @@ public class ArticleAPI {
             return new ResponseEntity<String>(jsonFactory.createJSONHTTPHeaders(), HttpStatus.NOT_FOUND);
         } 
         
+        MediaAPI.populateMediaURLs(item, request);
+        
         return new ResponseEntity<String>(getJSONSerializer().serialize(item), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
 	}
 	
@@ -43,6 +45,8 @@ public class ArticleAPI {
 	@ResponseBody
 	public ResponseEntity<String> listJson(HttpServletRequest request) {
         List<Article> result = Article.findAllArticles(); 
+        
+        MediaAPI.populateMediaURLs(result, request);
         
         return new ResponseEntity<String>(getJSONSerializer().serialize(result), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
 	}

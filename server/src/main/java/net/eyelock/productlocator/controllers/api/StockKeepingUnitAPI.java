@@ -2,6 +2,8 @@ package net.eyelock.productlocator.controllers.api;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.eyelock.productlocator.model.StockKeepingUnit;
 import net.eyelock.productlocator.utils.JSONSerializerFactory;
 
@@ -26,20 +28,24 @@ public class StockKeepingUnitAPI {
     
     @RequestMapping(value = "/{id}")
     @ResponseBody
-    public ResponseEntity<String> showJson(@PathVariable("id") Long id) {
+    public ResponseEntity<String> showJson(@PathVariable("id") Long id, HttpServletRequest request) {
     	StockKeepingUnit item = StockKeepingUnit.findStockKeepingUnit(id);
         
         if (item == null) {
             return new ResponseEntity<String>(jsonFactory.createJSONHTTPHeaders(), HttpStatus.NOT_FOUND);
         } 
         
+        MediaAPI.populateMediaURLs(item, request);
+        
         return new ResponseEntity<String>(getJSONSerializer().serialize(item), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
     }
     
     @RequestMapping()
     @ResponseBody
-    public ResponseEntity<String> listJson() {
+    public ResponseEntity<String> listJson(HttpServletRequest request) {
         List<StockKeepingUnit> result = StockKeepingUnit.findAllStockKeepingUnits();
+        
+        MediaAPI.populateMediaURLs(result, request);
         
         return new ResponseEntity<String>(getJSONSerializer().serialize(result), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
     }

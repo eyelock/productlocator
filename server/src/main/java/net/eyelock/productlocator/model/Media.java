@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import net.eyelock.productlocator.controllers.api.MediaAPI;
+import net.eyelock.productlocator.controllers.web.MediaController;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -25,9 +28,6 @@ import org.springframework.stereotype.Component;
 		"findMediaByFileNameLike", "findMediaByUrlLike",
 		"findMediaByUrlEquals", "findMediaBySizeBetween" })
 public class Media {
-	public static String ADMIN_URL_PART = "/showmedia";
-	public static String API_URL_PART = "/api/showmedia";
-
 	@NotNull
 	@Size(min = 2)
 	@Column(name = "name")
@@ -57,10 +57,10 @@ public class Media {
 	private byte[] content;
 
 	public String getMediaURL(HttpServletRequest request) {
-		return request.getContextPath() + ADMIN_URL_PART + "/" + getId();
+		return request.getContextPath() + MediaController.SHOW_MEDIA_PATH + "/" + getId();
 	}
 
 	public String getMediaAPIURL(HttpServletRequest request) {
-		return request.getContextPath() + API_URL_PART + "/" + getId();
+		return request.getContextPath() + MediaAPI.SHOW_MEDIA_PATH + "/" + getId();
 	}
 }

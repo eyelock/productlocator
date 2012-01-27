@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/api/media")
 public class MediaAPI {
+	public static final String SHOW_MEDIA_PATH = "/api/media";
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String showMedia(@PathVariable("id") Long id,

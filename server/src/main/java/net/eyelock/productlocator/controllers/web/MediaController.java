@@ -31,6 +31,8 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 @RooWebScaffold(path = "media", formBackingObject = Media.class)
 @RooWebFinder
 public class MediaController {
+	public static final String SHOW_MEDIA_PATH = "/media/showmedia";
+	
 	@InitBinder
 	protected void initBinder(HttpServletRequest request,
 			ServletRequestDataBinder binder) throws ServletException {

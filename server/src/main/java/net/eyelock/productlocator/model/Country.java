@@ -37,14 +37,4 @@ public class Country {
 
 	@Column(name="active")
 	private Boolean active;
-	
-	@Transient
-	private boolean lazy = false;
-	
-	public Country toLazyBean() {
-		Country lazyItem = new Country();
-		lazyItem.setLazy(true);
-		lazyItem.setId(this.getId());
-		return lazyItem;
-	}
 }

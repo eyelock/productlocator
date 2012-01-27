@@ -75,15 +75,4 @@ public class Product {
     	inverseJoinColumns=@JoinColumn(name="location_id", referencedColumnName="id")
     )
 	private Set<Location> locations = new HashSet<Location>();
-	
-	@Transient
-	private boolean lazy = false;
-	
-	
-	public Product toLazyBean() {
-		Product lazyItem = new Product();
-		lazyItem.setLazy(true);
-		lazyItem.setId(this.getId());
-		return lazyItem;
-	}
 }

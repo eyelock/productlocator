@@ -66,12 +66,4 @@ privileged aspect Article_Roo_JavaBean {
         this.contentBlocks = contentBlocks;
     }
     
-    public boolean Article.isLazy() {
-        return this.lazy;
-    }
-    
-    public void Article.setLazy(boolean lazy) {
-        this.lazy = lazy;
-    }
-    
 }

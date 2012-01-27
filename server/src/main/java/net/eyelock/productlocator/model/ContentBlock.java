@@ -43,14 +43,4 @@ public class ContentBlock {
 
 	@Column(name = "contents")
 	private String contents;
-	
-	@Transient
-	private boolean lazy = false;
-	
-	public ContentBlock toLazyBean() {
-		ContentBlock lazyItem = new ContentBlock();
-		lazyItem.setLazy(true);
-		lazyItem.setId(this.getId());		
-		return lazyItem;
-	}
 }

@@ -5,8 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import net.eyelock.productlocator.model.Article;
+import net.eyelock.productlocator.utils.JSONSerializerFactory;
 
-import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,67 +20,43 @@ import flexjson.JSONSerializer;
 @Controller
 @RequestMapping("/api/articles")
 public class ArticleAPI {
+	@Autowired
+	private JSONSerializerFactory jsonFactory;
+	
+	private JSONSerializer jsonSerializer = null;
 
-
+	
 	@RequestMapping(value = "/{id}")
 	@ResponseBody
 	public ResponseEntity<String> showJson(@PathVariable("id") Long id, HttpServletRequest request) {
-        Article article = Article.findArticle(id);
+        Article item = Article.findArticle(id);
         
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
-        
-        if (article == null) {
-            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+        if (item == null) {
+            return new ResponseEntity<String>(jsonFactory.createJSONHTTPHeaders(), HttpStatus.NOT_FOUND);
         } 
         
-    	prepareLazySerialization(article, request);
-        
-        String jsonText  =  new JSONSerializer().prettyPrint(true)
-        										.include("contentBlocks")
-        										.exclude("*.class")
-        										.exclude("*.article")
-        										.exclude("*.version")	
-												.include("icon")
-												.include("image")
-												.serialize(article);
-        
-        return new ResponseEntity<String>(jsonText, headers, HttpStatus.OK);
+        return new ResponseEntity<String>(getJSONSerializer().serialize(item), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
 	}
+	
 
 	@RequestMapping()
 	@ResponseBody
 	public ResponseEntity<String> listJson(HttpServletRequest request) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
+        List<Article> result = Article.findAllArticles(); 
         
-        List<Article> result = Article.findAllArticles();
-        
-        //fetch all the content blocks for each article
-        for (Article article : result) {
-        	prepareLazySerialization(article, request);
-        }      
-        
-        String jsonText  =  new JSONSerializer().prettyPrint(true)
-												.include("contentBlocks")
-												.exclude("*.class")
-												.exclude("*.article")
-												.exclude("*.version")	
-												.include("icon")
-												.include("image")
-					        					.serialize(result);
-        
-        return new ResponseEntity<String>(jsonText, headers, HttpStatus.OK);
+        return new ResponseEntity<String>(getJSONSerializer().serialize(result), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
 	}
 	
 	
-	protected void prepareLazySerialization(Article article, HttpServletRequest request) {
-    	if (article.getIcon() != null)
-    		article.setIcon(article.getIcon().toLazyBean(request));
-    	
-    	if (article.getImage() != null)
-    		article.setImage(article.getImage().toLazyBean(request));
-    	
-    	article.getContentBlocks();
+	protected JSONSerializer getJSONSerializer() {
+		if (jsonSerializer == null) {
+			jsonSerializer = jsonFactory.createIconAndImageURLOnlyInstance()
+										.include("contentBlocks")
+										.exclude("*.article")
+										.include("icon")
+										.include("image");
+		}
+		
+		return jsonSerializer;
 	}
 }

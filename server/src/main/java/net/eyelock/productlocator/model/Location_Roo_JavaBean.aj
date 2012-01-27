@@ -147,12 +147,4 @@ privileged aspect Location_Roo_JavaBean {
         this.products = products;
     }
     
-    public boolean Location.isLazy() {
-        return this.lazy;
-    }
-    
-    public void Location.setLazy(boolean lazy) {
-        this.lazy = lazy;
-    }
-    
 }

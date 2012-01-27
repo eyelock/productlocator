@@ -60,14 +60,4 @@ public class StockKeepingUnit {
 
 	@Column(name="price")
 	private Float price;
-	
-	@Transient
-	private boolean lazy = false;
-	
-	public StockKeepingUnit toLazyBean() {
-		StockKeepingUnit lazyItem = new StockKeepingUnit();
-		lazyItem.setLazy(true);
-		lazyItem.setId(this.getId());
-		return lazyItem;
-	}
 }

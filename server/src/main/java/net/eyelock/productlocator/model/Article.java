@@ -59,14 +59,4 @@ public class Article {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="article")
 	private Set<ContentBlock> contentBlocks = new HashSet<ContentBlock>();
-	
-	@Transient
-	private boolean lazy = false;
-	
-	public Article toLazyBean() {
-		Article lazyItem = new Article();
-		lazyItem.setLazy(true);
-		lazyItem.setId(this.getId());
-		return lazyItem;
-	}
 }

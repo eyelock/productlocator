@@ -12,6 +12,5 @@
         <field:display field="availableEverywhere" id="s_net_eyelock_productlocator_model_Product_availableEverywhere" object="${product}" z="FSj+ZXEGkEGQuRFbaLVHmAC2pRw="/>
         <field:display field="active" id="s_net_eyelock_productlocator_model_Product_active" object="${product}" z="bsaELH+JeaRNCA7AmjOieGrkO3s="/>
         <field:display field="locations" id="s_net_eyelock_productlocator_model_Product_locations" object="${product}" z="60rKhEfdTNrFeQm+7/w89DKVb64="/>
-        <field:display field="lazy" id="s_net_eyelock_productlocator_model_Product_lazy" object="${product}" z="BlUvtMwcWgLC1FSJdGnwvpTwAXU="/>
     </page:show>
 </div>

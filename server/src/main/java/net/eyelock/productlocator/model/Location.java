@@ -102,15 +102,4 @@ public class Location {
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy="locations")
 	private Set<Product> products = new HashSet<Product>();
-	
-	@Transient
-	private boolean lazy = false;
-
-	
-	public Location toLazyBean() {
-		Location lazyItem = new Location();
-		lazyItem.setLazy(true);
-		lazyItem.setId(this.getId());
-		return lazyItem;
-	}
 }

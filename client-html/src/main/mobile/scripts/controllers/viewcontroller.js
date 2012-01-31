@@ -39,10 +39,10 @@ function(
 		views.pageView = new PageView({
 			model: page,
 			context: context,
-			el: $(context.el),
 			template: $(context.template),
 		});
 		
+		views.pageView.setElement($(context.el));
 		views.pageView.render();
 	};
 	

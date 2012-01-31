@@ -1,15 +1,12 @@
-
 /*
-* jQuery Mobile Framework v@VERSION
+* jQuery Mobile Framework 1.0.1
 * http://jquerymobile.com
 *
-* Copyright 2011 (c) jQuery Project
+* Copyright 2011-2012 (c) jQuery Project
 * Dual licensed under the MIT or GPL Version 2 licenses.
 * http://jquery.org/license
 *
 */
-
-
 /*!
  * jQuery UI Widget @VERSION
  *
@@ -273,8 +270,6 @@ $.Widget.prototype = {
 };
 
 })( jQuery );
-
-
 /*
 * widget factory extentions for mobile
 */
@@ -324,8 +319,6 @@ $.widget( "mobile.widget", {
 });
 
 })( jQuery );
-
-
 /*
 * a workaround for window.matchMedia
 */
@@ -371,8 +364,6 @@ $.mobile.media = (function() {
 })();
 
 })(jQuery);
-
-
 /*
 * support tests
 */
@@ -493,8 +484,6 @@ if ( !$.support.boxShadow ) {
 }
 
 })( jQuery );
-
-
 /*
 * "mouse" plugin
 */
@@ -520,8 +509,6 @@ var dataPropertyName = "virtualMouseBindings",
 	touchTargetPropertyName = "virtualTouchID",
 	virtualEventNames = "vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel".split( " " ),
 	touchEventProps = "clientX clientY pageX pageY screenX screenY".split( " " ),
-	mouseHookProps = $.event.mouseHooks ? $.event.mouseHooks.props : [],
-	mouseEventProps = $.event.props.concat( mouseHookProps ),
 	activeDocHandlers = {},
 	resetTimerID = 0,
 	startX = 0,
@@ -559,12 +546,6 @@ function createVirtualEvent( event, eventType ) {
 
 	oe = event.originalEvent;
 	props = $.event.props;
-
-	// addresses separation of $.event.props in to $.event.mouseHook.props and Issue 3280
-	// https://github.com/jquery/jquery-mobile/issues/3280
-	if ( t.search(/mouse/) >-1 ) {
-		props = mouseEventProps;
-	}
 
 	// copy original event properties over to the new event
 	// this would happen if we could call $.event.fix instead of $.Event
@@ -980,7 +961,6 @@ if ( eventCaptureSupported ) {
 
 			while ( ele ) {
 				for ( i = 0; i < cnt; i++ ) {
-
 					o = clickBlockList[ i ];
 					touchID = 0;
 
@@ -999,8 +979,6 @@ if ( eventCaptureSupported ) {
 	}, true);
 }
 })( jQuery, window, document );
-
-
 /* 
 * "events" plugin - Handles events
 */
@@ -1185,7 +1163,37 @@ $.event.special.swipe = {
 	var win = $( window ),
 		special_event,
 		get_orientation,
-		last_orientation;
+		last_orientation,
+		initial_orientation_is_landscape,
+		initial_orientation_is_default,
+		portrait_map = { "0": true, "180": true };
+
+	// It seems that some device/browser vendors use window.orientation values 0 and 180 to
+	// denote the "default" orientation. For iOS devices, and most other smart-phones tested,
+	// the default orientation is always "portrait", but in some Android and RIM based tablets,
+	// the default orientation is "landscape". The following code injects a landscape orientation
+	// media query into the document to figure out what the current orientation is, and then
+	// makes adjustments to the portrait_map if necessary, so that we can properly
+	// decode the window.orientation value whenever get_orientation() is called.
+	if ( $.support.orientation ) {
+
+		// Use a media query to figure out the true orientation of the device at this moment.
+		// Note that we've initialized the portrait map values to 0 and 180, *AND* we purposely
+		// use a landscape media query so that if the device/browser does not support this particular
+		// media query, we default to the assumption that portrait is the default orientation.
+		initial_orientation_is_landscape = $.mobile.media("all and (orientation: landscape)");
+
+		// Now check to see if the current window.orientation is 0 or 180.
+		initial_orientation_is_default = portrait_map[ window.orientation ];
+
+		// If the initial orientation is landscape, but window.orientation reports 0 or 180, *OR*
+		// if the initial orientation is portrait, but window.orientation reports 90 or -90, we
+		// need to flip our portrait_map values because landscape is the default orientation for
+		// this device/browser.
+		if ( ( initial_orientation_is_landscape && initial_orientation_is_default ) || ( !initial_orientation_is_landscape && !initial_orientation_is_default ) ) {
+			portrait_map = { "-90": true, "90": true };
+		}
+	}
 
 	$.event.special.orientationchange = special_event = {
 		setup: function() {
@@ -1254,7 +1262,7 @@ $.event.special.swipe = {
 		if ( $.support.orientation ) {
 			// if the window orientation registers as 0 or 180 degrees report
 			// portrait, otherwise landscape
-			isPortrait = window.orientation % 180 == 0;
+			isPortrait = portrait_map[ window.orientation ];
 		} else {
 			isPortrait = elem && elem.clientWidth / elem.clientHeight < 1.1;
 		}
@@ -1319,8 +1327,6 @@ $.each({
 });
 
 })( jQuery, this );
-
-
 // Script: jQuery hashchange event
 // 
 // *Version: 1.3, Last updated: 7/21/2010*
@@ -1700,8 +1706,6 @@ $.each({
   })();
   
 })(jQuery,this);
-
-
 /*
 * "page" plugin
 */
@@ -1722,11 +1726,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 		this.element
 			.attr( "tabindex", "0" )
 			.addClass( "ui-page ui-body-" + this.options.theme );
-			
-		// if touchOverflow scrolling is enabled, add class
-		if( $.support.touchOverflow && $.mobile.touchOverflowEnabled ){
-			this.element.addClass( "ui-mobile-touch-overflow" );
-		}	
 	},
 
 	keepNativeSelector: function() {
@@ -1741,8 +1740,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 	}
 });
 })( jQuery );
-
-
 /*
 * "core" - The base file for jQm
 */
@@ -1782,9 +1779,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 		// Minimum scroll distance that will be remembered when returning to a page
 		minScrollBack: 250,
-		
-		// Enable touch-overflow scrolling for better transitions, in supporting browsers
-		touchOverflowEnabled: false,
 
 		// Set default dialog transition - 'none' for no transitions
 		defaultDialogTransition: "pop",
@@ -1995,8 +1989,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 		return $.find( expr, null, null, [ node ] ).length > 0;
 	};
 })( jQuery, this );
-
-
 
 /*
 * core utilities for auto ajax navigation, base tag mgmt,
@@ -2245,6 +2237,19 @@ $.widget( "mobile.page", $.mobile.widget, {
 					return ( u.hash && ( u.hrefNoHash === documentUrl.hrefNoHash || ( documentBaseDiffers && u.hrefNoHash === documentBase.hrefNoHash ) ) );
 				}
 				return (/^#/).test( u.href );
+			},
+
+
+			// Some embedded browsers, like the web view in Phone Gap, allow cross-domain XHR
+			// requests if the document doing the request was loaded via the file:// protocol.
+			// This is usually to allow the application to "phone home" and fetch app specific
+			// data. We normally let the browser handle external/cross-domain urls, but if the
+			// allowCrossDomainPages option is true, we will allow cross-domain http/https
+			// requests to go through our page loading logic.
+			isPermittedCrossDomainRequest: function( docUrl, reqUrl ) {
+				return $.mobile.allowCrossDomainPages
+					&& docUrl.protocol === "file:"
+					&& reqUrl.search( /^https?:/ ) != -1;
 			}
 		},
 
@@ -2536,6 +2541,8 @@ $.widget( "mobile.page", $.mobile.widget, {
 			//reset toPage height back
 			if( !touchOverflow ){
 				toPage.height( "" );
+				// Send focus to the newly shown page
+				reFocus( toPage );
 			}
 
 			// Jump to top or prev scroll, sometimes on iOS the page has not rendered yet.
@@ -2981,7 +2988,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 		// service the request.
 		if( isPageTransitioning ) {
 			pageTransitionQueue.unshift( arguments );
-
 			return;
 		}
 
@@ -3165,12 +3171,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 				//remove initial build class (only present on first pageshow)
 				$html.removeClass( "ui-mobile-rendering" );
 
-				// Send focus to the newly shown page. Moved from promise .done binding in transitionPages
-				// itself to avoid ie bug that reports offsetWidth as > 0 (core check for visibility)
-				// despite visibility: hidden addresses issue #2965
-				// https://github.com/jquery/jquery-mobile/issues/2965
-				reFocus( toPage );
-
 				releasePageTransitionLock();
 
 				// Let listeners know we're all done changing the current page.
@@ -3225,7 +3225,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 		return path.makeUrlAbsolute( url, base);
 	}
 
-
 	//The following event bindings should be bound after mobileinit has been triggered
 	//the following function is called in the init file
 	$.mobile._registerInternalEvents = function(){
@@ -3261,8 +3260,7 @@ $.widget( "mobile.page", $.mobile.widget, {
 
 			url = path.makeUrlAbsolute(  url, getClosestBaseUrl($this) );
 
-			//external submits use regular HTTP
-			if( path.isExternal( url ) || target ) {
+			if(( path.isExternal( url ) && !path.isPermittedCrossDomainRequest(documentUrl, url)) || target ) {
 				return;
 			}
 
@@ -3370,12 +3368,11 @@ $.widget( "mobile.page", $.mobile.widget, {
 				// data. We normally let the browser handle external/cross-domain urls, but if the
 				// allowCrossDomainPages option is true, we will allow cross-domain http/https
 				// requests to go through our page loading logic.
-				isCrossDomainPageLoad = ( $.mobile.allowCrossDomainPages && documentUrl.protocol === "file:" && href.search( /^https?:/ ) != -1 ),
 
 				//check for protocol or rel and its not an embedded page
 				//TODO overlap in logic from isExternal, rel=external check should be
 				//     moved into more comprehensive isExternalLink
-				isExternal = useDefaultUrlHandling || ( path.isExternal( href ) && !isCrossDomainPageLoad );
+				isExternal = useDefaultUrlHandling || ( path.isExternal( href ) && !path.isPermittedCrossDomainRequest(documentUrl, href) );
 
 			if( isExternal ) {
 				httpCleanup();
@@ -3500,8 +3497,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 	};//_registerInternalEvents callback
 
 })( jQuery );
-
-
 /*
 * history.pushState support, layered on top of hashchange
 */
@@ -3636,8 +3631,6 @@ $.widget( "mobile.page", $.mobile.widget, {
 		}
 	});
 })( jQuery, this );
-
-
 /*
 * "transitions" plugin - Page change tranistions
 */
@@ -3683,8 +3676,6 @@ if ( $.mobile.defaultTransitionHandler === $.mobile.noneTransitionHandler ) {
 }
 
 })( jQuery, this );
-
-
 /*
 * "degradeInputs" plugin - degrades inputs to another type after custom enhancements are made.
 */
@@ -3738,9 +3729,7 @@ $( document ).bind( "pagecreate create", function( e ){
 
 });
 
-})( jQuery );
-
-/*
+})( jQuery );/*
 * "dialog" plugin.
 */
 
@@ -3775,7 +3764,10 @@ $.widget( "mobile.dialog", $.mobile.widget, {
 		// this must be an anonymous function so that select menu dialogs can replace
 		// the close method. This is a change from previously just defining data-rel=back
 		// on the button and letting nav handle it
-		headerCloseButton.bind( "vclick", function() {
+		//
+		// Use click rather than vclick in order to prevent the possibility of unintentionally
+		// reopening the dialog if the dialog opening item was directly under the close button.
+		headerCloseButton.bind( "click", function() {
 			self.close();
 		});
 
@@ -3813,8 +3805,6 @@ $( document ).delegate( $.mobile.dialog.prototype.options.initSelector, "pagecre
 });
 
 })( jQuery, this );
-
-
 /*
 * This plugin handles theming and layout of headers, footers, and content areas
 */
@@ -3901,9 +3891,7 @@ $( document ).delegate( ":jqmData(role='page'), :jqmData(role='dialog')", "pagec
 	});
 });
 
-})( jQuery );
-
-/*
+})( jQuery );/*
 * "collapsible" plugin
 */
 
@@ -4021,8 +4009,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /*
 * "collapsibleset" plugin
 */
@@ -4105,8 +4091,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /*
 * "fieldcontain" plugin - simple class additions to make form row separators
 */
@@ -4122,9 +4106,7 @@ $( document ).bind( "pagecreate create", function( e ){
 	$( ":jqmData(role='fieldcontain')", e.target ).fieldcontain();
 });
 
-})( jQuery );
-
-/*
+})( jQuery );/*
 * plugin for creating CSS grids
 */
 
@@ -4173,9 +4155,7 @@ $.fn.grid = function( options ) {
 		}
 	});
 };
-})( jQuery );
-
-/*
+})( jQuery );/*
 * "navbar" plugin
 */
 
@@ -4225,8 +4205,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /*
 * "listview" plugin
 */
@@ -4349,7 +4327,6 @@ $.widget( "mobile.listview", $.mobile.widget, {
 		var results = [],
 			dict = {};
 		dict[ lcName ] = dict[ ucName ] = true;
-
 		ele = ele.firstChild;
 		while ( ele ) {
 			if ( dict[ ele.nodeName ] ) {
@@ -4627,8 +4604,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /*
 * "listview" filter extension
 */
@@ -4740,9 +4715,7 @@ $( document ).delegate( ":jqmData(role='listview')", "listviewcreate", function(
 	.insertBefore( list );
 });
 
-})( jQuery );
-
-/*
+})( jQuery );/*
 * "nojs" plugin - class to make elements hidden to A grade browsers
 */
 
@@ -4753,9 +4726,7 @@ $( document ).bind( "pagecreate create", function( e ){
 	
 });
 
-})( jQuery );
-
-/*
+})( jQuery );/*
 * "checkboxradio" plugin
 */
 
@@ -4889,7 +4860,6 @@ $.widget( "mobile.checkboxradio", $.mobile.widget, {
 	},
 
 	//returns either a set of radios with the same name attribute, or a single checkbox
-
 	_getInputSet: function(){
 		if(this.inputtype == "checkbox") {
 			return this.element;
@@ -4952,8 +4922,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /*
 * "button" plugin - links that proxy to native input/buttons
 */
@@ -4978,6 +4946,12 @@ $.widget( "mobile.button", $.mobile.widget, {
 			name,
 			$buttonPlaceholder;
 
+		// if this is a link, check if it's been enhanced and, if not, use the right function
+		if( $el[ 0 ].tagName === "A" ) {
+	 	 	if ( !$el.hasClass( "ui-btn" ) ) $el.buttonMarkup();
+	 	 	return;
+ 	 	}
+
 		// Add ARIA role
 		this.button = $( "<div></div>" )
 			.text( $el.text() || $el.val() )
@@ -4999,7 +4973,7 @@ $.widget( "mobile.button", $.mobile.widget, {
 		// Add hidden input during submit if input type="submit" has a name.
 		if ( type !== "button" && type !== "reset" && name ) {
 				$el.bind( "vclick", function() {
-					// Add hidden input if it doesnâ€™t already exist.
+					// Add hidden input if it doesn�t already exist.
 					if( $buttonPlaceholder === undefined ) {
 						$buttonPlaceholder = $( "<input>", {
 							type: "hidden",
@@ -5054,9 +5028,7 @@ $( document ).bind( "pagecreate create", function( e ){
 	$.mobile.button.prototype.enhanceWithin( e.target );
 });
 
-})( jQuery );
-
-/*
+})( jQuery );/*
 * "slider" plugin
 */
 
@@ -5420,8 +5392,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /*
 * "textinput" plugin for text inputs, textareas
 */
@@ -5550,8 +5520,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /*
 * custom "selectmenu" plugin
 */
@@ -5851,11 +5819,11 @@ $( document ).bind( "pagecreate create", function( e ){
 					menuWidth = self.list.parent().outerWidth(),
 					activePage = $( ".ui-page-active" ),
 					tOverflow = $.support.touchOverflow && $.mobile.touchOverflowEnabled,
-					tScrollElem = activePage.is( ".ui-native-fixed" ) ? activePage.find( ".ui-content" ) : activePage;
+					tScrollElem = activePage.is( ".ui-native-fixed" ) ? activePage.find( ".ui-content" ) : activePage,
 					scrollTop = tOverflow ? tScrollElem.scrollTop() : $( window ).scrollTop(),
 					btnOffset = self.button.offset().top,
-					screenHeight = window.innerHeight,
-					screenWidth = window.innerWidth;
+					screenHeight = $(window).height(),
+					screenWidth = $(window).width();
 
 				//add active class to button
 				self.button.addClass( $.mobile.activeBtnClass );
@@ -6045,8 +6013,6 @@ $( document ).bind( "pagecreate create", function( e ){
 		}
 	});
 })( jQuery );
-
-
 /*
 * "selectmenu" plugin
 */
@@ -6252,8 +6218,6 @@ $( document ).bind( "pagecreate create", function( e ){
 	$.mobile.selectmenu.prototype.enhanceWithin( e.target );
 });
 })( jQuery );
-
-
 /*
 * "buttons" plugin - for making button-like links
 */
@@ -6284,6 +6248,15 @@ $.fn.buttonMarkup = function( options ) {
 			buttonInner = document.createElement( o.wrapperEls ),
 			buttonText = document.createElement( o.wrapperEls ),
 			buttonIcon = o.icon ? document.createElement( "span" ) : null;
+
+		// if so, prevent double enhancement, and continue with rest of the elements.
+		if( e.tagName === "INPUT" && el.jqmData('role') === "button" ) continue;
+		
+		// if this is a button, check if it's been enhanced and, if not, use the right function
+		if( e.tagName === "BUTTON" ) {
+	 	 	if ( !$( e.parentNode ).hasClass( "ui-btn" ) ) $( e ).button();
+	 	 	continue;
+ 	 	}
 
 		if ( attachEvents ) {
 			attachEvents();
@@ -6440,8 +6413,6 @@ $( document ).bind( "pagecreate create", function( e ){
 });
 
 })( jQuery );
-
-
 /* 
 * "controlgroup" plugin - corner-rounding for groups of buttons, checks, radios, etc
 */
@@ -6494,9 +6465,7 @@ $( document ).bind( "pagecreate create", function( e ){
 	$( ":jqmData(role='controlgroup')", e.target ).controlgroup({ excludeInvisible: false });
 });
 
-})(jQuery);
-
-/*
+})(jQuery);/*
 * "links" plugin - simple class additions for links
 */
 
@@ -6512,274 +6481,441 @@ $( document ).bind( "pagecreate create", function( e ){
 
 });
 
-})( jQuery );
-
-/*
-* "fixedtoolbar"  plugin - behavior for "fixed" headers and footers
+})( jQuery );/*
+* "fixHeaderFooter" plugin - on-demand positioning for headers,footers
 */
 
 (function( $, undefined ) {
 
-	$.widget( "mobile.fixedtoolbar", $.mobile.widget, {
-		options: {
-			visibleOnPageShow: true,
-			togglePageZoom: true,
-			transition: "fade", //can be none, fade, slide (slide maps to slideup or slidedown)
-			fullscreen: false,
-			tapToggle: true,
-			
-			// Browser detection! Weeee, here we go...
-			// Unfortunately, position:fixed is costly, not to mention probably impossible, to feature-detect accurately.
-			// Some tests exist, but they currently return false results in critical devices and browsers, which could lead to a broken experience.
-			// Testing fixed positioning is also pretty obtrusive to page load, requiring injected elements and scrolling the window
-			// The following function serves to rule out some popular browsers with known fixed-positioning issues
-			// This is a plugin option like any other, so feel free to improve or overwrite it
-			supportBlacklist: function(){
-				var ua = navigator.userAgent,
-					platform = navigator.platform,
-					// Rendering engine is Webkit, and capture major version
-					wkmatch = ua.match( /AppleWebKit\/([0-9]+)/ ),
-					wkversion = !!wkmatch && wkmatch[ 1 ],
-					ffmatch = ua.match( /Fennec\/([0-9]+)/ ),
-					ffversion = !!ffmatch && ffmatch[ 1 ],
-					operammobilematch = ua.match( /Opera Mobile\/([0-9]+)/ ),
-					omversion = !!operammobilematch && operammobilematch[ 1 ],
-					
-					w = window;
+var slideDownClass = "ui-header-fixed ui-fixed-inline fade",
+	slideUpClass = "ui-footer-fixed ui-fixed-inline fade",
 
-				if(
-					// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
-					( ( platform.indexOf( "iPhone" ) > -1 || platform.indexOf( "iPad" ) > -1  || platform.indexOf( "iPod" ) > -1 ) && wkversion && wkversion < 534 )
-					||
-					// Opera Mini
-					( w.operamini && ({}).toString.call( w.operamini ) === "[object OperaMini]" )
-					||
-					( operammobilematch && omverson < 7458 )
-					||
-					//Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
-					( ua.indexOf( "Android" ) > -1 && wkversion && wkversion < 533 )
-					||
-					// Firefox Mobile before 6.0 - 
-					( ffversion && ffversion < 6 )
-					||
-					// WebOS less than 3
-					( "palmGetResource" in window && wkversion && wkversion < 534 )
-				){
-					return true;
+	slideDownSelector = ".ui-header:jqmData(position='fixed')",
+	slideUpSelector = ".ui-footer:jqmData(position='fixed')";
+
+$.fn.fixHeaderFooter = function( options ) {
+
+	if ( !$.support.scrollTop || ( $.support.touchOverflow && $.mobile.touchOverflowEnabled ) ) {
+		return this;
+	}
+
+	return this.each(function() {
+		var $this = $( this );
+
+		if ( $this.jqmData( "fullscreen" ) ) {
+			$this.addClass( "ui-page-fullscreen" );
+		}
+
+		// Should be slidedown
+		$this.find( slideDownSelector ).addClass( slideDownClass );
+
+		// Should be slideup
+		$this.find( slideUpSelector ).addClass( slideUpClass );
+	});
+};
+
+// single controller for all showing,hiding,toggling
+$.mobile.fixedToolbars = (function() {
+
+	if ( !$.support.scrollTop || ( $.support.touchOverflow && $.mobile.touchOverflowEnabled ) ) {
+		return;
+	}
+
+	var stickyFooter, delayTimer,
+		currentstate = "inline",
+		autoHideMode = false,
+		showDelay = 100,
+		ignoreTargets = "a,input,textarea,select,button,label,.ui-header-fixed,.ui-footer-fixed",
+		toolbarSelector = ".ui-header-fixed:first, .ui-footer-fixed:not(.ui-footer-duplicate):last",
+		// for storing quick references to duplicate footers
+		supportTouch = $.support.touch,
+		touchStartEvent = supportTouch ? "touchstart" : "mousedown",
+		touchStopEvent = supportTouch ? "touchend" : "mouseup",
+		stateBefore = null,
+		scrollTriggered = false,
+		touchToggleEnabled = true;
+
+	function showEventCallback( event ) {
+		// An event that affects the dimensions of the visual viewport has
+		// been triggered. If the header and/or footer for the current page are in overlay
+		// mode, we want to hide them, and then fire off a timer to show them at a later
+		// point. Events like a resize can be triggered continuously during a scroll, on
+		// some platforms, so the timer is used to delay the actual positioning until the
+		// flood of events have subsided.
+		//
+		// If we are in autoHideMode, we don't do anything because we know the scroll
+		// callbacks for the plugin will fire off a show when the scrolling has stopped.
+		if ( !autoHideMode && currentstate === "overlay" ) {
+			if ( !delayTimer ) {
+				$.mobile.fixedToolbars.hide( true );
+			}
+
+			$.mobile.fixedToolbars.startShowTimer();
+		}
+	}
+
+	$(function() {
+		var $document = $( document ),
+			$window = $( window );
+
+		$document
+			.bind( "vmousedown", function( event ) {
+				if ( touchToggleEnabled ) {
+					stateBefore = currentstate;
 				}
-				
-				return false;
-			},
-			initSelector: ":jqmData(position='fixed')"
-		},
-		
-		_create: function() {
-			
-			var self = this,
-				o = self.options,
-				$el = self.element,
-				tbtype = $el.is( ".ui-header" ) ? "header" : "footer",
-				$page = $el.closest(".ui-page");
-			
-			// Feature detecting support for 
-			if( o.supportBlacklist() ){
-				self.destroy();
-				return;
-			}
-			
-			$el.addClass( "ui-"+ tbtype +"-fixed" );
-			
-			// "fullscreen" overlay positioning
-			// NOTE - this used to be only "data-fullscreen" on page element. Support both or deprecate page?
-			if( $el.jqmData( "fullscreen" ) || $page.jqmData( "fullscreen" ) ){
-				$el.addClass( "ui-"+ tbtype +"-fullscreen" );
-				$page.addClass( "ui-page-" + tbtype + "-fullscreen" );
-			}
-			// If not fullscreen, add class to page to set top or bottom padding
-			else{
-				$page.addClass( "ui-page-" + tbtype + "-fixed" );
-			}
-			
-			self._addTransitionClass();
-			self._bindPageEvents();
-			self._bindToggleHandlers();
-		},
-		
-		_addTransitionClass: function(){
-			var tclass = this.options.transition;
-				
-			if( tclass && tclass !== "none" ){
-				// use appropriate slide for header or footer
-				if( tclass === "slide" ){
-					tclass = this.element.is( ".ui-header" ) ? "slidedown" : "slideup";
+			})
+			.bind( "vclick", function( event ) {
+				if ( touchToggleEnabled ) {
+
+					if ( $(event.target).closest( ignoreTargets ).length ) {
+						return;
+					}
+
+					if ( !scrollTriggered ) {
+						$.mobile.fixedToolbars.toggle( stateBefore );
+						stateBefore = null;
+					}
 				}
-				
-				this.element.addClass( tclass );
-			}
-		},
-		
-		_bindPageEvents: function(){
-			var self = this,
-				o = self.options,
-				$el = self.element;
-			
-			//page event bindings
-			$el.closest( ".ui-page" )
-				.bind( "pagebeforeshow", function(){
-					if( o.togglePageZoom ){
-						self.disablePageZoom();
-					}
-					if( o.visibleOnPageShow ){
-						self.show();
-					}
-				} )
-				.bind( "pagehide", function(){
-					if( o.togglePageZoom ){
-						self.restorePageZoom();
-					}
-				});
-		},
-		
-		_visible: false, 
-		
-		show: function(){
-			var hideClass = "ui-fixed-hidden",
-				$el = this.element,
-				scroll = $( window ).scrollTop(),
-				elHeight = $el.height(),
-				pHeight = $el.closest( ".ui-page" ).height(),
-				viewportHeight = Math.min( screen.height, $( window ).height() ),
-				tbtype = $el.is( ".ui-header" ) ? "header" : "footer";
+			})
+			.bind( "silentscroll", showEventCallback );
 
-				if( this.options.transition && this.options.transition !== "none" &&
-					(
-					( tbtype === "header" && !this.options.fullscreen && scroll > elHeight ) ||
-					( tbtype === "footer" && !this.options.fullscreen && scroll + viewportHeight < pHeight - elHeight )
-					) || this.options.fullscreen ){
-				$el
-					.removeClass( "out " + hideClass )
-					.addClass( "in" );
-			}
-			else {
-				$el.removeClass( hideClass );
-			}
-			this._visible = true;
-		},
-		
-		hide: function(){
-			var hideClass = "ui-fixed-hidden",
-				$el = this.element,
-				scroll = $( window ).scrollTop(),
-				elHeight = $el.height(),
-				pHeight = $el.closest( ".ui-page" ).height(),
-				viewportHeight = Math.min( screen.height, $( window ).height() ),
-				tbtype = $el.is( ".ui-header" ) ? "header" : "footer";
 
-				if( this.options.transition && this.options.transition !== "none" &&
-					(
-					( tbtype === "header" && !this.options.fullscreen && scroll > elHeight ) ||
-					( tbtype === "footer" && !this.options.fullscreen && scroll + viewportHeight < pHeight - elHeight )
-					) || this.options.fullscreen ){
-				$el
-					.removeClass( "in" )
-					.addClass( "out" )
-					.animationComplete( function(){
-						$el.addClass( hideClass );
-					});
-			}
-			else {
-				this.element.addClass( hideClass );
-			}
-			this._visible = false;
-		},
-		
-		toggle: function(){
-			this[ this._visible ? "hide" : "show" ]();
-		},
-				
-		_bindToggleHandlers: function(){
-			var self = this,
-				o = self.options,
-				$el = self.element;
-			
-			// tap toggle
-			$el.closest( ".ui-page" )
-				.bind( "vclick", function( e ){
-					if( o.tapToggle && $el.find( e.target ).length === 0 ){
-						self.toggle();
+		// The below checks first for a $(document).scrollTop() value, and if zero, binds scroll events to $(window) instead.
+		// If the scrollTop value is actually zero, both will return zero anyway.
+		//
+		// Works with $(document), not $(window) : Opera Mobile (WinMO phone; kinda broken anyway)
+		// Works with $(window), not $(document) : IE 7/8
+		// Works with either $(window) or $(document) : Chrome, FF 3.6/4, Android 1.6/2.1, iOS
+		// Needs work either way : BB5, Opera Mobile (iOS)
+
+		( ( $document.scrollTop() === 0 ) ? $window : $document )
+			.bind( "scrollstart", function( event ) {
+
+				scrollTriggered = true;
+
+				if ( stateBefore === null ) {
+					stateBefore = currentstate;
+				}
+
+				// We only enter autoHideMode if the headers/footers are in
+				// an overlay state or the show timer was started. If the
+				// show timer is set, clear it so the headers/footers don't
+				// show up until after we're done scrolling.
+				var isOverlayState = stateBefore == "overlay";
+
+				autoHideMode = isOverlayState || !!delayTimer;
+
+				if ( autoHideMode ) {
+					$.mobile.fixedToolbars.clearShowTimer();
+
+					if ( isOverlayState ) {
+						$.mobile.fixedToolbars.hide( true );
 					}
-				});
-		},
-		
-		destroy: function(){
-			this.element.removeClass( "ui-header-fixed ui-footer-fixed ui-header-fullscreen ui-footer-fullscreen in out fade slidedown slideup ui-fixed-hidden" )
-			this.element.closest( ".ui-page" ).removeClass( "ui-page-header-fixed ui-page-footer-fixed ui-page-header-fullscreen ui-page-footer-fullscreen" );
-		},
-		
-		// for caching reference to meta viewport elem
-		_metaViewport: null,
-		
-		// on pageshow, does a meta viewport element exist in the head?
-		_metaViewportPreexists: false,
-		
-		// used for storing value of meta viewport content at page show, for restoration on hide
-		_metaViewportContent: "",
-		
-		// Fixed toolbars require page zoom to be disabled, otherwise usability issues crop up
-		// This method is meant to disable zoom while a fixed-positioned toolbar page is visible
-		disablePageZoom: function(){
-			if( !this.options.togglePageZoom ){
-				return;
+				}
+			})
+			.bind( "scrollstop", function( event ) {
+
+				if ( $( event.target ).closest( ignoreTargets ).length ) {
+					return;
+				}
+
+				scrollTriggered = false;
+
+				if ( autoHideMode ) {
+					$.mobile.fixedToolbars.startShowTimer();
+					autoHideMode = false;
+				}
+				stateBefore = null;
+			});
+
+			$window.bind( "resize updatelayout", showEventCallback );
+	});
+
+	// 1. Before page is shown, check for duplicate footer
+	// 2. After page is shown, append footer to new page
+	$( document ).delegate( ".ui-page", "pagebeforeshow", function( event, ui ) {
+			var page = $( event.target ),
+				footer = page.find( ":jqmData(role='footer')" ),
+				id = footer.data( "id" ),
+				prevPage = ui.prevPage,
+				prevFooter = prevPage && prevPage.find( ":jqmData(role='footer')" ),
+				prevFooterMatches = prevFooter.length && prevFooter.jqmData( "id" ) === id;
+
+			if ( id && prevFooterMatches ) {
+				stickyFooter = footer;
+				setTop( stickyFooter.removeClass( "fade in out" ).appendTo( $.mobile.pageContainer ) );
 			}
-			var cont = "user-scalable=no";
-			this._metaViewport = $( "meta[name='viewport']" );
-			this._metaViewportPreexists = this._metaViewport.length;
-			
-			var currentContent = this._metaViewport.attr( "content" );
-			
-			// If scaling's already disabled, or another plugin is handling it on this page already
-			if( currentContent.indexOf( cont ) > -1 ){
-				return;
+		})
+		.delegate( ".ui-page", "pageshow", function( event, ui ) {
+			var $this = $( this );
+
+			if ( stickyFooter && stickyFooter.length ) {
+				setTimeout(function() {
+					setTop( stickyFooter.appendTo( $this ).addClass( "fade" ) );
+					stickyFooter = null;
+				}, 500);
 			}
-			else {
-				this._metaViewportContent = currentContent;
-			}
-			
-			if( !this._metaViewportPreexists ){
-				this._metaViewport = $( "<meta>", { "name": "viewport", "content": cont } ).prependTo( "head" );
-			}
-			else{
-				this._metaViewport.attr( "content", this._metaViewportContent + ", " + cont );
-			}
-		},
-		
-		// restore the meta viewport tag to its original state, or remove it
-		restorePageZoom: function(){
-			if( !this.options.togglePageZoom ){
-				return;
-			}
-			var cont = "user-scalable=no";
-			if( this._metaViewport.attr( "content" ).indexOf( cont ) < 0 ){
-				return;
-			}
-			
-			if( this._metaViewportPreexists ){
-				this._metaViewport.attr( "content", this._metaViewportContent );
-			}
-			else {
-				this._metaViewport.remove();
+
+			$.mobile.fixedToolbars.show( true, this );
+		});
+
+	// When a collapsible is hidden or shown we need to trigger the fixed toolbar to reposition itself (#1635)
+	$( document ).delegate( ".ui-collapsible-contain", "collapse expand", showEventCallback );
+
+	// element.getBoundingClientRect() is broken in iOS 3.2.1 on the iPad. The
+	// coordinates inside of the rect it returns don't have the page scroll position
+	// factored out of it like the other platforms do. To get around this,
+	// we'll just calculate the top offset the old fashioned way until core has
+	// a chance to figure out how to handle this situation.
+	//
+	// TODO: We'll need to get rid of getOffsetTop() once a fix gets folded into core.
+
+	function getOffsetTop( ele ) {
+		var top = 0,
+			op, body;
+
+		if ( ele ) {
+			body = document.body;
+			op = ele.offsetParent;
+			top = ele.offsetTop;
+
+			while ( ele && ele != body ) {
+				top += ele.scrollTop || 0;
+
+				if ( ele == op ) {
+					top += op.offsetTop;
+					op = ele.offsetParent;
+				}
+
+				ele = ele.parentNode;
 			}
 		}
-		
-	});
-	
-	//auto self-init widgets
-	$( document ).bind( "pagecreate create", function( e ){
-		$( $.mobile.fixedtoolbar.prototype.options.initSelector, e.target ).fixedtoolbar();
-	});	
+		return top;
+	}
+
+	function setTop( el ) {
+		var fromTop = $(window).scrollTop(),
+			thisTop = getOffsetTop( el[ 0 ] ), // el.offset().top returns the wrong value on iPad iOS 3.2.1, call our workaround instead.
+			thisCSStop = el.css( "top" ) == "auto" ? 0 : parseFloat(el.css( "top" )),
+			screenHeight = window.innerHeight,
+			thisHeight = el.outerHeight(),
+			useRelative = el.parents( ".ui-page:not(.ui-page-fullscreen)" ).length,
+			relval;
+
+		if ( el.is( ".ui-header-fixed" ) ) {
+
+			relval = fromTop - thisTop + thisCSStop;
+
+			if ( relval < thisTop ) {
+				relval = 0;
+			}
+
+			return el.css( "top", useRelative ? relval : fromTop );
+		} else {
+			// relval = -1 * (thisTop - (fromTop + screenHeight) + thisCSStop + thisHeight);
+			// if ( relval > thisTop ) { relval = 0; }
+			relval = fromTop + screenHeight - thisHeight - (thisTop - thisCSStop );
+
+			return el.css( "top", useRelative ? relval : fromTop + screenHeight - thisHeight );
+		}
+	}
+
+	// Exposed methods
+	return {
+
+		show: function( immediately, page ) {
+
+			$.mobile.fixedToolbars.clearShowTimer();
+
+			currentstate = "overlay";
+
+			var $ap = page ? $( page ) :
+					( $.mobile.activePage ? $.mobile.activePage :
+						$( ".ui-page-active" ) );
+
+			return $ap.children( toolbarSelector ).each(function() {
+
+				var el = $( this ),
+					fromTop = $( window ).scrollTop(),
+					// el.offset().top returns the wrong value on iPad iOS 3.2.1, call our workaround instead.
+					thisTop = getOffsetTop( el[ 0 ] ),
+					screenHeight = window.innerHeight,
+					thisHeight = el.outerHeight(),
+					alreadyVisible = ( el.is( ".ui-header-fixed" ) && fromTop <= thisTop + thisHeight ) ||
+														( el.is( ".ui-footer-fixed" ) && thisTop <= fromTop + screenHeight );
+
+				// Add state class
+				el.addClass( "ui-fixed-overlay" ).removeClass( "ui-fixed-inline" );
+
+				if ( !alreadyVisible && !immediately ) {
+					el.animationComplete(function() {
+						el.removeClass( "in" );
+					}).addClass( "in" );
+				}
+				setTop(el);
+			});
+		},
+
+		hide: function( immediately ) {
+
+			currentstate = "inline";
+
+			var $ap = $.mobile.activePage ? $.mobile.activePage :
+									$( ".ui-page-active" );
+
+			return $ap.children( toolbarSelector ).each(function() {
+
+				var el = $(this),
+					thisCSStop = el.css( "top" ),
+					classes;
+
+				thisCSStop = thisCSStop == "auto" ? 0 :
+											parseFloat(thisCSStop);
+
+				// Add state class
+				el.addClass( "ui-fixed-inline" ).removeClass( "ui-fixed-overlay" );
+
+				if ( thisCSStop < 0 || ( el.is( ".ui-header-fixed" ) && thisCSStop !== 0 ) ) {
+
+					if ( immediately ) {
+						el.css( "top", 0);
+					} else {
+
+						if ( el.css( "top" ) !== "auto" && parseFloat( el.css( "top" ) ) !== 0 ) {
+
+							classes = "out reverse";
+
+							el.animationComplete(function() {
+								el.removeClass( classes ).css( "top", 0 );
+							}).addClass( classes );
+						}
+					}
+				}
+			});
+		},
+
+		startShowTimer: function() {
+
+			$.mobile.fixedToolbars.clearShowTimer();
+
+			var args = [].slice.call( arguments );
+
+			delayTimer = setTimeout(function() {
+				delayTimer = undefined;
+				$.mobile.fixedToolbars.show.apply( null, args );
+			}, showDelay);
+		},
+
+		clearShowTimer: function() {
+			if ( delayTimer ) {
+				clearTimeout( delayTimer );
+			}
+			delayTimer = undefined;
+		},
+
+		toggle: function( from ) {
+			if ( from ) {
+				currentstate = from;
+			}
+			return ( currentstate === "overlay" ) ? $.mobile.fixedToolbars.hide() :
+								$.mobile.fixedToolbars.show();
+		},
+
+		setTouchToggleEnabled: function( enabled ) {
+			touchToggleEnabled = enabled;
+		}
+	};
+})();
+
+//auto self-init widgets
+$( document ).bind( "pagecreate create", function( event ) {
+
+	if ( $( ":jqmData(position='fixed')", event.target ).length ) {
+
+		$( event.target ).each(function() {
+
+			if ( !$.support.scrollTop || ( $.support.touchOverflow && $.mobile.touchOverflowEnabled ) ) {
+				return this;
+			}
+
+			var $this = $( this );
+
+			if ( $this.jqmData( "fullscreen" ) ) {
+				$this.addClass( "ui-page-fullscreen" );
+			}
+
+			// Should be slidedown
+			$this.find( slideDownSelector ).addClass( slideDownClass );
+
+			// Should be slideup
+			$this.find( slideUpSelector ).addClass( slideUpClass );
+
+		})
+
+	}
+});
 
 })( jQuery );
+/*
+* "fixHeaderFooter" native plugin - Behavior for "fixed" headers,footers, and scrolling inner content
+*/
 
+(function( $, undefined ) {
+
+// Enable touch overflow scrolling when it's natively supported
+$.mobile.touchOverflowEnabled = false;
+
+// Enabled zoom when touch overflow is enabled. Can cause usability issues, unfortunately
+$.mobile.touchOverflowZoomEnabled = false;
+
+$( document ).bind( "pagecreate", function( event ) {
+	if( $.support.touchOverflow && $.mobile.touchOverflowEnabled ){
+		
+		var $target = $( event.target ),
+			scrollStartY = 0;
+			
+		if( $target.is( ":jqmData(role='page')" ) ){
+			
+			$target.each(function() {
+				var $page = $( this ),
+					$fixies = $page.find( ":jqmData(role='header'), :jqmData(role='footer')" ).filter( ":jqmData(position='fixed')" ),
+					fullScreen = $page.jqmData( "fullscreen" ),
+					$scrollElem = $fixies.length ? $page.find( ".ui-content" ) : $page;
+				
+				$page.addClass( "ui-mobile-touch-overflow" );
+				
+				$scrollElem.bind( "scrollstop", function(){
+					if( $scrollElem.scrollTop() > 0 ){
+						window.scrollTo( 0, $.mobile.defaultHomeScroll );
+					}
+				});	
+				
+				if( $fixies.length ){
+					
+					$page.addClass( "ui-native-fixed" );
+					
+					if( fullScreen ){
+
+						$page.addClass( "ui-native-fullscreen" );
+
+						$fixies.addClass( "fade in" );
+
+						$( document ).bind( "vclick", function(){
+							$fixies
+								.removeClass( "ui-native-bars-hidden" )
+								.toggleClass( "in out" )
+								.animationComplete(function(){
+									$(this).not( ".in" ).addClass( "ui-native-bars-hidden" );
+								});
+						});
+					}
+				}
+			});
+		}
+	}
+});
+
+})( jQuery );
 /*
 * "init" - Initialize the framework
 */
@@ -6840,12 +6976,26 @@ $( document ).bind( "pagecreate create", function( e ){
 		// find and enhance the pages in the dom and transition to the first page.
 		initializePage: function() {
 			// find present pages
-			var $pages = $( ":jqmData(role='page')" );
+			var $dialogs, $pages = $( ":jqmData(role='page')" );
 
-			// if no pages are found, create one with body's inner html
+			// if no pages are found, check for dialogs or create one with body's inner html
 			if ( !$pages.length ) {
-				$pages = $( "body" ).wrapInner( "<div data-" + $.mobile.ns + "role='page'></div>" ).children( 0 );
+				$dialogs = $( ":jqmData(role='dialog')" );
+
+				// if there are no pages but a dialog is present, load it as a page
+				if( $dialogs.length ) {
+					// alter the attribute so it will be treated as a page unpon enhancement
+					// TODO allow for the loading of a dialog as the first page (many considerations)
+					$dialogs.first().attr( "data-" + $.mobile.ns + "role", "page" );
+
+					// remove the first dialog from the set of dialogs since it's now a page
+					// add it to the empty set of pages to be loaded by the initial changepage
+					$pages = $pages.add( $dialogs.get().shift() );
+				} else {
+					$pages = $( "body" ).wrapInner( "<div data-" + $.mobile.ns + "role='page'></div>" ).children( 0 );
+				}
 			}
+
 
 			// add dialogs, set data-url attrs
 			$pages.add( ":jqmData(role='dialog')" ).each(function() {
@@ -6880,6 +7030,24 @@ $( document ).bind( "pagecreate create", function( e ){
 			}
 		}
 	});
+	
+	// This function injects a meta viewport tag to prevent scaling. Off by default, on by default when touchOverflow scrolling is enabled
+	function disableZoom() {
+		var cont = "user-scalable=no",
+			meta = $( "meta[name='viewport']" );
+			
+		if( meta.length ){
+			meta.attr( "content", meta.attr( "content" ) + ", " + cont );
+		}
+		else{
+			$( "head" ).prepend( "<meta>", { "name": "viewport", "content": cont } );
+		}
+	}
+	
+	// if touch-overflow is enabled, disable user scaling, as it creates usability issues
+	if( $.support.touchOverflow && $.mobile.touchOverflowEnabled && !$.mobile.touchOverflowZoomEnabled ){
+		disableZoom();
+	}
 
 	// initialize events now, after mobileinit has occurred
 	$.mobile._registerInternalEvents();

@@ -7,19 +7,19 @@
 	<title>Product Locator</title>
 	<!-- TemplateEndEditable -->  
     
-    <link rel="stylesheet" href="../html/scripts/libs/jquery/jquery.mobile-1.0.min.css">
-    <link rel="stylesheet" href="../html/css/ios_inspired/styles.css" />     
-    <link rel="stylesheet" href="../html/css/productlocator.css">    
+    <link rel="stylesheet" href="../mobile/scripts/libs/jquery/jquery.mobile.min.css">
+    <link rel="stylesheet" href="../mobile/css/ios_inspired/styles.css" />     
+    <link rel="stylesheet" href="../mobile/css/productlocator.css">    
     
-    <link rel="shortcut icon" href="../html/images/favicon.ico">
-    <link rel="apple-touch-icon" href="../html/images/apple-touch-icon.png">    
-    <link rel="apple-touch-startup-image" href="../html/images/apple-touch-splash.png" /> 
+    <link rel="shortcut icon" href="../mobile/images/favicon.ico">
+    <link rel="apple-touch-icon" href="../mobile/images/apple-touch-icon.png">    
+    <link rel="apple-touch-startup-image" href="../mobile/images/apple-touch-splash.png" /> 
 
     <meta name="apple-mobile-web-app-capable" content="yes" />  
 	<meta name="viewport" content="width = device-width, initial-scale = 1, user-scalable = no" />  
     
-    <script src="../html/scripts/libs/phonegap/phonegap-1.3.0.js"></script>
-    <script data-main="scripts/main" src="../html/scripts/libs/requirejs/require-1.0.4.min.js"></script> 
+    <script src="../mobile/scripts/libs/phonegap/phonegap.js"></script>
+    <script data-main="scripts/main" src="../mobile/scripts/libs/requirejs/require.min.js"></script> 
     
 	<!-- TemplateBeginEditable name="head" -->
 	<meta name="description" content="">

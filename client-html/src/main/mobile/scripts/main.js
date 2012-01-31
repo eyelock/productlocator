@@ -1,11 +1,11 @@
 require.config( {
     paths: {
-        'backbone':         		'libs/backbonejs/AMDbackbone-0.5.3',
-        'underscore':      		 	'libs/backbonejs/underscore-1.2.3.min',
-        'jquery':           		'libs/jquery/jquery-1.7.1.min',
-        'jquerymobile':     		'libs/jquery/jquery.mobile-1.1.alpha',
+        'backbone':         		'libs/backbonejs/backbone',
+        'underscore':      		 	'libs/backbonejs/underscore',
+        'jquery':           		'libs/jquery/jquery.min',
+        'jquerymobile':     		'libs/jquery/jquery.mobile',
 		'jquery-mobile-iscroll':   	'libs/jquery/jquery.mobile.iscroll',
-		'iscroll':   				'libs/misc/iscroll-3.7.1',
+		'iscroll':   				'libs/misc/iscroll',
 		'json2':     				'libs/misc/json2',
 
 		'backboneextensions': 		'utils/backboneextensions',
@@ -22,6 +22,13 @@ require(
 		//Load the main frameworks
         ['require', 'jquery', 'underscore', 'json2'],
         function( require, $, _ ) {
+	    	  _.templateSettings = {
+	    			    evaluate    : /<%=([\s\S]+?)%>/g,
+	    			    interpolate : /<%= =([\s\S]+?)%>/g,
+	    			    escape      : /<%= -([\s\S]+?)%>/g
+	    			  };
+        	
+        	
             //load the secondary frameworks - needing to load jquerymobile, before loading the jquery-iscroll
             require(
                     ['require', 'backbone', 'jquerymobile', 'iscroll', 'config'],

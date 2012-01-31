@@ -10,20 +10,20 @@ function( require, $, Backbone, _, uiutils ) {
 		},
 		
 		reset: function () {
-			this.el.html();
+			this.$el.html();
 		},
 		
 		render: function(eventName) {	
 			this.reset();
 			
 			uiutils.setPageTitle(this.model.get("title"));
-			this.el.html(this.template(this.model.toJSON()));
+			this.$el.html(this.template(this.model.toJSON()));
 			
 			//We've inserted the template, now find the contents div
-			var $pageContents = this.el.find(".content-container");
+			var $pageContents = this.$el.find(".content-container");
 			
 			//Add the repeating blocks of text in
-			var $pageBlockTemplate = this.el.find(".contents-block");
+			var $pageBlockTemplate = this.$el.find(".contents-block");
 			_.each(this.model.get("pageBlocks"), function(pageBlocks) {
 				var $thisBlock = $pageBlockTemplate.clone();
 				$pageContents.append($thisBlock.html(pageBlocks));
@@ -31,7 +31,7 @@ function( require, $, Backbone, _, uiutils ) {
 			
 			//Remote the template part
 			$pageBlockTemplate.remove();
-			this.el.trigger("create");
+			this.$el.trigger("create");
 			
 			//Manually call delegate events as we didn't bind the 'el' until init time
 			this.delegateEvents();

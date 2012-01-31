@@ -7,14 +7,13 @@ function( $, Backbone, _, uiutils, LocationListRowView ) {
 		lastCity: "",
 		
 		initialize: function() {
-			this.el = $("#location-list");
-			this.template = _.template($('#location-list-row').html());
+			this.template = _.template(this.options.template.html());
 			this.model.bind("reset", this.render, this); 
 		},
 		
 		reset: function() {
 			this.lastCity = "";
-			this.el.html("");
+			this.$el.html("");
 		},
 		
 		render: function(eventName) {
@@ -23,7 +22,7 @@ function( $, Backbone, _, uiutils, LocationListRowView ) {
 			//NOTE Margin for performance improvement here, some sort of cachine
 			this.reset();
 			
-			uiutils.processListForFilterRequirement(this.el, this.model.models.length);
+			uiutils.processListForFilterRequirement(this.$el, this.model.models.length);
 			
 			var itemRenderer = function(location) {
 				//Add a divider if needed
@@ -31,14 +30,14 @@ function( $, Backbone, _, uiutils, LocationListRowView ) {
 				if (location.get("city") != this.lastCity) {
 					this.lastCity = location.get("city");
 					var $divider = $("<li data-role=\"list-divider\">" + this.lastCity + "</li>");
-					$(this.el).append($divider);
+					$(this.$el).append($divider);
 				}
 				
 				//Process the location
 				var itemId = "location-item-" + location.get("id");
 				
-				if (this.el.find("#"+itemId).length == 0) {
-					$(this.el).append(new LocationListRowView({
+				if (this.$el.find("#"+itemId).length == 0) {
+					$(this.$el).append(new LocationListRowView({
 						id: itemId,
 						model: location,
 						context: ("context" in this.options) ? this.options.context : null,
@@ -51,7 +50,7 @@ function( $, Backbone, _, uiutils, LocationListRowView ) {
 			//Manually call delegate events as we didn't bind the 'el' until init time and refresh the jquery mobile
 			this.delegateEvents();
 			//FIXME If we add data-filter, this doesnt update the list UI
-			this.el.listview("refresh");
+			this.$el.listview("refresh");
 		},
 	});
 	

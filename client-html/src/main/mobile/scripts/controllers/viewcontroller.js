@@ -39,10 +39,10 @@ function(
 		views.pageView = new PageView({
 			model: page,
 			context: context,
-			template: $(context.template),
+			template: $(context.templateSelector),
 		});
 		
-		views.pageView.setElement($(context.el));
+		views.pageView.setElement($(context.pageSelector));
 		views.pageView.render();
 	};
 	
@@ -53,8 +53,10 @@ function(
 		views.productListView = new ProductListView({
 			model: products,
 			context: context,
+			template: $(context.templateSelector),
 		});
 		
+		views.productListView.setElement($(context.pageSelector));
 		views.productListView.render();
 	};
 	
@@ -65,8 +67,10 @@ function(
 		views.productDetailView = new ProductDetailView({
 			model: product,
 			context: context,
+			template: $(context.templateSelector),
 		});
 		
+		views.productDetailView.setElement($(context.pageSelector));
 		views.productDetailView.render();
 	};	
 
@@ -77,8 +81,10 @@ function(
 		views.countryListView = new CountryListView({
 			model: countries,
 			context: context,
+			template: $(context.templateSelector),
 		});
 		
+		views.listCountries.setElement($(context.pageSelector));
 		views.countryListView.render();
 	};
 	
@@ -89,8 +95,10 @@ function(
 		views.locationListView = new LocationListView({
 			model: locations,
 			context: context,
+			template: $(context.templateSelector),
 		});
 		
+		views.locationListView.setElement($(context.pageSelector));
 		views.locationListView.render();
 	};
 	
@@ -101,8 +109,10 @@ function(
 		views.locationDetailView = new LocationDetailsView({
 			model: location,
 			context: context,
+			template: $(context.templateSelector),
 		});
 		
+		views.locationDetailView.setElement($(context.pageSelector));
 		views.locationDetailView.render();
 	};
 	
@@ -113,8 +123,10 @@ function(
 		views.tweetListView = new TweetListView({
 			model: tweets,
 			context: context,
+			template: $(context.templateSelector),
 		});
 		
+		views.tweetListView.setElement($(context.pageSelector));
 		views.tweetListView.render();
 	};
 

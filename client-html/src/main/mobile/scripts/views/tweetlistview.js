@@ -5,13 +5,12 @@ function( $, Backbone, _, uiutils, TweetListRowView ) {
 	
 	var TweetListView = Backbone.View.extend({		
 		initialize: function() {
-			this.el = $("#tweet-list");
-			this.template = _.template($('#tweet-list-row').html());
+			this.template = _.template(this.options.template.html());
 			this.model.bind("reset", this.render, this); 
 		},
 		
 		reset: function() {
-			this.el.html("");
+			this.$el.html("");
 		},
 		
 		render: function(eventName) {
@@ -20,13 +19,13 @@ function( $, Backbone, _, uiutils, TweetListRowView ) {
 			//NOTE Margin for performance improvement here
 			this.reset();
 			
-			uiutils.processListForFilterRequirement(this.el, this.model.models.length);
+			uiutils.processListForFilterRequirement(this.$el, this.model.models.length);
 			
 			var itemRenderer = function(tweet) {
 				var itemId = "tweet-item-" + tweet.get("id");
 
-				if (this.el.find("#"+itemId).length == 0) {
-					this.el.append(new TweetListRowView({
+				if (this.$el.find("#"+itemId).length == 0) {
+					this.$el.append(new TweetListRowView({
 						id: itemId,
 						model: tweet,
 						context: ("context" in this.options) ? this.options.context : null,
@@ -39,7 +38,7 @@ function( $, Backbone, _, uiutils, TweetListRowView ) {
 			
 			//Manually call delegate events as we didn't bind the 'el' until init time and refresh the jquery mobile
 			this.delegateEvents();
-			this.el.listview("refresh");
+			this.$el.listview("refresh");
 		},
 		
 		events: {

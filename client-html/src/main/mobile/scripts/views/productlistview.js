@@ -7,19 +7,18 @@ function( $, Backbone, _, uiutils, ProductListRowView ) {
 		selectedHandler: null,
 		
 		initialize: function() {
-			this.el = $("#product-list");
-			this.template = _.template($('#product-list-row').html());
+			this.template = _.template(this.options.template.html());
 			this.model.bind("reset", this.render, this); 
 		},
 		
 		render: function(eventName) {
-			uiutils.processListForFilterRequirement(this.el, this.model.models.length);
+			uiutils.processListForFilterRequirement(this.$el, this.model.models.length);
 			
 			var itemRenderer = function(product) {
 				var itemId = "product-item-" + product.get("id");
 				
-				if (this.el.find("#"+itemId).length == 0) {
-					this.el.append(new ProductListRowView({
+				if (this.$el.find("#"+itemId).length == 0) {
+					this.$el.append(new ProductListRowView({
 						id: itemId,
 						model: product,
 						context: ("context" in this.options) ? this.options.context : null,

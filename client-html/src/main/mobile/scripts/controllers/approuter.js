@@ -26,6 +26,7 @@ function(
 			//route to locations - note can't get a list of all locations, that would be overwhelming
 			"locations/:locationid"											: "locationDetail",
 			"locations/:locationid/products"								: "locationProducts",
+			"locations/:locationid/tweets"									: "locationTweets",
 			
 			//route to locations, via products - signifies want to see locations based on products
 			"products/:productid/countries"									: "listProductCountries",
@@ -34,7 +35,6 @@ function(
 			//route to locations, via countries - signifies want to see products based on locations
 			"countries"														: "listCountries",
 			"countries/:countryid/locations"								: "countryLocations",
-			"countries/:countryid/locations/:locationid"					: "countryLocationDetail",
 			
 			//misc routes
 			"page/:pageid"													: "getPage",
@@ -88,6 +88,10 @@ function(
 		
 		locationProducts: function(locationid) {
 			getControllers().appcontroller.getLocationProductList({locationid: locationid});
+		},
+		
+		locationTweets: function(locationid) {
+			getControllers().appcontroller.getCompanySocialConnect({locationid: locationid});
 		},
 	});
 	

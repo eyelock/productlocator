@@ -63,15 +63,15 @@ function(
 			if (pageId != null) {
 				options.pagecreate = function(e) {
 					utils.setPageNavBar("page", "general");
-				}
+				};
 				
 				options.pageinit = function(e) {
 					utils.updateBackboneRoute("pages/" + pageId, options);
 					utils.updateBackbonePage("getPage", page, {
-						el: "#page .content",
+						selector: "#page .content",
 						template: "#page-body",
 					});
-				}
+				};
 				
 				utils.updatejQMPage(jQMPage, options);
 			} else {
@@ -87,17 +87,17 @@ function(
 					
 				utils.updateBackboneRoute(jQMPage, options);
 				utils.updateBackbonePage("getPage", page, {
-					el: "#home .content",
-					template: "#home-body",
+					pageSelector: "#home .content",
+					templateSelector: "#home-body",
 				});
 			}
-		}
+		};
 		
 		var getPageModel = function() {
 			return pageKey != null 
 					? collections.pages.getByKey("key", pageKey) 
 					: collections.pages.get(pageId);
-		}
+		};
 		
 	
 		if (collections.pages != null && collections.pages.length > 0) {
@@ -139,12 +139,16 @@ function(
 			} else {
 				options.pagecreate = function() {
 					utils.setPageNavBar("products", "general");
-				}
+				};
 				
 				options.pageinit = function() {
 					utils.updateBackboneRoute("#products", options);
-					utils.updateBackbonePage("listProducts", products, {selectItem: AppController.getProductDetail});
-				}
+					utils.updateBackbonePage("listProducts", products, {
+						selectItem: AppController.getProductDetail,
+						pageSelector: "#product-list",
+						templateSelector: "#product-list-row",
+					});
+				};
 				
 				utils.updatejQMPage("productlist.html#products", options);
 			}
@@ -166,13 +170,16 @@ function(
 			
 			options.pagecreate = function(e) {
 				utils.setPageNavBar("product", "product");
-			}
+			};
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("#products/" + product.get("id"), options);
-				utils.updateBackbonePage("productDetail", product);
+				utils.updateBackbonePage("productDetail", product, {
+					pageSelector: "#product .content",
+					templateSelector: "#product-detail-body",
+				});
 				utils.customizePageTitle(product.get("name"));
-			}
+			};
 			
 			utils.updatejQMPage("productdetail.html#product", options);
 		};
@@ -202,13 +209,17 @@ function(
 			} else {
 				options.pagecreate = function(e) {
 					utils.setPageNavBar("countries", "product");
-				}
+				};
 				
 				options.pageinit = function(e) {
 					utils.updateBackboneRoute("#products/" + thisProduct.get("id") + "/countries", options);
-					utils.updateBackbonePage("listCountries", countries, {selectItem: AppController.getProductCountryLocationList});
+					utils.updateBackbonePage("listCountries", countries, {
+						selectItem: AppController.getProductCountryLocationList,
+						pageSelector: "#country-list",
+						templateSelector: "#country-list-row",
+					});
 					utils.customizePageTitle("Product Countries");
-				}
+				};
 				
 				utils.updatejQMPage("countrylist.html#countries", options);
 			}
@@ -261,7 +272,11 @@ function(
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("#products/" + thisProduct.get("id") + "/countries/" + thisCountry.get("id") + "/locations", options);
-				utils.updateBackbonePage("listLocations", country.get("locations"), {selectItem: AppController.getLocationDetail});
+				utils.updateBackbonePage("listLocations", country.get("locations"), {
+					selectItem: AppController.getLocationDetail,
+					pageSelector: "#location-list",
+					templateSelector: "#location-list-row",
+				});
 				utils.customizePageTitle(country.get("name"));
 			};
 			
@@ -346,12 +361,16 @@ function(
 				
 				options.pageinit = function(e) {
 					utils.updateBackboneRoute("#countries", options);
-					utils.updateBackbonePage("listCountries", countries, {selectItem: AppController.getCountryLocationList});
+					utils.updateBackbonePage("listCountries", countries, {
+						selectItem: AppController.getCountryLocationList,
+						pageSelector: "#country-list",
+						templateSelector: "#country-list-row",
+					});
 				};
 				
 				utils.updatejQMPage("countrylist.html#countries", options);
 			}
-		}
+		};
 		
 		getCollections().countries.fetchLazily(renderView);
 	};
@@ -372,7 +391,11 @@ function(
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("#countries/" + country.get("id") + "/locations", options);
-				utils.updateBackbonePage("listLocations", country.get("locations"), {selectItem: AppController.getCountryLocationDetail});
+				utils.updateBackbonePage("listLocations", country.get("locations"), {
+					selectItem: AppController.getLocationDetail,
+					pageSelector: "#location-list",
+					templateSelector: "#location-list-row",
+				});
 				utils.customizePageTitle(country.get("name"));
 			};
 			
@@ -385,36 +408,6 @@ function(
 		};
 		
 		getCollections().countries.getLazily(options.countryid, getRelated);
-	};
-	
-	
-	AppController.getCountryLocationDetail = function(options) {	
-		options || (options = {});
-		var utils = getUtils();
-			
-		var renderView = function(location) {
-			//We have successful view, so null the last selection
-			appcontext.lastLocationSelected = location;
-			
-			options.pagecreate = function(e) {
-				utils.setPageNavBar("location", "location");
-			};
-			
-			options.pageinit = function(e) {
-				utils.updateBackboneRoute("#countries/" + location.get("countryId") + "/locations/" + location.get("id"), options);
-				utils.updateBackbonePage("locationDetail", location, {
-					viewLocationMap: AppController.getLocationOnMap,
-					callLocationPhone: AppController.getLocationPhone,
-					emailLocation: AppController.getLocationEmail,
-					viewLocationWeb: AppController.getLocationWeb,
-				});
-				utils.customizePageTitle(location.get("name"));
-			};
-			
-			utils.updatejQMPage("locationdetail.html#location", options);
-		}
-		
-		getCollections().locations.getLazily(options.locationid, renderView);
 	};
 	
 	
@@ -437,12 +430,14 @@ function(
 					callLocationPhone: AppController.getLocationPhone,
 					emailLocation: AppController.getLocationEmail,
 					viewLocationWeb: AppController.getLocationWeb,
+					pageSelector: "#location .content",
+					templateSelector: "#location-detail-body",
 				});
 				utils.customizePageTitle(location.get("name"));
 			};
 			
 			utils.updatejQMPage("locationdetail.html#location", options);
-		}
+		};
 		
 		getCollections().locations.getLazily(options.locationid, renderView);
 	};
@@ -459,7 +454,7 @@ function(
 			title: location.get("name"),
 			description: location.get("description"),
 		};
-		devicecontext.showOnMap(mapOptions)
+		devicecontext.showOnMap(mapOptions);
 	};
 	
 	
@@ -491,7 +486,11 @@ function(
 				
 				options.pageinit = function(e) {
 					utils.updateBackboneRoute("#locations/" + locationId + "/products", options);
-					utils.updateBackbonePage("listProducts", locationProducts, {selectItem: AppController.getProductDetail});
+					utils.updateBackbonePage("listProducts", locationProducts, {
+						selectItem: AppController.getProductDetail,
+						pageSelector: "#product-list",
+						templateSelector: "#product-list-row",
+					});
 					utils.customizePageTitle(thisLocation.get("name"));
 				};
 				
@@ -543,7 +542,7 @@ function(
 			locationProductsCollection.add(availableEverywhereProducts.concat(locationSpecificProductModels));
 			renderView(locationProductsCollection);
 			return;
-		}
+		};
 		
 		//Callback - by this point we have the location and all the products, make sure we have the productlocations
 		var getAllProductsForProcessing = function(products) {
@@ -636,15 +635,18 @@ function(
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("#locations/" + location.get("id"), options);
-				utils.updateBackbonePage("tweetList", tweets);
+				utils.updateBackbonePage("tweetList", tweets, {
+					pageSelector: "#tweet-list",
+					templateSelector: "#tweet-list-row",					
+				});
 			};
 			
 			utils.updatejQMPage("tweetlist.html#tweets", options);
-		}
+		};
 		
 		var locationTweets = location.get("tweets");
 		if (!(locationTweets != null && locationTweets.length > 0)) {
-			var locationTweetCollection = new TweetCollection({username: locationTwitter});	
+			var locationTweetCollection = new TweetCollection([], {username: locationTwitter});	
 			location.set({tweets: locationTweetCollection});
 			locationTweetCollection.fetchLazily(renderView);
 		} else {
@@ -667,12 +669,15 @@ function(
 			};
 			
 			options.pageinit = function(e) {
-				utils.updateBackboneRoute("#tweets", options);
-				utils.updateBackbonePage("tweetList", tweets);
+				utils.updateBackboneRoute("locations/" + options.locationid + "/tweets", options);
+				utils.updateBackbonePage("tweetList", tweets, {
+					pageSelector: "#tweet-list",
+					templateSelector: "#tweet-list-row",
+				});
 			};
 			
 			utils.updatejQMPage("tweetlist.html#tweets", options);
-		}
+		};
 		
 		//if there is nothing in the collection, attempt to retrieve them, otherwise just show the page again
 		if (collections.companyTweets.length == 0) {

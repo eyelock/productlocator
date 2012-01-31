@@ -5,23 +5,22 @@ function( $, Backbone, _, uiutils, devicecontext ) {
 	
 	var LocationDetailView = Backbone.View.extend({			
 		initialize: function() {
-			this.el = $("#location .content");
-			this.template = _.template($('#location-detail-body').html());
+			this.template = _.template(this.options.template.html());
 			this.model.bind("reset", this.render, this); 
 		},
 		
 		render: function(eventName) {		
 			uiutils.setPageTitle(this.model.get("name"));
-			this.el.html(this.template(this.model.toJSON()));
+			this.$el.html(this.template(this.model.toJSON()));
 			
 			//Disable the call button if this isn't a device
 			if (!devicecontext.isDevice) {
-				this.el.find(".callLocationPhone").remove();
+				this.$el.find(".callLocationPhone").remove();
 			}
 			
 			//Needed as we are setting the element at initialization
 			this.delegateEvents();
-			this.el.trigger("create");
+			this.$el.trigger("create");
 		},
 		
 		events: {

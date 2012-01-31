@@ -5,13 +5,12 @@ function( $, Backbone, _, uiutils, CountryListRowView ) {
 	
 	var ProductListView = Backbone.View.extend({		
 		initialize: function() {
-			this.el = $("#country-list");
-			this.template = _.template($('#country-list-row').html());
+			this.template = _.template(this.options.template.html());
 			this.model.bind("reset", this.render, this); 
 		},
 		
 		reset: function() {
-			this.el.html("");
+			this.$el.html("");
 		},
 		
 		render: function(eventName) {
@@ -20,13 +19,13 @@ function( $, Backbone, _, uiutils, CountryListRowView ) {
 			//NOTE Margin for performance improvement here
 			this.reset();
 			
-			uiutils.processListForFilterRequirement(this.el, this.model.models.length);
+			uiutils.processListForFilterRequirement(this.$el, this.model.models.length);
 			
 			var itemRenderer = function(country) {
 				var itemId = "country-item-" + country.get("id");
 
-				if (this.el.find("#"+itemId).length == 0) {
-					this.el.append(new CountryListRowView({
+				if (this.$el.find("#"+itemId).length == 0) {
+					this.$el.append(new CountryListRowView({
 						id: itemId,
 						model: country,
 						context: ("context" in this.options) ? this.options.context : null,
@@ -38,7 +37,7 @@ function( $, Backbone, _, uiutils, CountryListRowView ) {
 			
 			//Manually call delegate events as we didn't bind the 'el' until init time and refresh the jquery mobile
 			this.delegateEvents();
-			this.el.listview("refresh");
+			this.$el.listview("refresh");
 		},
 	});
 	

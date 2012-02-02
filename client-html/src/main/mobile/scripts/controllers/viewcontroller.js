@@ -33,8 +33,34 @@ function(
 	};
 	
 	
+	var checkContextWithSelectors = function(context, defaults) {
+		if (typeof context === "undefined") {
+			context = {};
+		}
+		
+		if (typeof defaults === "undefined") {
+			defaults = {};
+		}
+		
+		if (!("pageSelector" in context) && ("pageSelector" in defaults)) {
+			context.pageSelector = defaults.pageSelector;
+		}
+		
+		if (!("templateSelector" in context) && ("templateSelector" in defaults)) {
+			context.templateSelector = defaults.templateSelector;
+		}
+		
+		return context;
+	};
+	
+	
 	ViewController.getPage = function(page, context) {
 		var views = getViews();
+		
+		context = checkContextWithSelectors(context, {
+			pageSelector: "#page .content",
+			templateSelector: "#page-body",
+		});
 		
 		views.pageView = new PageView({
 			model: page,
@@ -50,6 +76,11 @@ function(
 	ViewController.listProducts = function(products, context) {
 		var views = getViews();
 		
+		context = checkContextWithSelectors(context, {
+			pageSelector: "#product-list",
+			templateSelector: "#product-list-row",
+		});
+		
 		views.productListView = new ProductListView({
 			model: products,
 			context: context,
@@ -63,6 +94,11 @@ function(
 	
 	ViewController.productDetail = function(product, context) {
 		var views = getViews();
+		
+		context = checkContextWithSelectors(context, {
+			pageSelector: "#product .content",
+			templateSelector: "#product-detail-body",
+		});
 		
 		views.productDetailView = new ProductDetailView({
 			model: product,
@@ -78,6 +114,11 @@ function(
 	ViewController.listCountries = function(countries, context) {
 		var views = getViews();
 		
+		context = checkContextWithSelectors(context, {
+			pageSelector: "#country-list",
+			templateSelector: "#country-list-row",
+		});
+		
 		views.countryListView = new CountryListView({
 			model: countries,
 			context: context,
@@ -90,8 +131,13 @@ function(
 	
 	
 	ViewController.listLocations = function(locations, context) {
-		var views = getViews();
+		var views = getViews();	
 		
+		context = checkContextWithSelectors(context, {
+			pageSelector: "#location-list",
+			templateSelector: "#location-list-row",
+		});	
+
 		views.locationListView = new LocationListView({
 			model: locations,
 			context: context,
@@ -106,6 +152,11 @@ function(
 	ViewController.locationDetail = function(location, context) {
 		var views = getViews();
 		
+		context = checkContextWithSelectors(context, {
+			pageSelector: "#location .content",
+			templateSelector: "#location-detail-body",
+		});	
+		
 		views.locationDetailView = new LocationDetailsView({
 			model: location,
 			context: context,
@@ -119,6 +170,11 @@ function(
 	
 	ViewController.tweetList = function(tweets, context) {
 		var views = getViews();
+		
+		context = checkContextWithSelectors(context, {
+			pageSelector: "#tweet-list",
+			templateSelector: "#tweet-list-row",	
+		});	
 		
 		views.tweetListView = new TweetListView({
 			model: tweets,

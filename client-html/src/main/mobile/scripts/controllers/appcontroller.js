@@ -67,10 +67,7 @@ function(
 				
 				options.pageinit = function(e) {
 					utils.updateBackboneRoute("pages/" + pageId, options);
-					utils.updateBackbonePage("getPage", page, {
-						selector: "#page .content",
-						template: "#page-body",
-					});
+					utils.updateBackbonePage("getPage", page);
 				};
 				
 				utils.updatejQMPage(jQMPage, options);
@@ -88,7 +85,7 @@ function(
 				utils.updateBackboneRoute(jQMPage, options);
 				utils.updateBackbonePage("getPage", page, {
 					pageSelector: "#home .content",
-					templateSelector: "#home-body",
+					templateSelector: "#home-body",	
 				});
 			}
 		};
@@ -145,8 +142,6 @@ function(
 					utils.updateBackboneRoute("#products", options);
 					utils.updateBackbonePage("listProducts", products, {
 						selectItem: AppController.getProductDetail,
-						pageSelector: "#product-list",
-						templateSelector: "#product-list-row",
 					});
 				};
 				
@@ -174,10 +169,7 @@ function(
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("#products/" + product.get("id"), options);
-				utils.updateBackbonePage("productDetail", product, {
-					pageSelector: "#product .content",
-					templateSelector: "#product-detail-body",
-				});
+				utils.updateBackbonePage("productDetail", product);
 				utils.customizePageTitle(product.get("name"));
 			};
 			
@@ -215,8 +207,6 @@ function(
 					utils.updateBackboneRoute("#products/" + thisProduct.get("id") + "/countries", options);
 					utils.updateBackbonePage("listCountries", countries, {
 						selectItem: AppController.getProductCountryLocationList,
-						pageSelector: "#country-list",
-						templateSelector: "#country-list-row",
 					});
 					utils.customizePageTitle("Product Countries");
 				};
@@ -274,8 +264,6 @@ function(
 				utils.updateBackboneRoute("#products/" + thisProduct.get("id") + "/countries/" + thisCountry.get("id") + "/locations", options);
 				utils.updateBackbonePage("listLocations", country.get("locations"), {
 					selectItem: AppController.getLocationDetail,
-					pageSelector: "#location-list",
-					templateSelector: "#location-list-row",
 				});
 				utils.customizePageTitle(country.get("name"));
 			};
@@ -363,8 +351,6 @@ function(
 					utils.updateBackboneRoute("#countries", options);
 					utils.updateBackbonePage("listCountries", countries, {
 						selectItem: AppController.getCountryLocationList,
-						pageSelector: "#country-list",
-						templateSelector: "#country-list-row",
 					});
 				};
 				
@@ -393,8 +379,6 @@ function(
 				utils.updateBackboneRoute("#countries/" + country.get("id") + "/locations", options);
 				utils.updateBackbonePage("listLocations", country.get("locations"), {
 					selectItem: AppController.getLocationDetail,
-					pageSelector: "#location-list",
-					templateSelector: "#location-list-row",
 				});
 				utils.customizePageTitle(country.get("name"));
 			};
@@ -430,8 +414,6 @@ function(
 					callLocationPhone: AppController.getLocationPhone,
 					emailLocation: AppController.getLocationEmail,
 					viewLocationWeb: AppController.getLocationWeb,
-					pageSelector: "#location .content",
-					templateSelector: "#location-detail-body",
 				});
 				utils.customizePageTitle(location.get("name"));
 			};
@@ -488,8 +470,6 @@ function(
 					utils.updateBackboneRoute("#locations/" + locationId + "/products", options);
 					utils.updateBackbonePage("listProducts", locationProducts, {
 						selectItem: AppController.getProductDetail,
-						pageSelector: "#product-list",
-						templateSelector: "#product-list-row",
 					});
 					utils.customizePageTitle(thisLocation.get("name"));
 				};
@@ -635,10 +615,7 @@ function(
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("#locations/" + location.get("id"), options);
-				utils.updateBackbonePage("tweetList", tweets, {
-					pageSelector: "#tweet-list",
-					templateSelector: "#tweet-list-row",					
-				});
+				utils.updateBackbonePage("tweetList", tweets);
 			};
 			
 			utils.updatejQMPage("tweetlist.html#tweets", options);
@@ -670,10 +647,7 @@ function(
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("locations/" + options.locationid + "/tweets", options);
-				utils.updateBackbonePage("tweetList", tweets, {
-					pageSelector: "#tweet-list",
-					templateSelector: "#tweet-list-row",
-				});
+				utils.updateBackbonePage("tweetList", tweets);
 			};
 			
 			utils.updatejQMPage("tweetlist.html#tweets", options);

@@ -149,7 +149,7 @@ function(
 			}
 		};
 		
-		getCollections().products.fetchLazily(renderView);
+		getCollections().products.fetch(renderView);
 	};
 		
 		

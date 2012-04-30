@@ -1,6 +1,8 @@
-define( ['backbone'],
-function(Backbone) {
+define( ['backbone', 'underscore'],
+function(Backbone, _) {
 	"use strict";
+	
+	Backbone.Custom = Backbone.Custom || {};
 	
 	
 	/* ****************************************** 
@@ -50,90 +52,99 @@ function(Backbone) {
 	/* ****************************************** 
 		COLLECTION
 	****************************************** */
-	//Create the customised version, which has the lazy load functionality
-	Backbone.Collection.prototype.getLazily = function(id, callback, hasRecursed) {
-		var model,
-			fetchHandler,
-			isRecursedAlready = typeof hasRecursed != "undefined",
-			that = this;
-			
-		//Check the arguments, if no callback is given, then we want to use the original Backbone implementation
-		if (!typeof callback == "function") {
-			BackBone.Collection.prototype.get.apply(this, arguments);
-			return;	
-		}
-		
-		//We got a callback, which insinuates a lazy load approach
-		model = that.get(id);
-		
-		//If we get a model, just return straight away to the callback	
-		if (model != null) {
-			callback(model);
-			return;
-		}
-		
-		//If we have recursed already, don't recurse again, throw an error
-		if (hasRecursed) {
-			//TODO Better error strategy needed
-			throw "error - recursion has occurred already when trying to lazily fetch an item by it's id";	
-		}
-
-		//Let's try and get the model by fetching from the service
-		//NOTE when you fetch, any return causes a reset event
-		//FIXME this assumes that all fetches return at least 1 item!!!!!
-		that.bind("reset", function fetchHandler() {
-			that.unbind("reset", fetchHandler);
-			
-			//check and see if the fetch got the id we wanted
-			var fetchedModel = that.get(id);
-			
-			//Do the callback, assume if we pass null it's all went purple
-			if (fetchedModel != null) {
-				callback(fetchedModel);	
-			} else {
-				that.getLazily(id, callback, true);
-			}	
-			
-			return;							
-		});
-		
-		this.fetch();
-	};
+	Backbone.Custom.Collections = Backbone.Custom.Collections || {};
 	
+	Backbone.Custom.Collections.LazyCollection = function(models, options) {
+		this.remoteUrl = null;
+		this.localUrl = null;
+		
+		this._super_ = Backbone.Collection.prototype;
+		this._super_.constructor.apply(this, arguments);	
+	}
 	
-	//TODO Backbone.Collection.fetch also takes an optional 'options' argument, factor it into this method
-	Backbone.Collection.prototype.fetchLazily = function(callback, hasRecursed) {
-		var fetchHandler,
-			isRecursedAlready = typeof hasRecursed != "undefined",
-			that = this;
+	_.extend(Backbone.Custom.Collections.LazyCollection.prototype, Backbone.Collection.prototype, Backbone.Collection, {
+		get: function(id, callback, hasRecursed) {
+			var model,
+				fetchHandler,
+				isRecursedAlready = typeof hasRecursed != "undefined",
+				that = this;
+				
+			//Check the arguments, if no callback is given, then we want to use the original Backbone implementation
+			if (!typeof callback == "function") {
+				return this._super_.get.apply(this, arguments);
+			}
 			
-		//Check the arguments, if no callback is given, then we want to use the original Backbone implementation
-		if (!typeof callback == "function") {
-			BackBone.Collection.prototype.get.apply(that, arguments);
-			return;	
-		}
+			//We got a callback, which insinuates a lazy load approach
+			model = that.get(id);
+			
+			//If we get a model, just return straight away to the callback	
+			if (model != null) {
+				callback(model);
+				return;
+			}
+			
+			//If we have recursed already, don't recurse again, throw an error
+			if (hasRecursed) {
+				//TODO Better error strategy needed
+				throw "error - recursion has occurred already when trying to lazily fetch an item by it's id";	
+			}
+	
+			//Let's try and get the model by fetching from the service
+			//NOTE when you fetch, any return causes a reset event
+			//FIXME this assumes that all fetches return at least 1 item!!!!!
+			that.bind("reset", function fetchHandler() {
+				that.unbind("reset", fetchHandler);
+				
+				//check and see if the fetch got the id we wanted
+				var fetchedModel = that.get(id);
+				
+				//Do the callback, assume if we pass null it's all went purple
+				if (fetchedModel != null) {
+					callback(fetchedModel);	
+				} else {
+					that.get(id, callback, true);
+				}	
+				
+				return;							
+			});
+			
+			this.fetch();
+		},
 		
-		//If we get a model, just return straight away to the callback	
-		if (that.length > 0) {
-			callback(this);
-			return;
-		}
 		
-		//If we have recursed already, don't recurse again, throw an error
-		if (hasRecursed) {
-			//TODO Better error strategy needed
-			throw "error - recursion has occurred already when trying to lazily fetch an item by it's id";	
-		}
-
-		//Let's try and get the model by fetching from the service
-		//NOTE when you fetch, any return causes a reset event
-		//FIXME this might cause an infinite loop
-		that.bind("reset", function fetchHandler() {
-			that.unbind("reset", fetchHandler);
-			callback(that);	
-			return;							
-		});
-		
-		that.fetch();
-	};
+		fetch: function(callback, hasRecursed) {
+			var fetchHandler,
+				isRecursedAlready = typeof hasRecursed != "undefined",
+				that = this;
+				
+			//Check the arguments, if no callback is given, then we want to use the original Backbone implementation
+			if (!typeof callback == "function") {
+				this._super_.get.apply(that, arguments);
+				return;	
+			}
+			
+			//If we get a model, just return straight away to the callback	
+			if (that.length > 0) {
+				callback(this);
+				return;
+			}
+			
+			//If we have recursed already, don't recurse again, throw an error
+			if (hasRecursed) {
+				//TODO Better error strategy needed
+				throw "error - recursion has occurred already when trying to lazily fetch an item by it's id";	
+			}
+	
+			//Let's try and get the model by fetching from the service
+			//NOTE when you fetch, any return causes a reset event
+			//FIXME this might cause an infinite loop
+			that.bind("reset", function fetchHandler() {
+				that.unbind("reset", fetchHandler);
+				callback(that);	
+				return;							
+			});
+			
+			that.fetch();
+		},
+	});
 });

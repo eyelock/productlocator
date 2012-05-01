@@ -2,7 +2,7 @@ define( ['backbone', 'underscore', 'appcontext', 'models/page'],
 function( Backbone, _, appcontext, Page ){
 	"use strict";	
 	
-	var PageCollection = Backbone.Collection.extend({
+	var PageCollection = Backbone.Custom.Collections.LazyCollection.extend({
 		model: Page,
 		//FIXME url: config.remotePaths.pages,
 		url: appcontext.cachePaths.pages,

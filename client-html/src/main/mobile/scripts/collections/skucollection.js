@@ -2,7 +2,7 @@ define( ['backbone', 'appcontext', 'models/sku'],
 function( Backbone, appcontext, SKU ){
 	"use strict";
 	
-	var SKUCollection = Backbone.Collection.extend({
+	var SKUCollection = Backbone.Custom.Collections.LazyCollection.extend({
 		model: SKU,
 		//FIXME url: appcontext.remotePaths.skus,
 		url: appcontext.cachePaths.skus,

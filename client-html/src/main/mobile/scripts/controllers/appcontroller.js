@@ -181,7 +181,7 @@ function(
 			product.fetchChildren("skus", "productId", getCollections().skus, SKUCollection, renderView);
 		};
 		
-		getCollections().products.getLazily(options.productid, getRelated);
+		getCollections().products.get(options.productid, getRelated);
 	};
 	
 	
@@ -230,7 +230,7 @@ function(
 			//Check to see if this is a widely available product, or it's specific locations
 			if (product.get("availableEverywhere")) {
 				//Easy, just show the whole location list
-				getCollections().countries.fetchLazily(renderProductCountries);
+				getCollections().countries.fetch(renderProductCountries);
 			} else {
 				//Need to get the locations, then only the countries from within that list and show them
 				//TODO Don't have a product yet that has limited availability :)
@@ -241,7 +241,7 @@ function(
 			}
 		};
 		
-		getCollections().products.getLazily(options.productid, processProduct);
+		getCollections().products.get(options.productid, processProduct);
 	};
 	
 	
@@ -299,12 +299,12 @@ function(
 		//Callback to get the country detail
 		var getCountryDetail = function(product) {
 			thisProduct = product;
-			getCollections().countries.getLazily(options.countryid, getProductLocations);
+			getCollections().countries.get(options.countryid, getProductLocations);
 		};
 		
 		//The product can be gotten either from the lastSelectedProduct, or via the options.productid
 		if ("productid" in options) {
-			getCollections().products.getLazily(options.productid, getCountryDetail);
+			getCollections().products.get(options.productid, getCountryDetail);
 		} else if (appcontext.lastProductSelected != null) {
 			getCountryDetail(appcontext.lastProductSelected);
 		} else {
@@ -358,7 +358,7 @@ function(
 			}
 		};
 		
-		getCollections().countries.fetchLazily(renderView);
+		getCollections().countries.fetch(renderView);
 	};
 	
 	
@@ -391,7 +391,7 @@ function(
 			country.fetchChildren("locations", "countryId", getCollections().locations, LocationCollection, renderView);
 		};
 		
-		getCollections().countries.getLazily(options.countryid, getRelated);
+		getCollections().countries.get(options.countryid, getRelated);
 	};
 	
 	
@@ -421,7 +421,7 @@ function(
 			utils.updatejQMPage("locationdetail.html#location", options);
 		};
 		
-		getCollections().locations.getLazily(options.locationid, renderView);
+		getCollections().locations.get(options.locationid, renderView);
 	};
 	
 	
@@ -528,7 +528,7 @@ function(
 		var getAllProductsForProcessing = function(products) {
 			allProductsCollection = products;
 			
-			collections.productlocations.fetchLazily(processProductsForLocations);
+			collections.productlocations.fetch(processProductsForLocations);
 		};
 		
 		//Callback - by this point we have the location, make sure we have the products
@@ -543,14 +543,14 @@ function(
 			}
 			
 			//if we don't have a property, then we need to get the products
-			collections.products.fetchLazily(getAllProductsForProcessing);
+			collections.products.fetch(getAllProductsForProcessing);
 		};
 
 		
 		//The product can be gotten either from the lastSelectedProduct, or via the options.productid
 		if ("locationid" in options) {
 			locationId = options.locationid;
-			getCollections().locations.getLazily(locationId, getProductsForLocation);
+			getCollections().locations.get(locationId, getProductsForLocation);
 		} else if (appcontext.lastLocationSelected != null) {
 			locationId = appcontext.lastLocationSelected.get("id");
 			getProductsForLocation(locationId);
@@ -625,7 +625,7 @@ function(
 		if (!(locationTweets != null && locationTweets.length > 0)) {
 			var locationTweetCollection = new TweetCollection([], {username: locationTwitter});	
 			location.set({tweets: locationTweetCollection});
-			locationTweetCollection.fetchLazily(renderView);
+			locationTweetCollection.fetch(renderView);
 		} else {
 			renderView(locationTweets);
 		}
@@ -655,7 +655,7 @@ function(
 		
 		//if there is nothing in the collection, attempt to retrieve them, otherwise just show the page again
 		if (collections.companyTweets.length == 0) {
-			collections.companyTweets.fetchLazily(renderView);
+			collections.companyTweets.fetch(renderView);
 		} else {
 			renderView(collections.companyTweets);
 		}

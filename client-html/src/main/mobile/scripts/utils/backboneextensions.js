@@ -46,7 +46,7 @@ function(Backbone, _) {
 			return;
 		}
 			
-		childCollection.fetchLazily(populateChildren);
+		childCollection.fetch(populateChildren);
 	};
 	
 	/* ****************************************** 
@@ -62,7 +62,9 @@ function(Backbone, _) {
 		this._super_.constructor.apply(this, arguments);	
 	}
 	
-	_.extend(Backbone.Custom.Collections.LazyCollection.prototype, Backbone.Collection.prototype, Backbone.Collection, {
+	_.extend(Backbone.Custom.Collections.LazyCollection, Backbone.Collection);
+	
+	_.extend(Backbone.Custom.Collections.LazyCollection.prototype, Backbone.Collection.prototype, {
 		get: function(id, callback, hasRecursed) {
 			var model,
 				fetchHandler,
@@ -70,12 +72,13 @@ function(Backbone, _) {
 				that = this;
 				
 			//Check the arguments, if no callback is given, then we want to use the original Backbone implementation
-			if (!typeof callback == "function") {
+			if (!(typeof callback == "function")) {
 				return this._super_.get.apply(this, arguments);
 			}
 			
 			//We got a callback, which insinuates a lazy load approach
-			model = that.get(id);
+			//First check and see if this collection has a Model by that Id
+			model = this._super_.get.apply(this, [id]);
 			
 			//If we get a model, just return straight away to the callback	
 			if (model != null) {
@@ -84,7 +87,7 @@ function(Backbone, _) {
 			}
 			
 			//If we have recursed already, don't recurse again, throw an error
-			if (hasRecursed) {
+			if (isRecursedAlready) {
 				//TODO Better error strategy needed
 				throw "error - recursion has occurred already when trying to lazily fetch an item by it's id";	
 			}
@@ -96,7 +99,7 @@ function(Backbone, _) {
 				that.unbind("reset", fetchHandler);
 				
 				//check and see if the fetch got the id we wanted
-				var fetchedModel = that.get(id);
+				var fetchedModel = that._super_.get.apply(that, [id]);
 				
 				//Do the callback, assume if we pass null it's all went purple
 				if (fetchedModel != null) {
@@ -118,8 +121,8 @@ function(Backbone, _) {
 				that = this;
 				
 			//Check the arguments, if no callback is given, then we want to use the original Backbone implementation
-			if (!typeof callback == "function") {
-				this._super_.get.apply(that, arguments);
+			if (!(typeof callback == "function")) {
+				this._super_.fetch.apply(that, arguments);
 				return;	
 			}
 			
@@ -130,7 +133,7 @@ function(Backbone, _) {
 			}
 			
 			//If we have recursed already, don't recurse again, throw an error
-			if (hasRecursed) {
+			if (isRecursedAlready) {
 				//TODO Better error strategy needed
 				throw "error - recursion has occurred already when trying to lazily fetch an item by it's id";	
 			}
@@ -144,7 +147,7 @@ function(Backbone, _) {
 				return;							
 			});
 			
-			that.fetch();
+			this._super_.fetch.apply(that, null);
 		},
 	});
 });

@@ -4,8 +4,6 @@ require.config( {
         'underscore':      		 	'libs/backbonejs/underscore',
         'jquery':           		'libs/jquery/jquery.min',
         'jquerymobile':     		'libs/jquery/jquery.mobile',
-		'jquery-mobile-iscroll':   	'libs/jquery/jquery.mobile.iscroll',
-		'iscroll':   				'libs/misc/iscroll',
 		'json2':     				'libs/misc/json2',
 
 		'backboneextensions': 		'utils/backboneextensions',
@@ -31,11 +29,11 @@ require(
         	
             //load the secondary frameworks - needing to load jquerymobile, before loading the jquery-iscroll
             require(
-                    ['require', 'backbone', 'jquerymobile', 'iscroll', 'config'],
+                    ['require', 'backbone', 'jquerymobile', 'config'],
                     function( require, Backbone ) {
 						//load the plugins and the app
 						require(
-							['require', 'devicecontext', 'backboneextensions', 'jquery-mobile-iscroll', 'app'],
+							['require', 'devicecontext', 'backboneextensions', 'app'],
 							function( require, devicecontext ) {
 								 // Turn off jQuery Mobile hash listening, app uses the Backbone router
 								 // as per detailed at https://github.com/addyosmani/backbone-fundamentals

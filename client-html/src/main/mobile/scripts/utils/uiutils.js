@@ -195,7 +195,7 @@ function( require, $, appcontext ) {
 			
 			$(document).on("click ", "a.refreshTweetCollection", function() {
 				if (appcontext.lastTweetCollection != null)
-					appcontext.lastTweetCollection.fetchLazily();
+					appcontext.lastTweetCollection.fetch();
 			});
 		},
 	};

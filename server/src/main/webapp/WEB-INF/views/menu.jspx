@@ -6,16 +6,15 @@
         <menu:category id="c_location" z="RvMgx8apsPylYygCQ4tMBVfulVw=">
             <menu:item id="i_location_new" messageCode="global_menu_new" url="/locations?form" z="sW8KSnwNnd9wjssI0lLV1kzOguk="/>
             <menu:item id="i_location_list" messageCode="global_menu_list" url="/locations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="VdKLEljpeTLil2W6A3GdWmSBzXI="/>
-            <menu:finders id="f_location" z="user-managed">
-                <menu:item id="fi_location_activenot" messageCode="global_menu_find" url="/locations?find=ByActiveNot&amp;form" z="yBw+l3xsCtGhlcuS0W3E+jzUj8M="/>
-                <menu:item id="fi_location_cityequals" messageCode="global_menu_find" url="/locations?find=ByCityEquals&amp;form" z="zdmRN0xoW1iXnOjbAXqG++6dAho="/>
-                <menu:item id="fi_location_citylike" messageCode="global_menu_find" url="/locations?find=ByCityLike&amp;form" z="nvSbt12grUF/RJc/YJiynZpYFys="/>
-                <menu:item id="fi_location_country" messageCode="global_menu_find" url="/locations?find=ByCountry&amp;form" z="o/BzdOC4OUTyegCVVpbwfeNDAXA="/>
-                <menu:item id="fi_location_nameequals" messageCode="global_menu_find" url="/locations?find=ByNameEquals&amp;form" z="RLm1v4y44JeLM2JFxpKTx/ZIVc0="/>
-                <menu:item id="fi_location_namelike" messageCode="global_menu_find" url="/locations?find=ByNameLike&amp;form" z="3JCK+yQURfwZkZXaxLLlPSx6EME="/>
-                <menu:item id="fi_location_postcodelike" messageCode="global_menu_find" url="/locations?find=ByPostcodeLike&amp;form" z="hDBkjgG5ajnLpnsJR6lupfkoLUg="/>
-            </menu:finders>
+            <menu:finders id="f_location" z="user-managed"/>
             <menu:finders id="f_stockkeepingunit" z="user-managed"/>
+            <menu:item id="fi_location_activenot" messageCode="global_menu_find" url="/locations?find=ByActiveNot&amp;form" z="yBw+l3xsCtGhlcuS0W3E+jzUj8M="/>
+            <menu:item id="fi_location_cityequals" messageCode="global_menu_find" url="/locations?find=ByCityEquals&amp;form" z="zdmRN0xoW1iXnOjbAXqG++6dAho="/>
+            <menu:item id="fi_location_citylike" messageCode="global_menu_find" url="/locations?find=ByCityLike&amp;form" z="nvSbt12grUF/RJc/YJiynZpYFys="/>
+            <menu:item id="fi_location_country" messageCode="global_menu_find" url="/locations?find=ByCountry&amp;form" z="o/BzdOC4OUTyegCVVpbwfeNDAXA="/>
+            <menu:item id="fi_location_nameequals" messageCode="global_menu_find" url="/locations?find=ByNameEquals&amp;form" z="RLm1v4y44JeLM2JFxpKTx/ZIVc0="/>
+            <menu:item id="fi_location_namelike" messageCode="global_menu_find" url="/locations?find=ByNameLike&amp;form" z="3JCK+yQURfwZkZXaxLLlPSx6EME="/>
+            <menu:item id="fi_location_postcodelike" messageCode="global_menu_find" url="/locations?find=ByPostcodeLike&amp;form" z="hDBkjgG5ajnLpnsJR6lupfkoLUg="/>
         </menu:category>
         <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
             <menu:item id="i_product_new" messageCode="global_menu_new" url="/products?form" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
@@ -35,27 +34,25 @@
             <menu:item id="i_article_list" messageCode="global_menu_list" url="/articles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="s9OgZlm3YfBTpWNrQfYLkfKCmC0="/>
             <menu:item id="i_contentblock_new" messageCode="global_menu_new" url="/contentblocks?form" z="2R6wftkhy727yNCKY6t+GJQu+jA="/>
             <menu:item id="i_contentblock_list" messageCode="global_menu_list" url="/contentblocks?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HeNbMpW8nvGVeh3J78UyHtKIBAY="/>
-            <menu:finders id="f_article" z="user-managed">
-                <menu:item id="fi_article_codeequals" messageCode="global_menu_find" url="/articles?find=ByCodeEquals&amp;form" z="4CTZlgbhhGzB5uzw5P95sP4DQ2U="/>
-                <menu:item id="fi_article_codelike" messageCode="global_menu_find" url="/articles?find=ByCodeLike&amp;form" z="g9bSz7EiGxEM4cmsFQY0P6H1skE="/>
-                <menu:item id="fi_article_listablenot" messageCode="global_menu_find" url="/articles?find=ByListableNot&amp;form" z="SZSwtCelPddnZ1r69rlZpIjuYyE="/>
-                <menu:item id="fi_article_nameequals" messageCode="global_menu_find" url="/articles?find=ByNameEquals&amp;form" z="j8cn1xfB1xsCZec+mQn7Xc+kZJ8="/>
-            </menu:finders>
+            <menu:finders id="f_article" z="user-managed"/>
             <menu:finders id="f_contentblock" z="user-managed"/>
+            <menu:item id="fi_article_codeequals" messageCode="global_menu_find" url="/articles?find=ByCodeEquals&amp;form" z="4CTZlgbhhGzB5uzw5P95sP4DQ2U="/>
+            <menu:item id="fi_article_codelike" messageCode="global_menu_find" url="/articles?find=ByCodeLike&amp;form" z="g9bSz7EiGxEM4cmsFQY0P6H1skE="/>
+            <menu:item id="fi_article_listablenot" messageCode="global_menu_find" url="/articles?find=ByListableNot&amp;form" z="SZSwtCelPddnZ1r69rlZpIjuYyE="/>
+            <menu:item id="fi_article_nameequals" messageCode="global_menu_find" url="/articles?find=ByNameEquals&amp;form" z="j8cn1xfB1xsCZec+mQn7Xc+kZJ8="/>
         </menu:category>
         <menu:category id="c_media" z="SqacaDVnSrXmQJB69xz5K1fP2Fs=">
             <menu:item id="i_media_new" messageCode="global_menu_new" url="/media?form" z="igjMcxOPPiXD88KRf7HUsU2NIBk="/>
             <menu:item id="i_media_list" messageCode="global_menu_list" url="/media?page=1&amp;size=${empty param.size ? 10 : param.size}" z="i0hdx/Db/16ud7LbooyD7lYx9G0="/>
-            <menu:finders id="f_media" z="user-managed">
-                <menu:item id="fi_media_findmediabyfilenameequals" messageCode="global_menu_find" url="/media?find=findMediaByFileNameEquals&amp;form" z="5sipOlO/RZUjZm5m0/2v4rviqLM="/>
-                <menu:item id="fi_media_findmediabyfilenamelike" messageCode="global_menu_find" url="/media?find=findMediaByFileNameLike&amp;form" z="+7GeCLpMfQv8ix6HNwpfWJxAPJ8="/>
-                <menu:item id="fi_media_findmediabymimetypeequals" messageCode="global_menu_find" url="/media?find=findMediaByMimeTypeEquals&amp;form" z="eSaaTZar8pyTxjsD0I7fg3SYF4A="/>
-                <menu:item id="fi_media_findmediabynameequals" messageCode="global_menu_find" url="/media?find=findMediaByNameEquals&amp;form" z="0HTE+b+NZGgECL73uN9s0aCPZjY="/>
-                <menu:item id="fi_media_findmediabynamelike" messageCode="global_menu_find" url="/media?find=findMediaByNameLike&amp;form" z="LSPYDYfMlpEBAKQ9coaTNCTh0RI="/>
-                <menu:item id="fi_media_findmediabysizebetween" messageCode="global_menu_find" url="/media?find=findMediaBySizeBetween&amp;form" z="vlgugi9PsdjIKdl0pSih5kp9vsk="/>
-                <menu:item id="fi_media_findmediabyurlequals" messageCode="global_menu_find" url="/media?find=findMediaByUrlEquals&amp;form" z="XRP7UAqAHzXUZS41ClC75KngXXo="/>
-                <menu:item id="fi_media_findmediabyurllike" messageCode="global_menu_find" url="/media?find=findMediaByUrlLike&amp;form" z="07rY1EsSkRa5p7a32a1JZtDG7WU="/>
-            </menu:finders>
+            <menu:finders id="f_media" z="user-managed"/>
+            <menu:item id="fi_media_findmediabyfilenameequals" messageCode="global_menu_find" url="/media?find=findMediaByFileNameEquals&amp;form" z="5sipOlO/RZUjZm5m0/2v4rviqLM="/>
+            <menu:item id="fi_media_findmediabyfilenamelike" messageCode="global_menu_find" url="/media?find=findMediaByFileNameLike&amp;form" z="+7GeCLpMfQv8ix6HNwpfWJxAPJ8="/>
+            <menu:item id="fi_media_findmediabymimetypeequals" messageCode="global_menu_find" url="/media?find=findMediaByMimeTypeEquals&amp;form" z="eSaaTZar8pyTxjsD0I7fg3SYF4A="/>
+            <menu:item id="fi_media_findmediabynameequals" messageCode="global_menu_find" url="/media?find=findMediaByNameEquals&amp;form" z="0HTE+b+NZGgECL73uN9s0aCPZjY="/>
+            <menu:item id="fi_media_findmediabynamelike" messageCode="global_menu_find" url="/media?find=findMediaByNameLike&amp;form" z="LSPYDYfMlpEBAKQ9coaTNCTh0RI="/>
+            <menu:item id="fi_media_findmediabysizebetween" messageCode="global_menu_find" url="/media?find=findMediaBySizeBetween&amp;form" z="vlgugi9PsdjIKdl0pSih5kp9vsk="/>
+            <menu:item id="fi_media_findmediabyurlequals" messageCode="global_menu_find" url="/media?find=findMediaByUrlEquals&amp;form" z="XRP7UAqAHzXUZS41ClC75KngXXo="/>
+            <menu:item id="fi_media_findmediabyurllike" messageCode="global_menu_find" url="/media?find=findMediaByUrlLike&amp;form" z="07rY1EsSkRa5p7a32a1JZtDG7WU="/>
         </menu:category>
         <menu:category id="c_country" z="+9IFFFqXHr5bWdYjx7upDibmQfo=">
             <menu:item id="i_country_new" messageCode="global_menu_new" url="/countries?form" z="w/t3ndIFG1oOXQSnQA37LDCwCVQ="/>

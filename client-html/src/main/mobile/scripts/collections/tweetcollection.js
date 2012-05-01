@@ -23,7 +23,10 @@ function( Backbone, $, _, appcontext, Tweet ){
 	
 	TweetCollection.prototype.getFeedURL = function() {
 		var social = appcontext.social;
-		return social.twitterFeedURL.replace(social.twitterFeedUsernameToken, this.username).replace(social.twitterFeedCountToken, appcontext.maxNoTweets);
+		
+		return social.twitterFeedURL
+			.replace(social.twitterFeedUsernameToken, this.username)
+			.replace(social.twitterFeedCountToken, appcontext.maxNoTweets);
 	};
 		
 	TweetCollection.prototype.fetchLazily = function(callback) {

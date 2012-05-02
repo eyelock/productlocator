@@ -55,16 +55,44 @@ function(Backbone, _) {
 	Backbone.Custom.Collections = Backbone.Custom.Collections || {};
 	
 	Backbone.Custom.Collections.LazyCollection = function(models, options) {
-		this.remoteUrl = null;
-		this.localUrl = null;
+		//If we have options, then persist the values we need for online/offline toggling
+		if (options != null) {
+			this.id = "id" in options ? options.id : null;
+			this.remoteUrl = "remoteUrl" in options ? options.remoteUrl : null;
+			this.localUrl = "localUrl" in options ? options.localUrl : null;
+			this.appContext = "appContext" in options ? options.appContext : null;
+			
+			//Set up a hook into the app context to listen for connection changes
+			var connectionResponder = {
+					success: function(appcontext) {
+						//TODO Figure out what should happen to a collection when the connection state toggles
+					},
+					
+					fault: function(appcontext) {
+						//No-op
+					},
+				};
+				
+			this.appContext.addConnectionResponder(this.id, connectionResponder);
+		}
 		
 		this._super_ = Backbone.Collection.prototype;
 		this._super_.constructor.apply(this, arguments);	
-	}
+	};
 	
 	_.extend(Backbone.Custom.Collections.LazyCollection, Backbone.Collection);
 	
-	_.extend(Backbone.Custom.Collections.LazyCollection.prototype, Backbone.Collection.prototype, {
+	_.extend(Backbone.Custom.Collections.LazyCollection.prototype, Backbone.Collection.prototype, {		
+		url: function() {
+			//If we have appContext, then we can set up a toggle responder
+			if (this.appContext != null) {
+				return this.appContext.isOffline ? this.localUrl : this.remoteUrl;
+			} else {
+				//this should never get here, since setting the url into the prototype overrides this function
+				return this.__proto__.url;
+			}
+		},
+
 		get: function(id, callback, hasRecursed) {
 			var model,
 				fetchHandler,

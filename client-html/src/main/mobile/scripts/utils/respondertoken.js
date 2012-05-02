@@ -25,7 +25,7 @@ function( Backbone ){
 	
 	
 	ResponderToken.prototype.addResponder = function(id, responder) {
-		if (!this.isResponder(this.responder)) {
+		if (!this.isResponder(responder)) {
 			//TODO Better error handling technique needed here
 			throw "the responder passed to the ResponderToken did not have valid success and fault functions";
 		}
@@ -60,7 +60,7 @@ function( Backbone ){
 		}
 		
 		//make sure it has a success and fault function property
-		if (!("fault" in responder && typeof responder.success == "fault")) {
+		if (!("fault" in responder && typeof responder.fault == "function")) {
 			is = false;
 		}
 		

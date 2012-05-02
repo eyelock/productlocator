@@ -1,5 +1,8 @@
 package net.eyelock.productlocator.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -34,4 +37,13 @@ public class Country {
 
 	@Column(name="active")
 	private Boolean active;
+	
+	
+	public static List<Country> listAllCountriesWithProducts() {
+		List<Country> countries = new ArrayList<Country>();
+		
+		//FIXME Need to implement so returns only the countries that have products in them
+		
+		return countries;
+	}
 }

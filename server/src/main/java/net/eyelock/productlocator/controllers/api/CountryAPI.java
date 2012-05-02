@@ -39,7 +39,7 @@ public class CountryAPI {
     @RequestMapping()
     @ResponseBody
     public ResponseEntity<String> listJson() {
-        List<Country> result = Country.findAllCountries(); 
+        List<Country> result = Country.listAllCountriesWithProducts(); 
         
         return new ResponseEntity<String>(getJSONSerializer().serialize(result), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
     }

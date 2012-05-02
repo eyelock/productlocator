@@ -22,14 +22,30 @@ function( require, $, Backbone, _, uiutils ) {
 			//We've inserted the template, now find the contents div
 			var $pageContents = this.$el.find(".content-container");
 			
-			//Add the repeating blocks of text in
+			//Need to sort the content blocks, by the orderedBy property
+			var contentBlocksSort = function(a, b) {
+				if (a.orderedBy < b.orderedBy) {
+					return -1;
+				} else if (a.orderedBy > b.orderedBy) {
+					return 1;
+				} else {
+					return 0;
+				}
+			};
+			
+			var contentBlocksArray = this.model.get("contentBlocks");
+			contentBlocksArray.sort(contentBlocksSort);
+			
+			//Add the repeating content blocks into the template
 			var $pageBlockTemplate = this.$el.find(".contents-block");
-			_.each(this.model.get("pageBlocks"), function(pageBlocks) {
+			_.each(contentBlocksArray, function(pageBlocks) {
 				var $thisBlock = $pageBlockTemplate.clone();
-				$pageContents.append($thisBlock.html(pageBlocks));
+				
+				//TODO - Deal with the different types of content  blocks
+				$pageContents.append($thisBlock.html(pageBlocks.contents));
 			});
 			
-			//Remote the template part
+			//Remove the template part
 			$pageBlockTemplate.remove();
 			this.$el.trigger("create");
 			

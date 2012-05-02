@@ -7,12 +7,32 @@
         "icon": "images/pages/home/icon.png",
         "title": "World of Pincer",
         "image": "images/pages/home/picture.png",
-        "pageBlocks": [
-            "Welcome to the wonderful world of Pincer Vodka.",
-            "Pincer combines centuries of distilling heritage, 100% selected grain and the finest Scottish mountain water with the natural botanical extracts of  Milk Thistle and Wild Elderflower.",
-            "The spirit is distilled to 38% - the 'perfect' volume for vodka, as discovered by Dmitri Mendeleev the creator of the periodic table.",
-            "Pincer Vodka is made to perfection - in quality, taste and style, using no artificial ingredients."
-        ]
+        "contentBlocks": [
+            {
+                "contents": "Welcome to the wonderful world of Pincer Vodka.",
+                "id": 1,
+                "orderedBy": 1,
+                "type": "TEXT"
+            },
+            {
+                "contents": "Pincer combines centuries of distilling heritage, 100% selected grain and the finest Scottish mountain water with the natural botanical extracts of  Milk Thistle and Wild Elderflower.",
+                "id": 2,
+                "orderedBy": 2,
+                "type": "TEXT"
+            },
+            {
+                "contents": "Pincer Vodka is made to perfection - in quality, taste and style, using no artificial ingredients.",
+                "id": 4,
+                "orderedBy": 4,
+                "type": "TEXT"
+            },
+            {
+                "contents": "The spirit is distilled to 38% - the 'perfect' volume for vodka, as discovered by Dmitri Mendeleev the creator of the periodic table.",
+                "id": 3,
+                "orderedBy": 3,
+                "type": "TEXT"
+            }
+        ],
     }
 ]
 

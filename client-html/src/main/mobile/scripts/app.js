@@ -32,12 +32,7 @@ define( [
 	   //Start Backbone to initialize the application and also attach the nav bar binding
 	   Backbone.history.start();
 	   
-	   //Bind the navbar for a page create, and also now
-	   /*
-	   $(document).bind("pagecreate", function() {
-		   uiutils.initNavBar();
-	   });*/
-	   
+	   //Bind the navbar controls
 	   uiutils.initNavBar();
    });  
 });

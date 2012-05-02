@@ -39,8 +39,6 @@ require(
 								 // as per detailed at https://github.com/addyosmani/backbone-fundamentals
 								$.mobile.hashListeningEnabled = false;
 								$.mobile.pushStateEnabled = false;
-								//$.mobile.fixedToolbars.setTouchToggleEnabled(false);
-								//$.mobile.page.prototype.options.addBackBtn = true;
 								
 								//Bind the device ready to the context
 								document.addEventListener("deviceready", function() {

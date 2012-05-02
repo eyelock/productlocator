@@ -1,11 +1,10 @@
-define( ['backbone', 'underscore', 'appcontext', 'models/page'],
-function( Backbone, _, appcontext, Page ){
+define( ['backbone', 'underscore', 'models/page'],
+function( Backbone, _, Page ){
 	"use strict";	
 	
 	var PageCollection = Backbone.Custom.Collections.LazyCollection.extend({
 		model: Page,
-		//FIXME url: config.remotePaths.pages,
-		url: appcontext.cachePaths.pages,
+
 		comparator: function(model) {
 			return model.get("id");
 		},

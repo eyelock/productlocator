@@ -92,7 +92,7 @@ function(
 		
 		var getPageModel = function() {
 			return pageKey != null 
-					? collections.pages.getByKey("key", pageKey) 
+					? collections.pages.getByKey("code", pageKey) 
 					: collections.pages.get(pageId);
 		};
 		

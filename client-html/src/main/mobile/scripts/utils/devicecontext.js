@@ -18,7 +18,7 @@ function(config, ResponderToken) {
 	
 	context.addDeviceResponder = function(id, responder) {
 		//If it's not a valid responder, the responder token will throw an error
-		var wasAdded = deviceResponders.addResponder(responder);
+		var wasAdded = deviceResponders.addResponder(id, responder);
 		
 		//if we aleady know it's a device, we want to sent the notification
 		if (context.isDevice && wasAdded) {
@@ -36,7 +36,7 @@ function(config, ResponderToken) {
 	
 	context.addLocationResponder = function(id, responder) {
 		//If it's not a valid responder, the responder token will throw an error
-		var wasAdded = deviceResponders.addResponder(responder);
+		var wasAdded = deviceResponders.addResponder(id, responder);
 		
 		//if we aleady know it's a device, we want to sent the notification
 		if (context.isDevice && wasAdded) {
@@ -52,9 +52,9 @@ function(config, ResponderToken) {
 	};
 	
 	
-	context.addConnectionResponder = function() {
+	context.addConnectionResponder = function(id, responder) {
 		//If it's not a valid responder, the responder token will throw an error
-		var wasAdded = connectionResponders.addResponder(responder);
+		var wasAdded = connectionResponders.addResponder(id, responder);
 		
 		//if we aleady know it's a device, we want to sent the notification
 		if (context.lastConnection != null && wasAdded) {
@@ -84,9 +84,11 @@ function(config, ResponderToken) {
 	
 	
 	context.updateConnectionSetting = function() {	
+		var previousConnection = null;
+		
 		//Check the connection if this is a device
 		if (context.isDevice) {
-			var previousConnection = context.lastConnection;
+			previousConnection = context.lastConnection;
 			context.lastConnection = navigator.network.connection.type;
 			if (context.lastConnection == Connection.NONE) {
 				context.isConnected =  false;

@@ -125,7 +125,7 @@ function(
 			template: $(context.templateSelector),
 		});
 		
-		views.listCountries.setElement($(context.pageSelector));
+		views.countryListView.setElement($(context.pageSelector));
 		views.countryListView.render();
 	};
 	

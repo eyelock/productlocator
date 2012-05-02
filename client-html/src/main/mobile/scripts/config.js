@@ -5,17 +5,17 @@ function() {
 	var config = {};
 	
 	config.contextRoot = "/locator-html/mobile";
-	config.remoteBaseURL = "http://localhost/locator-api";
+	config.remoteBaseURL = "http://localhost:8080/locator-api/";
 	config.minListItemsForFilter = 12;
 	config.maxNoTweets = 20;
 	
 	config.remotePaths = {
-		productlocation: "api/productlocations",
-		products: "api/products",
-		skus: "api/skus",
-		locations: "api/locations",
-		countries: "api/countries",
-		pages: "api/pages",
+		productlocation: config.remoteBaseURL + "api/productlocations",
+		products: config.remoteBaseURL + "api/products",
+		skus: config.remoteBaseURL + "api/stockkeepingunits",
+		locations: config.remoteBaseURL + "api/locations",
+		countries: config.remoteBaseURL + "api/countries",
+		pages: config.remoteBaseURL + "api/articles",
 	};
 	
 	config.cachePaths = {

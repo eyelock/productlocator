@@ -69,8 +69,8 @@
 	<div>
 		<h3><%= = name %></h3>
 		<div class="content-container"> 
-			<%= if (image.length > 0) { %>
-				<img src="<%= = image %>" class="contents-image" alt="<%= = name %> image"/>
+			<%= if (image && (image.url.length > 0)) { %>
+				<img src="<%= = image.url %>" class="contents-image" alt="<%= = name %> image"/>
 			<%= } %>
 			<p class="contents-block"><%= = description %></p>
 		</div>

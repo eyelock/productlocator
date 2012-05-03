@@ -178,7 +178,7 @@ function(
 		
 		//Callback to get all the locations that are a child of this country
 		var getRelated = function(product) {
-			product.fetchChildren("skus", "productId", getCollections().skus, SKUCollection, renderView);
+			product.fetchChildren("skus", "product", getCollections().skus, SKUCollection, renderView);
 		};
 		
 		getCollections().products.get(options.productid, getRelated);

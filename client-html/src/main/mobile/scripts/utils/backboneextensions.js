@@ -11,24 +11,16 @@ function(Backbone, _) {
 	//Create the new method which gets all the related children from a collection and sets them to a property
 	//It handles the lazy loading of the collection given too
 	Backbone.Model.prototype.fetchChildren = function(childPropertyName, foreignKeyPropery, childCollection, newCollectionConstructor, callback) {
-		var thisId = this.get("id");
 		var that = this;
 		
 		var populateChildren = function(collection) {
 			//TODO Why can't this be created out of the constructor of the childCollection argument?
 			var newCollection = new newCollectionConstructor();
 			
-			/* FIXME This doesn't _filter ,method doesn't seem to work here
-			var childModels = _.filter(collection, function(model){ 
-				return model.get(foreignKeyPropery) == thisId; 
-			});
-			
-			newCollection.add(childModels);
-			*/
 			var collectionLength = collection.length;
 			for ( var i=0; i<collectionLength; i++) {
 				var fetchedModel = collection.at(i);
-				if (fetchedModel.get(foreignKeyPropery) == thisId) {
+				if (that.objectIdAttributeEquals.call(that, fetchedModel.get(foreignKeyPropery))) {
 					newCollection.add(fetchedModel);
 				}
 			}
@@ -38,7 +30,7 @@ function(Backbone, _) {
 			that.set(properties);
 			
 			callback(that);
-		}
+		};
 		
 		//Check and see if we already have the children, we do not overwrite existing ones, we can refetch outside this mechanism if needed		
 		if (this.get(childPropertyName) != null) {
@@ -48,6 +40,17 @@ function(Backbone, _) {
 			
 		childCollection.fetch(populateChildren);
 	};
+	
+	
+	Backbone.Model.prototype.objectIdAttributeEquals = function(object) {		
+		if (!object[this.idAttribute]) {
+			throw new Error("Cannot check the object against this model, since the object does not share a property that is the same as this idAttribute");
+		}
+		
+		return this.get(this.idAttribute) == object[this.idAttribute];
+	}
+	
+	
 	
 	/* ****************************************** 
 		COLLECTION

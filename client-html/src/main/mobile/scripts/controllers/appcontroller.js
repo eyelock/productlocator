@@ -286,7 +286,7 @@ function(
 			//Check to see if this is a widely available product, or it's specific locations
 			if (thisProduct.get("availableEverywhere")) {
 				//Easy, just show the whole location list
-				thisCountry.fetchChildren("locations", "countryId", getCollections().locations, LocationCollection, renderViewFromCountry);
+				thisCountry.fetchChildren("locations", "country", getCollections().locations, LocationCollection, renderViewFromCountry);
 			} else {
 				//TODO Don't have a product yet that has limited availability :)
 				alert("not implemented - product with limited availability");

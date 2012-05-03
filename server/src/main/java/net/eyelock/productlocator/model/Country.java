@@ -1,6 +1,7 @@
 package net.eyelock.productlocator.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,7 +43,16 @@ public class Country {
 	public static List<Country> listAllCountriesWithProducts() {
 		List<Country> countries = new ArrayList<Country>();
 		
-		//FIXME Need to implement so returns only the countries that have products in them
+		List<Location> allLocations = Location.findAllLocations();
+		for (Location location : allLocations) {
+			Country thisCountry = location.getCountry();
+			
+			if (thisCountry.getActive()) {
+				if (!countries.contains(thisCountry)) {
+					countries.add(thisCountry);
+				}
+			}
+		}
 		
 		return countries;
 	}

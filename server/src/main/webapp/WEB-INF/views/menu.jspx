@@ -57,11 +57,10 @@
         <menu:category id="c_country" z="+9IFFFqXHr5bWdYjx7upDibmQfo=">
             <menu:item id="i_country_new" messageCode="global_menu_new" url="/countries?form" z="w/t3ndIFG1oOXQSnQA37LDCwCVQ="/>
             <menu:item id="i_country_list" messageCode="global_menu_list" url="/countries?page=1&amp;size=${empty param.size ? 10 : param.size}" z="405hB7IPjKe3kdsCS/CvenUbx3I="/>
-            <menu:finders id="f_country" z="user-managed">
-                <menu:item id="fi_country_codeequals" messageCode="global_menu_find" url="/countries?find=ByCodeEquals&amp;form" z="GkZDkjWhAuwWoPI9ukYsYJynatA="/>
-                <menu:item id="fi_country_nameequals" messageCode="global_menu_find" url="/countries?find=ByNameEquals&amp;form" z="74D60k8CS61eIN1gY9GEbi1uAmU="/>
-                <menu:item id="fi_country_namelike" messageCode="global_menu_find" url="/countries?find=ByNameLike&amp;form" z="F7vhS64Ut66c414xBHgpAA4k1nM="/>
-            </menu:finders>
+            <menu:finders id="f_country" z="user-managed"/>
+            <menu:item id="fi_country_codeequals" messageCode="global_menu_find" url="/countries?find=ByCodeEquals&amp;form" z="GkZDkjWhAuwWoPI9ukYsYJynatA="/>
+            <menu:item id="fi_country_nameequals" messageCode="global_menu_find" url="/countries?find=ByNameEquals&amp;form" z="74D60k8CS61eIN1gY9GEbi1uAmU="/>
+            <menu:item id="fi_country_namelike" messageCode="global_menu_find" url="/countries?find=ByNameLike&amp;form" z="F7vhS64Ut66c414xBHgpAA4k1nM="/>
         </menu:category>
         <menu:category id="c_contentblock" z="Thm82ex3ttKrZnF/mOKCChOu6Ms=">
             <menu:item id="fi_contentblock_article" messageCode="global_menu_find" url="/contentblocks?find=ByArticle&amp;form" z="tekNmWbRPOqGtDEMLBxFZwh4j7Y="/>

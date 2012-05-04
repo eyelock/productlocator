@@ -388,7 +388,7 @@ function(
 		
 		//Callback to get all the locations that are a child of this country
 		var getRelated = function(country) {
-			country.fetchChildren("locations", "countryId", getCollections().locations, LocationCollection, renderView);
+			country.fetchChildren("locations", "country", getCollections().locations, LocationCollection, renderView);
 		};
 		
 		getCollections().countries.get(options.countryid, getRelated);

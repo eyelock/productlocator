@@ -117,20 +117,92 @@ function( require, $, appcontext ) {
 		
 		
 		setPageNavBar: function(pageId, navBarType) {
+			//TODO clean up the jquery references, there seems to be a lot of re-creation of jquery objects
+			//logic seeems like it could be streamlined as well
+			
 			var $footer = $(".footer");
+			var activeStateClasses = "ui-btn-active ui-state-persist";
 			
 			if (navBarType == "product") {
 				$footer.find(".footerNavbarProduct").css("display", "block");
 				$footer.find(".footerNavbarGeneral").css("display", "none");
 				$footer.find(".footerNavbarLocation").css("display", "none");
+
+				
+				switch (pageId) {
+					case "locations": {
+						$footer.find(".footerNavbarProduct .nav-button-home").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarProduct .nav-button-locations").addClass(activeStateClasses);
+						$footer.find(".footerNavbarProduct .nav-button-nearest").removeClass(activeStateClasses);
+						break;
+					}
+					
+					case "nearest": {
+						$footer.find(".footerNavbarProduct .nav-button-home").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarProduct .nav-button-locations").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarProduct .nav-button-nearest").addClass(activeStateClasses);
+						break;
+					}
+				}
+				
 			} else if (navBarType == "location") {
 				$footer.find(".footerNavbarProduct").css("display", "none");
 				$footer.find(".footerNavbarGeneral").css("display", "none");
 				$footer.find(".footerNavbarLocation").css("display", "block");
+				
+				switch (pageId) {
+					case "social": {
+						$footer.find(".footerNavbarLocation .nav-button-products").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarLocation .nav-button-socialconnect").addClass(activeStateClasses);
+						break;
+					}
+					
+					case "products": {
+						$footer.find(".footerNavbarLocation .nav-button-products").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarLocation .nav-button-socialconnect").addClass(activeStateClasses);
+						break;
+					}
+				}
+				
+				
 			} else {
 				$footer.find(".footerNavbarGeneral").css("display", "block");
 				$footer.find(".footerNavbarProduct").css("display", "none");
 				$footer.find(".footerNavbarLocation").css("display", "none");
+				
+				switch (pageId) {
+					case "page": {
+						$footer.find(".footerNavbarGeneral .nav-button-home").addClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-products").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-locations").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-socialconnect").removeClass(activeStateClasses);
+						break;
+					}
+					
+					case "products": {
+						$footer.find(".footerNavbarGeneral .nav-button-home").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-products").addClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-locations").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-socialconnect").removeClass(activeStateClasses);
+						break;
+					}
+					
+					case "locations": {
+						$footer.find(".footerNavbarGeneral .nav-button-home").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-products").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-locations").addClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-socialconnect").removeClass(activeStateClasses);
+						break;
+					}
+					
+					case "tweets": {
+						$footer.find(".footerNavbarGeneral .nav-button-home").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-products").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-locations").removeClass(activeStateClasses);
+						$footer.find(".footerNavbarGeneral .nav-button-socialconnect").addClass(activeStateClasses);
+						break;
+					}
+				}				
 			}
 			
 			$footer.trigger("refresh");

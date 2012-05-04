@@ -616,6 +616,7 @@ function(
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("#locations/" + location.get("id"), options);
 				utils.updateBackbonePage("tweetList", tweets);
+				utils.customizePageTitle(location.get("name"));
 			};
 			
 			utils.updatejQMPage("tweetlist.html#tweets", options);
@@ -647,7 +648,7 @@ function(
 			
 			options.pageinit = function(e) {
 				utils.updateBackboneRoute("locations/" + options.locationid + "/tweets", options);
-				utils.updateBackbonePage("tweetList", tweets);
+				utils.updateBackbonePage("tweetList", tweets);;
 			};
 			
 			utils.updatejQMPage("tweetlist.html#tweets", options);

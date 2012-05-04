@@ -1,10 +1,13 @@
 package net.eyelock.productlocator.controllers.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 
 import net.eyelock.productlocator.model.Location;
+import net.eyelock.productlocator.model.Product;
 import net.eyelock.productlocator.utils.JSONSerializerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,7 @@ public class LocationAPI {
 	private JSONSerializerFactory jsonFactory;
 	
 	private JSONSerializer jsonSerializer = null;
+	private JSONSerializer productsJsonSerializer = null;
 
     
     @RequestMapping(value = "/{id}")
@@ -39,6 +43,31 @@ public class LocationAPI {
         
         return new ResponseEntity<String>(getJSONSerializer().serialize(item), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/{id}/products")
+    @ResponseBody
+    public ResponseEntity<String> showProductsJson(@PathVariable("id") Long id, HttpServletRequest request) {
+        List<Product> products = new ArrayList<Product>();
+        Location item = Location.findLocation(id);
+        
+        if (item == null) {
+            return new ResponseEntity<String>(jsonFactory.createJSONHTTPHeaders(), HttpStatus.NOT_FOUND);
+        }  
+        
+        //Add all the products listed as stocked at this location
+        products.addAll(item.getProducts());
+        
+        //Get all the products that are listed as stocked everywhere
+        TypedQuery<Product> stockedEverywhereProducts = Product.findProductsByAvailableEverywhereNot(true);
+        for (Product product : stockedEverywhereProducts.getResultList()) {
+        	if (!products.contains(product)) {
+        		products.add(product);
+        	}
+        }
+        
+        return new ResponseEntity<String>(getProductsJSONSerializer().serialize(products), jsonFactory.createJSONHTTPHeaders(), HttpStatus.OK);
+    }
+    
     
     @RequestMapping()
     @ResponseBody
@@ -61,5 +90,16 @@ public class LocationAPI {
 		}
 		
 		return jsonSerializer;
+	}
+	
+	
+	protected JSONSerializer getProductsJSONSerializer() {
+		if (productsJsonSerializer == null) {
+			productsJsonSerializer = jsonFactory.createAPIInstance()
+					.include("id")
+					.exclude("*");
+		}
+		
+		return productsJsonSerializer;
 	}
 }

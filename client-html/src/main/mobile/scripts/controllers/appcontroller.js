@@ -48,7 +48,7 @@ function(
 		
 		var pageKey = ("key" in options ? options.key : null),
 			pageId = ("pageid" in options ? options.pageid : null),
-			updateView,
+			updateView = null,
 			page,
 			utils = getUtils(),
 			collections = getCollections();
@@ -102,7 +102,7 @@ function(
 			renderView(page);
 		} else {
 			collections.pages.fetch();
-			
+
 			collections.pages.bind("reset", function updateView() {
 				page = getPageModel();
 				renderView(page);
@@ -121,12 +121,9 @@ function(
 			appcontext.lastProductSelected = null;
 			
 			//We have all the pieces here, before rendering the view, check if we have only one item for the list
-			if (products.length == 1) {
-				//There is only one product, skip this page
-				var product = products.at(0);
-				
+			if (products.length == 1) {				
 				//persist the options product that was passed, as it might have page transition info in it
-				options.productid = product.get("id");
+				options.productid = products.at(0).get("id");
 				
 				if ("options" in arguments && "callback" in options) {
 					options.callback(options);
@@ -445,12 +442,9 @@ function(
 		
 		var utils = getUtils();
 		var collections = getCollections();
-		
-		//Need a handle on a few collections between callbacks
+
 		var thisLocation = null;
 		var locationId = null;
-		var allProductsCollection = null;
-		var allProductLocationsCollection = null;
 		
 		//Callback to render the view for this list of locations
 		var renderView = function(locationProducts) {			
@@ -478,60 +472,22 @@ function(
 			}
 		};
 		
-		//Callback - by this point we have the location/products/productlocations, process them to make up the collection for this location
-		var processProductsForLocations = function(productLocations) {
-			allProductLocationsCollection = productLocations;
-			var locationProductsCollection = new ProductCollection();
+		//Callback - we have the location, and a collection of products models (Id's only) by here
+		var processProductsForLocations = function(locationProducts) {
+			var actualProducts = [];
 			
-			//Get a simple map for comparison ease of products we have already added (saves calling model.get a lot)
-			var existingProductIdMap = {};
-			
-			//first add all the products that are available everywhere
-			var availableEverywhereProducts = allProductsCollection.filter(function(product) {
-				var isFiltered = product.get("availableEverywhere") == true;
-				
-				//add this id to our tracking map
-				(isFiltered ? existingProductIdMap[product.get("id")] = true : null);
-				
-				return isFiltered;
+			locationProducts.each(function(product) {
+				var actualProduct = collections.products.get(product.get("id"));
+				actualProducts.push(actualProduct);
 			});
-			
-			//TODO The code in the rest of this callback is largely untested, as we don't have any location specific products yet
-			var locationSpecificProductIds = [];
-			var locationSpecificProductModels = [];
-			
-			//Now we need to go through the rest of the productlocations and add if it doesn't already exist
-			var locationSpecificProductLocations = allProductLocationsCollection.filter(function(productlocation) {
-				var isFiltered = productlocation.get("locationId") == locationId;
-				
-				//we also need to test to make sure the productid is not already marked to be in the new collection
-				return (isFiltered && !(productlocation.get("productId") in existingProductIdMap)) ? true : false;
-			});
-			
-			//Get the ids of all the products we deemed to be related to this model
-			locationSpecificProductIds = locationSpecificProductLocations.map(function(productLocation) {
-				return productLocation.get("productId");
-			}, this);
-			
-			//Now, we need to actually GET the products
-			locationSpecificProductModels = locationSpecificProductIds.map(function(productId) {
-				return allProductLocationsCollection.get(productId);
-			});
-			
-			
-			locationProductsCollection.add(availableEverywhereProducts.concat(locationSpecificProductModels));
-			renderView(locationProductsCollection);
+
+			locationProducts.rest(actualProducts);
+			renderView(locationProducts);
 			return;
 		};
 		
-		//Callback - by this point we have the location and all the products, make sure we have the productlocations
-		var getAllProductsForProcessing = function(products) {
-			allProductsCollection = products;
-			
-			collections.productlocations.fetch(processProductsForLocations);
-		};
 		
-		//Callback - by this point we have the location, make sure we have the products
+		//Callback - by this point we have the location, fetch the products for the location
 		var getProductsForLocation = function(location) {
 			thisLocation = location;
 			var productsCollection = location.get("products");
@@ -541,9 +497,8 @@ function(
 				renderView(productsCollection);
 				return;
 			}
-			
-			//if we don't have a property, then we need to get the products
-			collections.products.fetch(getAllProductsForProcessing);
+
+			productsCollection.fetch(processProductsForLocations);
 		};
 
 		

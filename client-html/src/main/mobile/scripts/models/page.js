@@ -3,7 +3,6 @@ function( Backbone, appcontext ){
 	"use strict";
 
 	var Page = Backbone.Model.extend({
-		urlRoot: appcontext.remotePaths.pages,
 		defaults: {
 			name: "",
 			key: "",

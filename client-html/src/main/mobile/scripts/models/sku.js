@@ -3,7 +3,6 @@ function( Backbone, appcontext ){
 	"use strict";
 
 	var SKU = Backbone.Model.extend({
-		urlRoot: appcontext.remotePaths.skus,
 		defaults: {
 			id: null,
 			productId: null,

@@ -58,7 +58,7 @@ public class LocationAPI {
         products.addAll(item.getProducts());
         
         //Get all the products that are listed as stocked everywhere
-        TypedQuery<Product> stockedEverywhereProducts = Product.findProductsByAvailableEverywhereNot(true);
+        TypedQuery<Product> stockedEverywhereProducts = Product.findProductsByAvailableEverywhereNot(false);
         for (Product product : stockedEverywhereProducts.getResultList()) {
         	if (!products.contains(product)) {
         		products.add(product);

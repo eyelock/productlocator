@@ -1,10 +1,8 @@
-define( ['backbone', 'appcontext', 'models/geolocation'],
-function( Backbone, appcontext, GeoLocation ){
+define( ['backbone', 'appcontext', 'collections/productcollection', 'models/geolocation'],
+function( Backbone, appcontext, ProductCollection, GeoLocation ){
 	"use strict";
 
 	var Location = Backbone.Model.extend({
-		urlRoot: appcontext.remotePaths.locations,
-		
 		defaults: {
 			id: null,
 			pageId: 0,
@@ -22,15 +20,34 @@ function( Backbone, appcontext, GeoLocation ){
 			twitter: "",
 			latitude: null,
 			longitude: null,
-			active: true
-		},
+			active: true,
+			products: null
+		}
 	});
+	
+	Location.prototype.getProductsUrl = function () {
+		return appcontext.remotePaths.locations + "/" + this.get("id") + "/products";
+	};
+	
+	Location.prototype.initializeProducts = function () {	
+		var options = ProductCollection.createDefaultOptionsObject();
+		options.location = this;
+		this.set("products", new ProductCollection(null, options));
+	};
+	
+	Location.prototype.get = function (property) {
+		if (property === "products" && this.attributes[property] == null) {
+			this.initializeProducts();
+		}
+		
+		return Backbone.Model.prototype.get.apply(this, arguments);
+	};
 	
 	Location.prototype.hasGeolocation = function () {
 		return this.get("latitude") != null && this.get("longitude");
 	};
 	
-	Location.prototype.hasGeolocation = function () {
+	Location.prototype.getGeolocation = function () {
 		var cachedGeoLocation = this.get("_geolocation");
 		
 		if (cachedGeoLocation == null) {

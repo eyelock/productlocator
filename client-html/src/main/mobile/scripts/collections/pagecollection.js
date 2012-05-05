@@ -1,5 +1,5 @@
-define( ['backbone', 'underscore', 'models/page'],
-function( Backbone, _, Page ){
+define( ['backbone', 'appcontext', 'underscore', 'models/page'],
+function( Backbone, appcontext, _, Page ){
 	"use strict";	
 	
 	var PageCollection = Backbone.Custom.Collections.LazyCollection.extend({
@@ -15,6 +15,15 @@ function( Backbone, _, Page ){
 			});
 			
 			return pages.length > 0 ? pages[0] : null;
+		}
+	}, {
+		createDefaultOptionsObject: function() {
+			return {
+				id: "pageCollection",
+				appContext: appcontext,
+				remoteUrl: appcontext.remotePaths.pages,
+				localUrl: appcontext.cachePaths.pages,	
+			};
 		}
 	});
 	

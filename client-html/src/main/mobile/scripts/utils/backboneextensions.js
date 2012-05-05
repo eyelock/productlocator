@@ -48,7 +48,7 @@ function(Backbone, _) {
 		}
 		
 		return this.get(this.idAttribute) == object[this.idAttribute];
-	}
+	};
 	
 	
 	
@@ -98,9 +98,11 @@ function(Backbone, _) {
 
 		get: function(id, callback, hasRecursed) {
 			var model,
-				fetchHandler,
 				isRecursedAlready = typeof hasRecursed != "undefined",
 				that = this;
+			 
+			if (!id)
+				return;
 				
 			//Check the arguments, if no callback is given, then we want to use the original Backbone implementation
 			if (!(typeof callback == "function")) {
@@ -117,6 +119,7 @@ function(Backbone, _) {
 				return;
 			}
 			
+			
 			//If we have recursed already, don't recurse again, throw an error
 			if (isRecursedAlready) {
 				//TODO Better error strategy needed
@@ -126,6 +129,7 @@ function(Backbone, _) {
 			//Let's try and get the model by fetching from the service
 			//NOTE when you fetch, any return causes a reset event
 			//FIXME this assumes that all fetches return at least 1 item!!!!!
+			var fetchHandler = null;
 			that.bind("reset", function fetchHandler() {
 				that.unbind("reset", fetchHandler);
 				
@@ -147,7 +151,7 @@ function(Backbone, _) {
 		
 		
 		fetch: function(callback, hasRecursed) {
-			var fetchHandler,
+			var fetchHandler = null,
 				isRecursedAlready = typeof hasRecursed != "undefined",
 				that = this;
 				

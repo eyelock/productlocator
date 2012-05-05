@@ -10,7 +10,6 @@ function() {
 	config.maxNoTweets = 20;
 	
 	config.remotePaths = {
-		productlocation: config.remoteBaseURL + "api/productlocations",
 		products: config.remoteBaseURL + "api/products",
 		skus: config.remoteBaseURL + "api/stockkeepingunits",
 		locations: config.remoteBaseURL + "api/locations",
@@ -19,7 +18,6 @@ function() {
 	};
 	
 	config.cachePaths = {
-		productlocation: "data/productlocations.json",
 		products: "data/products.json",
 		skus: "data/skus.json",
 		locations: "data/locations.json",

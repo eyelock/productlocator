@@ -10,11 +10,9 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import net.eyelock.productlocator.model.Country;
 import net.eyelock.productlocator.model.CountryDataOnDemand;
 import net.eyelock.productlocator.model.Location;
 import net.eyelock.productlocator.model.LocationDataOnDemand;
-import net.eyelock.productlocator.model.Media;
 import net.eyelock.productlocator.model.MediaDataOnDemand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,11 +37,8 @@ privileged aspect LocationDataOnDemand_Roo_DataOnDemand {
         setAddress01(obj, index);
         setAddress02(obj, index);
         setCity(obj, index);
-        setCountry(obj, index);
         setDescription(obj, index);
         setEmail(obj, index);
-        setIcon(obj, index);
-        setImage(obj, index);
         setLatitude(obj, index);
         setLongitude(obj, index);
         setName(obj, index);
@@ -83,11 +78,6 @@ privileged aspect LocationDataOnDemand_Roo_DataOnDemand {
         obj.setCity(city);
     }
     
-    public void LocationDataOnDemand.setCountry(Location obj, int index) {
-        Country country = countryDataOnDemand.getRandomCountry();
-        obj.setCountry(country);
-    }
-    
     public void LocationDataOnDemand.setDescription(Location obj, int index) {
         String description = "description_" + index;
         if (description.length() > 1000) {
@@ -102,16 +92,6 @@ privileged aspect LocationDataOnDemand_Roo_DataOnDemand {
             email = email.substring(0, 255);
         }
         obj.setEmail(email);
-    }
-    
-    public void LocationDataOnDemand.setIcon(Location obj, int index) {
-        Media icon = mediaDataOnDemand.getRandomMedia();
-        obj.setIcon(icon);
-    }
-    
-    public void LocationDataOnDemand.setImage(Location obj, int index) {
-        Media image = mediaDataOnDemand.getRandomMedia();
-        obj.setImage(image);
     }
     
     public void LocationDataOnDemand.setLatitude(Location obj, int index) {

@@ -22,7 +22,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Article, String> ApplicationConversionServiceFactoryBean.getArticleToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.Article, java.lang.String>() {
             public String convert(Article article) {
-                return new StringBuilder().append(article.getCode()).append(" ").append(article.getName()).append(" ").append(article.getOrderedBy()).toString();
+                return new StringBuilder().append(article.getCode()).append(' ').append(article.getName()).append(' ').append(article.getOrderedBy()).toString();
             }
         };
     }
@@ -46,7 +46,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<ContentBlock, String> ApplicationConversionServiceFactoryBean.getContentBlockToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.ContentBlock, java.lang.String>() {
             public String convert(ContentBlock contentBlock) {
-                return new StringBuilder().append(contentBlock.getOrderedBy()).append(" ").append(contentBlock.getContents()).toString();
+                return new StringBuilder().append(contentBlock.getOrderedBy()).append(' ').append(contentBlock.getContents()).toString();
             }
         };
     }
@@ -70,7 +70,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Country, String> ApplicationConversionServiceFactoryBean.getCountryToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.Country, java.lang.String>() {
             public String convert(Country country) {
-                return new StringBuilder().append(country.getCode()).append(" ").append(country.getName()).toString();
+                return new StringBuilder().append(country.getCode()).append(' ').append(country.getName()).toString();
             }
         };
     }
@@ -94,7 +94,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Location, String> ApplicationConversionServiceFactoryBean.getLocationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.Location, java.lang.String>() {
             public String convert(Location location) {
-                return new StringBuilder().append(location.getName()).append(" ").append(location.getDescription()).append(" ").append(location.getAddress01()).append(" ").append(location.getAddress02()).toString();
+                return new StringBuilder().append(location.getName()).append(' ').append(location.getDescription()).append(' ').append(location.getAddress01()).append(' ').append(location.getAddress02()).toString();
             }
         };
     }
@@ -118,7 +118,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Media, String> ApplicationConversionServiceFactoryBean.getMediaToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.Media, java.lang.String>() {
             public String convert(Media media) {
-                return new StringBuilder().append(media.getName()).append(" ").append(media.getDescription()).append(" ").append(media.getFileName()).append(" ").append(media.getMimeType()).toString();
+                return new StringBuilder().append(media.getName()).append(' ').append(media.getDescription()).append(' ').append(media.getFileName()).append(' ').append(media.getMimeType()).toString();
             }
         };
     }
@@ -142,7 +142,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Product, String> ApplicationConversionServiceFactoryBean.getProductToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.Product, java.lang.String>() {
             public String convert(Product product) {
-                return new StringBuilder().append(product.getName()).append(" ").append(product.getTeaser()).append(" ").append(product.getDescription()).append(" ").append(product.getOrderedBy()).toString();
+                return new StringBuilder().append(product.getName()).append(' ').append(product.getTeaser()).append(' ').append(product.getDescription()).append(' ').append(product.getOrderedBy()).toString();
             }
         };
     }
@@ -166,7 +166,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<StockKeepingUnit, String> ApplicationConversionServiceFactoryBean.getStockKeepingUnitToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<net.eyelock.productlocator.model.StockKeepingUnit, java.lang.String>() {
             public String convert(StockKeepingUnit stockKeepingUnit) {
-                return new StringBuilder().append(stockKeepingUnit.getName()).append(" ").append(stockKeepingUnit.getTeaser()).append(" ").append(stockKeepingUnit.getDescription()).append(" ").append(stockKeepingUnit.getPrice()).toString();
+                return new StringBuilder().append(stockKeepingUnit.getName()).append(' ').append(stockKeepingUnit.getTeaser()).append(' ').append(stockKeepingUnit.getDescription()).append(' ').append(stockKeepingUnit.getPrice()).toString();
             }
         };
     }

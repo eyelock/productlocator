@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import net.eyelock.productlocator.model.Article;
 import net.eyelock.productlocator.model.ArticleDataOnDemand;
 import net.eyelock.productlocator.model.ContentBlock;
 import net.eyelock.productlocator.model.ContentBlockDataOnDemand;
@@ -31,16 +30,10 @@ privileged aspect ContentBlockDataOnDemand_Roo_DataOnDemand {
     
     public ContentBlock ContentBlockDataOnDemand.getNewTransientContentBlock(int index) {
         ContentBlock obj = new ContentBlock();
-        setArticle(obj, index);
         setContents(obj, index);
         setOrderedBy(obj, index);
         setType(obj, index);
         return obj;
-    }
-    
-    public void ContentBlockDataOnDemand.setArticle(ContentBlock obj, int index) {
-        Article article = articleDataOnDemand.getRandomArticle();
-        obj.setArticle(article);
     }
     
     public void ContentBlockDataOnDemand.setContents(ContentBlock obj, int index) {

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import net.eyelock.productlocator.model.Media;
 import net.eyelock.productlocator.model.MediaDataOnDemand;
 import net.eyelock.productlocator.model.Product;
 import net.eyelock.productlocator.model.ProductDataOnDemand;
@@ -33,8 +32,6 @@ privileged aspect ProductDataOnDemand_Roo_DataOnDemand {
         setActive(obj, index);
         setAvailableEverywhere(obj, index);
         setDescription(obj, index);
-        setIcon(obj, index);
-        setImage(obj, index);
         setName(obj, index);
         setOrderedBy(obj, index);
         setTeaser(obj, index);
@@ -57,16 +54,6 @@ privileged aspect ProductDataOnDemand_Roo_DataOnDemand {
             description = description.substring(0, 1000);
         }
         obj.setDescription(description);
-    }
-    
-    public void ProductDataOnDemand.setIcon(Product obj, int index) {
-        Media icon = mediaDataOnDemand.getRandomMedia();
-        obj.setIcon(icon);
-    }
-    
-    public void ProductDataOnDemand.setImage(Product obj, int index) {
-        Media image = mediaDataOnDemand.getRandomMedia();
-        obj.setImage(image);
     }
     
     public void ProductDataOnDemand.setName(Product obj, int index) {

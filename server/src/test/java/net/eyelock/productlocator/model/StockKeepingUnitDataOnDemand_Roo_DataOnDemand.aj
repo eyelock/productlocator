@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import net.eyelock.productlocator.model.Media;
 import net.eyelock.productlocator.model.MediaDataOnDemand;
-import net.eyelock.productlocator.model.Product;
 import net.eyelock.productlocator.model.ProductDataOnDemand;
 import net.eyelock.productlocator.model.StockKeepingUnit;
 import net.eyelock.productlocator.model.StockKeepingUnitDataOnDemand;
@@ -37,11 +35,8 @@ privileged aspect StockKeepingUnitDataOnDemand_Roo_DataOnDemand {
         StockKeepingUnit obj = new StockKeepingUnit();
         setActive(obj, index);
         setDescription(obj, index);
-        setIcon(obj, index);
-        setImage(obj, index);
         setName(obj, index);
         setPrice(obj, index);
-        setProduct(obj, index);
         setTeaser(obj, index);
         return obj;
     }
@@ -59,16 +54,6 @@ privileged aspect StockKeepingUnitDataOnDemand_Roo_DataOnDemand {
         obj.setDescription(description);
     }
     
-    public void StockKeepingUnitDataOnDemand.setIcon(StockKeepingUnit obj, int index) {
-        Media icon = mediaDataOnDemand.getRandomMedia();
-        obj.setIcon(icon);
-    }
-    
-    public void StockKeepingUnitDataOnDemand.setImage(StockKeepingUnit obj, int index) {
-        Media image = mediaDataOnDemand.getRandomMedia();
-        obj.setImage(image);
-    }
-    
     public void StockKeepingUnitDataOnDemand.setName(StockKeepingUnit obj, int index) {
         String name = "name_" + index;
         if (name.length() > 100) {
@@ -80,11 +65,6 @@ privileged aspect StockKeepingUnitDataOnDemand_Roo_DataOnDemand {
     public void StockKeepingUnitDataOnDemand.setPrice(StockKeepingUnit obj, int index) {
         Float price = new Integer(index).floatValue();
         obj.setPrice(price);
-    }
-    
-    public void StockKeepingUnitDataOnDemand.setProduct(StockKeepingUnit obj, int index) {
-        Product product = productDataOnDemand.getRandomProduct();
-        obj.setProduct(product);
     }
     
     public void StockKeepingUnitDataOnDemand.setTeaser(StockKeepingUnit obj, int index) {

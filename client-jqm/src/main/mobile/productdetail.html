@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><!-- InstanceBegin template="/Templates/productlocator-mobile.dwt" codeOutsideHTMLIsLocked="false" -->
+<html lang="en"><!-- InstanceBegin template="/templates/productlocator-mobile.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 	<meta charset="utf-8">
     
 	<!-- InstanceBeginEditable name="doctitle" -->
-	<title>Product Locator - Page</title>
+	<title>Product Locator - Product</title>
 	<!-- InstanceEndEditable -->  
     
     <link rel="stylesheet" href="scripts/libs/jquery/jquery.mobile.min.css">
@@ -29,10 +29,10 @@
 <body>
 	<!-- InstanceBeginEditable name="PageBody" -->
 <!-- /////////////// Page /////////////// -->
-<div id="page" data-role="page">
+<div id="product" data-role="page">
 	<div data-role="header" class="header" data-theme="b" data-position="fixed" data-id="header">
     	<a href="#" data-rel="back" data-direction="reverse" data-transition="slide">Back</a>
-        <h1>Welcome to the Product Locator</h1>
+        <h1>Product</h1>
 	</div><!-- /header -->
 
 	<div data-role="content" class="content">	
@@ -62,16 +62,37 @@
         <li class="product"><a href="#" class="nav-button-locations navProductViewLocations" data-icon="custom">Stockists</a></li>
         <li class="product"><a href="#" class="nav-button-nearest navProductNearest" data-icon="custom">Nearest</a></li>
     </ul>
-</div>  <!-- #EndLibraryItem --></div><!-- #EndLibraryItem --></div><!-- /footer -->
-
+</div>  <!-- #EndLibraryItem --></div><!-- #EndLibraryItem --></div><!-- /footer --> 
 
 <!-- /////////////// Templates /////////////// -->
-<script type="text/template" id="page-body">
+<script type="text/template" id="product-detail-body">
 	<h3><%= = name %></h3>
 	<div class="content-container">
-		<img src="<%= = image %>" class="contents-image"/>
-		<p class="contents-block"></p>
-	</div> 
+		<%= if (image != null && image.url) { %>
+			<img src="<%= = image.url %>" alt="<%= = teaser %>"/>
+		<%= } %>
+		<p class="contents-block"><%= = description %></p>
+	</div>
+	
+	<%= if (typeof skus != "undefined" && skus.length > 0) { %>
+		<h3>SKUs</h3>
+
+		<div class="content-container">
+			<p><%= = name %> is available in the following stock keeping units:</p> 
+			
+			<dl class="sku-list">
+				<%= for (var ii=0; ii<skus.length; ii++) { %>
+					<dt><%= = skus.at(ii).get("name") %></dt>
+					<dd>
+						<p>
+							<%= = skus.at(ii).get("description") %>
+							(<span class="price"><%= = skus.at(ii).get("price") %></span>)
+						</p>
+					</dd>	
+				<%= } %>
+			</dl>
+		</div>
+	<%= } %>
 </script>
 </div><!-- /page -->
     <!-- InstanceEndEditable -->

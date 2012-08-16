@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><!-- InstanceBegin template="/templates/productlocator-mobile.dwt" codeOutsideHTMLIsLocked="false" -->
+<html lang="en"><!-- InstanceBegin template="/Templates/productlocator-mobile.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 	<meta charset="utf-8">
     
 	<!-- InstanceBeginEditable name="doctitle" -->
-	<title>Product Locator - Location</title>
+	<title>Product Locator - Page</title>
 	<!-- InstanceEndEditable -->  
     
     <link rel="stylesheet" href="scripts/libs/jquery/jquery.mobile.min.css">
@@ -29,14 +29,14 @@
 <body>
 	<!-- InstanceBeginEditable name="PageBody" -->
 <!-- /////////////// Page /////////////// -->
-<div id="location" data-role="page">
+<div id="page" data-role="page">
 	<div data-role="header" class="header" data-theme="b" data-position="fixed" data-id="header">
-	    <a href="#" data-rel="back" data-direction="reverse" data-transition="slide">Back</a>
-        <h1>Stockist Detail</h1>
+    	<a href="#" data-rel="back" data-direction="reverse" data-transition="slide">Back</a>
+        <h1>Welcome to the Product Locator</h1>
 	</div><!-- /header -->
 
 	<div data-role="content" class="content">	
-
+	
 	</div><!-- /content -->
 	
 	<div data-role="footer" class="footer" data-position="fixed" data-id="footer"><!-- #BeginLibraryItem "/Library/footer-template.lbi" -->
@@ -64,91 +64,18 @@
     </ul>
 </div>  <!-- #EndLibraryItem --></div><!-- #EndLibraryItem --></div><!-- /footer -->
 
+
 <!-- /////////////// Templates /////////////// -->
-<script type="text/template" id="location-detail-body">
-	<div>
-		<h3><%= = name %></h3>
-		<div class="content-container"> 
-			<%= if (image && (image.url.length > 0)) { %>
-				<img src="<%= = image.url %>" class="contents-image" alt="<%= = name %> image"/>
-			<%= } %>
-			<p class="contents-block"><%= = description %></p>
-		</div>
-		
-		<div class="device-action-button-container" data-inline="true">
-			<%= if (latitude != null && longitude != null) { %>
-				<button class="device-action-button viewLocationMap">Map</button>
-			<%= } %>
-			
-			<%= if (phone.length > 0) { %>
-				<button class="device-action-button callLocationPhone">Call</button>
-			<%= } %>	
-			
-			<%= if (email.length > 0) { %>
-				<button class="device-action-button emailLocation">Email</button>
-			<%= } %>	
-			
-			<%= if (url.length > 0) { %>
-				<button class="device-action-button viewLocationWeb">Web</button>
-			<%= } %>
-		</div>
-		
-		<%= if (phone.length > 0 || email.length > 0 || url.length > 0 || twitter.length > 0) { %>
-			<h3>Contact Details</h3>
-			<div class="content-container">
-				<dl class="contact-details">
-					<%= if (phone.length > 0) { %>
-						<dt class="phone">Phone</dt>
-						<dd class="phone"><%= = phone %></dd>
-					<%= } %>
-					
-					<%= if (email.length > 0) { %>
-						<dt class="email">Email</dt>
-						<dd class="email"><%= = email %></dd>
-					<%= } %>
-					
-					<%= if (url.length > 0) { %>
-						<dt class="web">Web</dt>
-						<dd class="web"><%= = url %></dd>
-					<%= } %>
-					
-					<%= if (twitter.length > 0) { %>
-						<dt class="twitter">Twitter</dt>
-						<dd class="twitter"><%= = twitter %></dd>
-					<%= } %>
-				</dl>
-			</div>
+<script type="text/template" id="page-body">
+	<h3><%= = name %></h3>
+	<div class="content-container">
+		<%= if (image != null && image.url) { %>
+			<img src="<%= = image %>" class="contents-image"/>
 		<%= } %>
-		
-		<%= if (address01.length > 0 || address02.length > 0 || city.length > 0 || postcode.length > 0) { %>
-			<h3>Address Details</h3>
-			<div class="content-container">
-				<address>
-					<dl class="address-details">
-						<dt class="street">Street</dt>
-						<dd class="street"><%= = address01 %></dd>
-						
-						<%= if (address02.length > 0) { %>
-							<dt class="street"></dt>
-							<dd class="street"><%= = address02 %></dd>
-						<%= } %>
-		
-						<dt class="city">City</dt>
-						<dd class="city"><%= = city %></dd>
-						
-						<%= if (postcode.length > 0) { %>
-							<dt class="postcode">Postcode</dt>
-							<dd class="postcode"><%= = postcode %></dd>
-						<%= } %>
-						
-						<!-- TODO Country? -->
-					</dl>
-				</address>
-			</div>	
-		<%= } %>
-	</div>
+		<p class="contents-block"></p>
+	</div> 
 </script>
-</div><!-- /page -->  
+</div><!-- /page -->
     <!-- InstanceEndEditable -->
 </body>
 <!-- InstanceEnd --></html> 

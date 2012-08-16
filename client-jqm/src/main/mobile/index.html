@@ -54,7 +54,9 @@
 <script type="text/template" id="home-body">
 	<h3><%= = name %></h3>
 	<div class="content-container">
-		<img src="<%= = image.url %>" class="contents-image"/>
+		<%= if (image != null && image.url) { %>
+			<img src="<%= = image.url %>" class="contents-image"/>
+		<%= } %>
 		<p class="contents-block"></p>
 	</div> 
 </script>

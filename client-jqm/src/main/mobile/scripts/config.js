@@ -4,8 +4,8 @@ function() {
 	
 	var config = {};
 	
-	config.contextRoot = "/locator-html/mobile";
-	config.remoteBaseURL = "http://localhost:8080/locator-api/";
+	config.contextRoot = "/client-jqm/mobile";
+	config.remoteBaseURL = "http://localhost:8080/server-roo/";
 	config.minListItemsForFilter = 12;
 	config.maxNoTweets = 20;
 	

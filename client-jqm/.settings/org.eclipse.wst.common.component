@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/mobile" source-path="/src/main/mobile"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <property name="context-root" value="locator-html"/>
         <property name="java-output-path" value="/client-html/build/classes"/>
+        <property name="context-root" value="client-jqm"/>
     </wb-module>
 </project-modules>

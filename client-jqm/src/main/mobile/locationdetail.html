@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     
 	<!-- InstanceBeginEditable name="doctitle" -->
-	<title>Product Locator - Product</title>
+	<title>Product Locator - Location</title>
 	<!-- InstanceEndEditable -->  
     
     <link rel="stylesheet" href="scripts/libs/jquery/jquery.mobile.min.css">
@@ -29,14 +29,14 @@
 <body>
 	<!-- InstanceBeginEditable name="PageBody" -->
 <!-- /////////////// Page /////////////// -->
-<div id="product" data-role="page">
+<div id="location" data-role="page">
 	<div data-role="header" class="header" data-theme="b" data-position="fixed" data-id="header">
-    	<a href="#" data-rel="back" data-direction="reverse" data-transition="slide">Back</a>
-        <h1>Product</h1>
+	    <a href="#" data-rel="back" data-direction="reverse" data-transition="slide">Back</a>
+        <h1>Stockist Detail</h1>
 	</div><!-- /header -->
 
 	<div data-role="content" class="content">	
-	
+
 	</div><!-- /content -->
 	
 	<div data-role="footer" class="footer" data-position="fixed" data-id="footer"><!-- #BeginLibraryItem "/Library/footer-template.lbi" -->
@@ -62,37 +62,93 @@
         <li class="product"><a href="#" class="nav-button-locations navProductViewLocations" data-icon="custom">Stockists</a></li>
         <li class="product"><a href="#" class="nav-button-nearest navProductNearest" data-icon="custom">Nearest</a></li>
     </ul>
-</div>  <!-- #EndLibraryItem --></div><!-- #EndLibraryItem --></div><!-- /footer --> 
+</div>  <!-- #EndLibraryItem --></div><!-- #EndLibraryItem --></div><!-- /footer -->
 
 <!-- /////////////// Templates /////////////// -->
-<script type="text/template" id="product-detail-body">
-	<h3><%= = name %></h3>
-	<div class="content-container">
-		<img src="<%= = image.url %>" alt="<%= = teaser %>"/>
-		<p class="contents-block"><%= = description %></p>
-	</div>
-	
-	<%= if (typeof skus != "undefined" && skus.length > 0) { %>
-		<h3>SKUs</h3>
-
-		<div class="content-container">
-			<p><%= = name %> is available in the following stock keeping units:</p> 
-			
-			<dl class="sku-list">
-				<%= for (var ii=0; ii<skus.length; ii++) { %>
-					<dt><%= = skus.at(ii).get("name") %></dt>
-					<dd>
-						<p>
-							<%= = skus.at(ii).get("description") %>
-							(<span class="price"><%= = skus.at(ii).get("price") %></span>)
-						</p>
-					</dd>	
-				<%= } %>
-			</dl>
+<script type="text/template" id="location-detail-body">
+	<div>
+		<h3><%= = name %></h3>
+		<div class="content-container"> 
+			<%= if (image != null && image.url) { %>
+				<img src="<%= = image.url %>" class="contents-image" alt="<%= = name %> image"/>
+			<%= } %>
+			<p class="contents-block"><%= = description %></p>
 		</div>
-	<%= } %>
+		
+		<div class="device-action-button-container" data-inline="true">
+			<%= if (latitude != null && longitude != null) { %>
+				<button class="device-action-button viewLocationMap">Map</button>
+			<%= } %>
+			
+			<%= if (phone.length > 0) { %>
+				<button class="device-action-button callLocationPhone">Call</button>
+			<%= } %>	
+			
+			<%= if (email.length > 0) { %>
+				<button class="device-action-button emailLocation">Email</button>
+			<%= } %>	
+			
+			<%= if (url.length > 0) { %>
+				<button class="device-action-button viewLocationWeb">Web</button>
+			<%= } %>
+		</div>
+		
+		<%= if (phone.length > 0 || email.length > 0 || url.length > 0 || twitter.length > 0) { %>
+			<h3>Contact Details</h3>
+			<div class="content-container">
+				<dl class="contact-details">
+					<%= if (phone.length > 0) { %>
+						<dt class="phone">Phone</dt>
+						<dd class="phone"><%= = phone %></dd>
+					<%= } %>
+					
+					<%= if (email.length > 0) { %>
+						<dt class="email">Email</dt>
+						<dd class="email"><%= = email %></dd>
+					<%= } %>
+					
+					<%= if (url.length > 0) { %>
+						<dt class="web">Web</dt>
+						<dd class="web"><%= = url %></dd>
+					<%= } %>
+					
+					<%= if (twitter.length > 0) { %>
+						<dt class="twitter">Twitter</dt>
+						<dd class="twitter"><%= = twitter %></dd>
+					<%= } %>
+				</dl>
+			</div>
+		<%= } %>
+		
+		<%= if (address01.length > 0 || address02.length > 0 || city.length > 0 || postcode.length > 0) { %>
+			<h3>Address Details</h3>
+			<div class="content-container">
+				<address>
+					<dl class="address-details">
+						<dt class="street">Street</dt>
+						<dd class="street"><%= = address01 %></dd>
+						
+						<%= if (address02.length > 0) { %>
+							<dt class="street"></dt>
+							<dd class="street"><%= = address02 %></dd>
+						<%= } %>
+		
+						<dt class="city">City</dt>
+						<dd class="city"><%= = city %></dd>
+						
+						<%= if (postcode.length > 0) { %>
+							<dt class="postcode">Postcode</dt>
+							<dd class="postcode"><%= = postcode %></dd>
+						<%= } %>
+						
+						<!-- TODO Country? -->
+					</dl>
+				</address>
+			</div>	
+		<%= } %>
+	</div>
 </script>
-</div><!-- /page -->
+</div><!-- /page -->  
     <!-- InstanceEndEditable -->
 </body>
 <!-- InstanceEnd --></html> 
